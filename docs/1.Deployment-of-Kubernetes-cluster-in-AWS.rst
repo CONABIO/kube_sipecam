@@ -1,4 +1,3 @@
-<img width="500" alt="imagen" src="https://github.com/CONABIO/kube_sipecam/blob/master/imgs/1_SP_SIPECAM_AWS.png">
 
 .. image:: ../imgs/1_SP_SIPECAM_AWS.png 
         :width: 400
