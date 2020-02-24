@@ -1,5 +1,5 @@
 
-.. image:: ../imgs/1_SP_SIPECAM_AWS.png 
+.. image:: ../imgs/1_KUBE_SIPECAM_AWS.png 
         :width: 400
 
 Kubernetes
