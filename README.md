@@ -1,8 +1,10 @@
 # kube_sipecam
-k8s cluster documentation for sipecam
+
+Overview of k8s cluster in AWS:
 
 <img height="280" width="500" src="https://github.com/CONABIO/kube_sipecam/blob/master/imgs/KUBE_SIPECAM_AWS.png">
 
+Next links will guide you through contents of this repo:
 
 [1.Deployment of Kubernetes cluster in AWS](https://github.com/CONABIO/kube_sipecam/wiki/1.Deployment-of-Kubernetes-cluster-in-AWS)
 
