@@ -395,7 +395,7 @@ Documentation of `Creating sample user`_ can be used to access via token generat
 
 to retrieve token.
 
-.. image:: ../imgs/k8s-dashboard-1.png
+.. image:: imgs/k8s-dashboard-1.png
         :width: 400
 
 
