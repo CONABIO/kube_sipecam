@@ -1,0 +1,34 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+        name: kale-jupyterlaA
+spec:
+        replicas: 1 # This is the number of containers that are going to be deployed.
+        template:
+                metadata:
+                        labels:
+                                app: kale-jupyterlab-app
+                spec:
+                        containers: 
+                        - name: kale-jupyterlab
+                          imagePullPolicy: Always
+                          image: palmoreck/jupyterlab_kale:0.4.0
+                          command: ["/bin/bash", "-c", "jupyter lab --ip=0.0.0.0 --no-browser"]
+                          ports:
+                                  - containerPort: 8888
+                          env:
+                                  - name: mount_point
+                                    value: /shared_volume
+                                  - name: LC_ALL
+                                    value: C.UTF-8
+                                  - name: LANG
+                                    value: C.UTF-8
+                          resources:
+                                  requests:
+                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          memory: .5Gi # This value depends of type of AWS instance chosen
+                                  limits:
+                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          memory: .5Gi # This value depends of type of AWS instance chosen
+
+                     
