@@ -2,7 +2,7 @@
 
 Overview of k8s cluster in AWS:
 
-<img height="280" width="500" src="https://github.com/CONABIO/kube_sipecam/blob/master/imgs/KUBE_SIPECAM_AWS.png">
+<img height="280" width="500" src="https://github.com/CONABIO/kube_sipecam/blob/master/docs/imgs/KUBE_SIPECAM_AWS.png">
 
 Next links will guide you through contents of this repo:
 
