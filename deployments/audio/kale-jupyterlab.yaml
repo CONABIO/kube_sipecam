@@ -12,7 +12,7 @@ spec:
                         containers: 
                         - name: kale-jupyterlab
                           imagePullPolicy: Always
-                          image: palmoreck/jupyterlab_kale:0.4.0
+                          image: sipecam/audio-kale:0.4.0_v2
                           command: ["/bin/bash", "-c", "jupyter lab --ip=0.0.0.0 --no-browser"]
                           ports:
                                   - containerPort: 8888
@@ -30,5 +30,11 @@ spec:
                                   limits:
                                           cpu: "1" # This value depends of type of AWS instance chosen
                                           memory: .5Gi # This value depends of type of AWS instance chosen
-
+                          volumeMounts:
+                                  - name: efs-pvc
+                                    mountPath: "/shared_volume"
+                        volumes:
+                        - name: efs-pvc
+                          persistentVolumeClaim:
+                                  claimName: efs
                      
