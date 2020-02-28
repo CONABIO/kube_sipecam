@@ -24,6 +24,9 @@ RUN pip3 install jupyter jupyterlab --upgrade
 RUN pip3 install dask distributed --upgrade && pip3 install bokeh
 RUN pip3 install kubeflow-kale
 USER audiouser
-RUN jupyter notebook --generate-config && sed -i 's/#c.NotebookApp.port = .*/c.NotebookApp.port = 9999/' /home/audiouser/.jupyter/jupyter_notebook_config.py && \
-sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:9225c39529b2:3881f9da97d9e3195576e39b70d697992322b4eb'/" ~/.jupyter/jupyter_notebook_config.py
+RUN jupyter notebook --generate-config && \
+    sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
+    sed -i "s/#c.NotebookApp.keyfile = .*/c.NotebookApp.keyfile = u'\/shared_volume\/certs\/privkey1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
+    sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:9225c39529b2:3881f9da97d9e3195576e39b70d697992322b4eb'/" ~/.jupyter/jupyter_notebook_config.py && \
+    sed -i 's/#c.NotebookApp.port = .*/c.NotebookApp.port = 8888/' ~/.jupyter/jupyter_notebook_config.py
 RUN sudo jupyter labextension install kubeflow-kale-launcher
