@@ -18,9 +18,9 @@ RUN groupadd audiouser
 RUN useradd audiouser -g audiouser -m -s /bin/bash
 RUN echo 'audiouser ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo)
 RUN echo 'audiouser:audiouser' | chpasswd
-RUN pip3 install jupyter jupyterlab --upgrade
+RUN pip3 install jupyter jupyterlab==1.2.6 --upgrade
 RUN pip3 install dask distributed --upgrade && pip3 install bokeh
-RUN pip3 install kubeflow-kale
+RUN pip3 install kubeflow-kale==0.4.0
 USER audiouser
 RUN jupyter notebook --generate-config && \
     sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
