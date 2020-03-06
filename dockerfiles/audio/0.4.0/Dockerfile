@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM nvidia/cuda:10.1-devel-ubuntu18.04
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV KALE_VERSION=0.4.0
@@ -8,11 +8,14 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && echo "America/Mex
 RUN apt-get update && apt-get install -y \
             sudo \
             nano \
+	    less \
+	    git \
+	    wget \
+	    curl \
 	    python-dev \
             python3-dev \
             python3-pip \
-            python3-setuptools curl git
-RUN pip3 install --upgrade pip
+            python3-setuptools && pip3 install --upgrade pip
 RUN curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash - && apt-get install nodejs
 RUN groupadd audiouser
 RUN useradd audiouser -g audiouser -m -s /bin/bash
@@ -29,3 +32,5 @@ RUN jupyter notebook --generate-config && \
     sed -i 's/#c.NotebookApp.port = .*/c.NotebookApp.port = 9999/' ~/.jupyter/jupyter_notebook_config.py
 RUN sudo jupyter labextension install kubeflow-kale-launcher
 VOLUME ["/shared_volume"]
+ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
+
