@@ -30,6 +30,7 @@ spec:
                                   limits:
                                           cpu: "1" # This value depends of type of AWS instance chosen
                                           memory: .5Gi # This value depends of type of AWS instance chosen
+                                          nvidia.com/gpu: 1
                           volumeMounts:
                                   - name: efs-pvc
                                     mountPath: "/shared_volume"
