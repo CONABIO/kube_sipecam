@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
             python3-dev \
             python3-pip \
             python3-setuptools && pip3 install --upgrade pip
-
+RUN curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash - && apt-get install nodejs
 RUN groupadd audiouser
 RUN useradd audiouser -g audiouser -m -s /bin/bash
 RUN echo 'audiouser ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo)
@@ -24,7 +24,7 @@ RUN pip3 install jupyter==1.0.0 jupyterlab==1.2.6 --upgrade
 RUN pip3 install scipy==1.1.0 pyarrow==0.14.0 apache_beam==2.14.0 \ 
     tensorflow_data_validation==0.14.0 six==1.12.0 \ 
     tensorflow-transform==0.14.0 tensorflow-model-analysis==0.14.0
-RUN pip3 install kubeflow-kale==0.3.4 # problems with 0.4.0 version and dill >=0.3, <0.4 dependency with apache_beam
+RUN pip3 install nbconvert==4.3.0 nbformat==4.4.0 click==7.0 kubeflow-kale==0.3.4 # problems with 0.4.0 version and dill >=0.3, <0.4 dependency with apache_beam
 USER audiouser
 RUN jupyter notebook --generate-config && \
     sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
