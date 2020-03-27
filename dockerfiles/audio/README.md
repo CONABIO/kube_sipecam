@@ -1,7 +1,7 @@
 Set:
 
 ```
-KALE_VERSION=0.4.0_10.1_tf_test
+KALE_VERSION=0.4.0_10.1
 REPO_URL=sipecam/audio-kale
 PATH_DIR_OF_CLONING=/home/<user>/<midir>
 BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/audio/0.4.0
