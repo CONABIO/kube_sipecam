@@ -9,7 +9,7 @@ spec:
                         labels:
                                 app: kale-jupyterlab-app
                         annotations:
-                                iam.amazonaws.com/role: "arn:aws:iam::<micuenta>:role/<mirol>
+                                iam.amazonaws.com/role: "arn:aws:iam::<micuenta>:role/<mirol>"
                 spec:
                         containers: 
                         - name: kale-jupyterlab
