@@ -16,9 +16,9 @@ The nex steps follow `kops`_ and `kops - Kubernetes Operations`_ guides (another
 
 1. Configure a domain and a subdomain with their respective hosted zones. For the following description `Route 53`_ service of AWS was used to create domain ``conabio-route53.net`` and subdomain ``antares3.conabio-route53.net``. Also a **gossip based Kubernetes cluster** can be used instead (see for example this `issue`_ and this `entry of blog`_).
 
-2. Install **same versions** of kops and kubectl. We use a ``t2.micro`` instance with AMI ``Ubuntu 16.04 LTS`` and a role attached to it to install this tools with the next bash script:
+2. Install **same versions** of kops and kubectl. You can use a ``t2.micro`` ec2 instance with AMI ``Ubuntu 18.04 LTS`` and a role attached to it with ``AmazonEc2FullAccess`` to install this tools and label it with the next bash script:
  
-**Note: change region in next bash script where you deployed ``t2.micro`` instance**
+**Note: change region in next bash script where you deployed t2.micro instance**
 
 .. code-block:: bash
 
@@ -29,9 +29,10 @@ The nex steps follow `kops`_ and `kops - Kubernetes Operations`_ guides (another
 	shared_volume=/shared_volume
 	user=ubuntu
 	##System update
-	apt-get update
+        export DEBIAN_FRONTEND=noninteractive
+        apt-get update -yq
 	##Install awscli
-	apt-get install -y python3-pip && pip3 install --upgrade pip==9.0.3
+	apt-get install -y python3-pip && pip3 install --upgrade pip
 	pip3 install awscli --upgrade
 	##Tag instance
 	INSTANCE_ID=$(curl -s http://instance-data/latest/meta-data/instance-id)
@@ -50,16 +51,16 @@ The nex steps follow `kops`_ and `kops - Kubernetes Operations`_ guides (another
 	apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-	apt-get update
+	apt-get update -yq
 	apt-get install -y docker-ce
 	service docker start
-	##install kops version 1.9.0:
-	wget -O kops https://github.com/kubernetes/kops/releases/download/1.9.0/kops-linux-amd64
-	chmod +x ./kops
+	##install kops version 1.14.0:
+	wget -O kops https://github.com/kubernetes/kops/releases/download/1.14.0/kops-linux-amd64
+        chmod +x ./kops
 	sudo mv ./kops /usr/local/bin/
-	##install kubernetes command line tool v1.9: kubectl
-	wget -O kubectl https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/linux/amd64/kubectl
-	chmod +x ./kubectl
+	##install kubernetes command line tool v1.14: kubectl
+        wget -O kubectl https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl
+        chmod +x ./kubectl
 	sudo mv ./kubectl /usr/local/bin/kubectl
 	##enable completion for kubectl:
 	echo "source <(kubectl completion bash)" >> /home/$user/.bashrc
@@ -94,18 +95,14 @@ You can check kops and kubectl versions with:
 	export CLUSTER_FULL_NAME="${CLUSTER_ALIAS}.${DOMAIN_NAME}"
 	
 	# AWS availability zone where the cluster will be created
-
-	REGION=$(curl -s http://instance-data/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}')
-
-	export CLUSTER_AWS_AZ=$(aws ec2 describe-availability-zones --region $REGION | grep ZoneName | awk '{print $2}'|tr -s '\n' ','|tr -d '"'|sed -n 's/,$//p')
-
+        export CLUSTER_AWS_AZ=us-west-2a,us-west-2b,us-west-2c
 	
 	# Leave as-is: AWS Route 53 hosted zone ID for your domain (don't set it if gossip based cluster is used)
 	export DOMAIN_NAME_ZONE_ID=$(aws route53 list-hosted-zones \
 	       | jq -r '.HostedZones[] | select(.Name=="'${DOMAIN_NAME}'.") | .Id' \
 	       | sed 's/\/hostedzone\///')
 	
-	export KUBERNETES_VERSION="1.9.0"
+	export KUBERNETES_VERSION="1.14.0"
 	
 	#To hold cluster state information export KOPS_STATE_STORE
 	export KOPS_STATE_STORE="s3://${CLUSTER_FULL_NAME}-state"
@@ -136,28 +133,30 @@ Create group and permissions of it:
 
 .. code-block:: bash
 
-	$aws iam create-group --group-name kops
+        $name=kops
 
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess --group-name kops
+	$aws iam create-group --group-name $name
 
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonRoute53FullAccess --group-name kops
+	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess --group-name $name
 
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --group-name kops
+	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonRoute53FullAccess --group-name $name 
 
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/IAMFullAccess --group-name kops
+	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --group-name $name 
 
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonVPCFullAccess --group-name kops
+	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/IAMFullAccess --group-name $name 
 
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess --group-name kops
+	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonVPCFullAccess --group-name $name 
+
+	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess --group-name $name
 
 
 Create user kops and add it to already created group kops:
 
 .. code-block:: bash
 
-	$aws iam create-user --user-name kops
+	$aws iam create-user --user-name $name 
 
-	$aws iam add-user-to-group --user-name kops --group-name kops
+	$aws iam add-user-to-group --user-name $name --group-name $name
 
 
 Create access keys for user kops:
@@ -165,8 +164,8 @@ Create access keys for user kops:
 
 .. code-block:: bash
 
-	$aws iam create-access-key --user-name kops
-
+	$aws iam create-access-key --user-name $name
+ 
 
 This will generate an **AccessKeyId** and **SecretAccessKey** that must be kept in a safe place. Use them to configure awscli and set next variables:
 
@@ -196,10 +195,12 @@ This will generate an **AccessKeyId** and **SecretAccessKey** that must be kept 
 	--zones=${CLUSTER_AWS_AZ} \
 	--master-size="t2.medium" \
 	--node-size="t2.medium" \
-	--node-count="3" \
+	--node-count="1" \
 	--dns-zone=${DOMAIN_NAME} \
 	--ssh-public-key="/home/ubuntu/.ssh/id_rsa.pub" \
-	--kubernetes-version=${KUBERNETES_VERSION} --yes
+	--kubernetes-version=${KUBERNETES_VERSION}
+
+        $kops update cluster --name ${CLUSTER_FULL_NAME} --yes
 
 .. note:: 
 
