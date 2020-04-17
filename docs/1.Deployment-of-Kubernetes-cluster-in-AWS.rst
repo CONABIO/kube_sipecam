@@ -5,7 +5,7 @@ Kubernetes
 ==========
 
 
-Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications (see `Kubernetes`_ and `Kubernetes github page`_ ). There are a lot of ways to deploy a Kubernetes cluster, for instance see `Picking the right solution`_.
+Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications (see `Kubernetes`_ and `Kubernetes github page`_ ). 
 
 
 Cluster creation
@@ -14,7 +14,7 @@ Cluster creation
 The nex steps follow `kops`_ and `kops - Kubernetes Operations`_ guides (another guide: `Step Zero Kubernetes on AWS`_).
 
 
-1. Configure a domain and a subdomain with their respective hosted zones. For the following description `Route 53`_ service of AWS was used to create domain ``conabio-route53.net`` and subdomain ``antares3.conabio-route53.net``. Also a **gossip based Kubernetes cluster** can be used instead (see for example this `issue`_ and this `entry of blog`_).
+1. Configure a domain and a subdomain with their respective hosted zones. For the following description `Route 53`_ service of AWS was used to create domain ``conabio-route53.net`` and subdomain ``antares3.conabio-route53.net``. Also a **gossip based Kubernetes cluster** can be used instead (see for example this `issue`_ ).
 
 2. Install **same versions** of kops and kubectl. You can use a ``t2.micro`` ec2 instance with AMI ``Ubuntu 18.04 LTS`` and a role attached to it with ``AmazonEc2FullAccess`` to install this tools and label it with the next bash script:
  
@@ -243,7 +243,7 @@ Kubernetes dashboard
 
 According to `Kubernetes Dashboard`_ kubernetes dashboard is a general purpose, web-based UI for kubernetes clusters. It allows users to manage applications running in the cluster and troubleshoot them, as well as manage the cluster itself.
 
-Next steps are based on: `Certificate management`_, `Installation`_, `Accessing Dashboard 1.7.X and above`_ and `Creating sample user`_ from kubernetes official documentation and installation of `Certbot for Ubuntu (16.04) xenial`_ and `certbot-dns-route53`_ to generate certificates and access kubernetes dashboard via https.
+Next steps are based on: `Certificate management`_, `Installation`_, `Accessing Dashboard 1.7.X and above`_ and `Creating sample user`_ from kubernetes official documentation and installation of `Certbot for Ubuntu (18.04) bionic`_ and `certbot-dns-route53`_ to generate certificates and access kubernetes dashboard via https.
 
 Install certbot and Route53 plugin for Let's Encrypt client:
 
@@ -251,6 +251,7 @@ Install certbot and Route53 plugin for Let's Encrypt client:
 
 	$sudo apt-get update
 	$sudo apt-get install -y software-properties-common
+        $sudo add-apt-repository universe
 	$sudo add-apt-repository ppa:certbot/certbot
 	$sudo apt-get update
 	$sudo apt-get install -y certbot
@@ -439,15 +440,15 @@ To delete components of kubernetes dashboard:
 
 .. _certbot-dns-route53: https://certbot-dns-route53.readthedocs.io/en/latest/#
 
-.. _Certbot for Ubuntu (16.04) xenial: https://certbot.eff.org/lets-encrypt/ubuntuxenial-other
+.. _Certbot for Ubuntu (18.04) bionic: https://certbot.eff.org/lets-encrypt/ubuntubionic-other
 
-.. _Creating sample user: https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
+.. _Creating sample user: https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md 
 
-.. _Accessing Dashboard 1.7.X and above: https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above
+.. _Accessing Dashboard 1.7.X and above: https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/1.7.x-and-above.md 
 
-.. _Installation: https://github.com/kubernetes/dashboard/wiki/Installation
+.. _Installation: https://github.com/kubernetes/dashboard/blob/master/docs/user/installation.md 
 
-.. _Certificate management: https://github.com/kubernetes/dashboard/wiki/Certificate-management 
+.. _Certificate management: https://github.com/kubernetes/dashboard/blob/master/docs/user/certificate-management.md 
 
 .. _Kubernetes Dashboard: https://github.com/kubernetes/dashboard
 
@@ -469,15 +470,11 @@ To delete components of kubernetes dashboard:
 
 .. _Kubernetes: https://kubernetes.io/
 
-.. _Picking the right solution: https://kubernetes.io/docs/setup/pick-right-solution/
-
 .. _kops - Kubernetes Operations: https://github.com/kubernetes/kops
 
 .. _kops: https://kubernetes.io/docs/setup/custom-cloud/kops/
 
 .. _Route 53: https://aws.amazon.com/route53/?nc1=h_ls
-
-.. _entry of blog: http://blog.arungupta.me/gossip-kubernetes-aws-kops/
 
 .. _issue: https://github.com/kubernetes/kops/issues/2858  
 
