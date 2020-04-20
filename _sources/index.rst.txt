@@ -10,6 +10,7 @@ Welcome to kube sipecam's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   1.Deployment-of-Kubernetes-cluster-in-AWS
 
 
 Indices and tables
