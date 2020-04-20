@@ -1,6 +1,6 @@
 language: python
 
-dist: bionic
+dist: xenial
 
 python:
   - "3.6"
@@ -20,6 +20,7 @@ after_success:
   - git checkout master docs
   - git reset HEAD
   - cd docs
+  - make clean
   - make html
   - cd ..
   - mv -f docs/_build/html/* .
@@ -29,6 +30,7 @@ after_success:
 deploy:
   provider: pages
   skip-cleanup: true
+  github-token: $GH_TOKEN
   keep-history: true
   on:
     branch: master
