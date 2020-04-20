@@ -3,6 +3,7 @@
 
 [![master](https://travis-ci.org/CONABIO/kube_sipecam.svg?branch=master)](https://travis-ci.org/CONABIO/kube_sipecam)
 
+[![master](https://travis-ci.org/CONABIO/kube_sipecam.png?branch=master)](https://travis-ci.org/CONABIO/kube_sipecam)
 
 Overview of k8s cluster in AWS:
 
