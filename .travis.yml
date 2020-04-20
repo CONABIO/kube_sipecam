@@ -8,6 +8,10 @@ python:
 before_install:
   - sudo apt-get --yes --force-yes update -qq
 
+script:
+
+  - python -c 'print("Hello world!")'
+
 
 after_success:
   - pip install -r docs/requirements.txt 
