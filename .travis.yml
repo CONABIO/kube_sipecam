@@ -12,7 +12,6 @@ script:
 
   - python -c 'print("Hello world!")'
 
-
 after_success:
   - pip install -r docs/requirements.txt 
   - git checkout -b gh-pages origin/gh-pages
