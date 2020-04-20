@@ -19,6 +19,8 @@ after_success:
   - git checkout master docs
   - git reset HEAD
   - cd docs
+  - mkdir _static
+  - mkdir _templates
   - make clean
   - make html
   - cd ..
