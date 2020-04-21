@@ -11,7 +11,4 @@ Overview of k8s cluster in AWS:
 [Online documentation](https://conabio.github.io/kube_sipecam/)
 
 
-Next links will guide you through contents of this repo:
-
-[1.Deployment of Kubernetes cluster in AWS](https://github.com/CONABIO/kube_sipecam/wiki/1.Deployment-of-Kubernetes-cluster-in-AWS)
 
