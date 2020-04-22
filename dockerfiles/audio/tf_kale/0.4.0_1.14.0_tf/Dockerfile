@@ -31,5 +31,6 @@ RUN jupyter notebook --generate-config && \
     sed -i 's/#c.NotebookApp.port = .*/c.NotebookApp.port = 9999/' ~/.jupyter/jupyter_notebook_config.py
 RUN sudo jupyter labextension install kubeflow-kale-launcher
 VOLUME ["/shared_volume"]
-ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
+ENV NB_PREFIX miurl
+ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--LabApp.allow_origin='*'", "--LabApp.base_url=miurl"]
 
