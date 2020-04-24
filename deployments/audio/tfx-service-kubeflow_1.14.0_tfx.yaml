@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-        name: kale-service-kubeflow_1.14.0_tfx
+        name: tfx-service-kubeflow_1.14.0_tfx
         namespace: kubeflow
 spec:
         type: LoadBalancer
@@ -11,6 +11,6 @@ spec:
                   protocol: TCP
                   nodePort: 30002 #select port of your preference
         selector:
-                app: kale-jupyterlab-kubeflow_1.14.0_tfx-app
+                app: tfx-jupyterlab-kubeflow_1.14.0_tfx-app
 
 

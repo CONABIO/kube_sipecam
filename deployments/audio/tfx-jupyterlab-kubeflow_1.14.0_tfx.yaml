@@ -1,21 +1,21 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-        name: kale-jupyterlab-kubeflow_1.14.0_tfx
+        name: tfx-jupyterlab-kubeflow_1.14.0_tfx
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-kubeflow_1.14.0_tfx-app
+                                app: tfx-jupyterlab-kubeflow_1.14.0_tfx-app
                         annotations:
                                 iam.amazonaws.com/role: "arn:aws:iam::<micuenta>:role/<mirol>"
                 spec:
                         containers: 
-                        - name: kale-jupyterlab-kubeflow_1.14.0_tfx
+                        - name: tfx-jupyterlab-kubeflow_1.14.0_tfx
                           imagePullPolicy: Always
-                          image: sipecam/audio-kale:1.14.0_tfx
+                          image: sipecam/audio-tfx:1.14.0_tfx
                           ports:
                                   - containerPort: 9999
                           env:
