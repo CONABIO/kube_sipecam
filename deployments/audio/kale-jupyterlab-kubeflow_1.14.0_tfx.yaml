@@ -15,7 +15,7 @@ spec:
                         containers: 
                         - name: kale-jupyterlab
                           imagePullPolicy: Always
-                          image: sipecam/audio-kale:0.4.0_1.14.0_tf
+                          image: sipecam/audio-kale:1.14.0_tfx
                           ports:
                                   - containerPort: 9999
                           env:
