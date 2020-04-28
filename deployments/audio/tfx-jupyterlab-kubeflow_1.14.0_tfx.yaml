@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-        name: tfx-jupyterlab-kubeflow-1-14-0-tfx-app
+        name: tfx-jupyterlab-kubeflow-1-14-0-tfx
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
