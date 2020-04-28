@@ -22,6 +22,7 @@ RUN useradd audiouser -g audiouser -m -s /bin/bash
 RUN echo 'audiouser ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo)
 RUN echo 'audiouser:audiouser' | chpasswd
 RUN pip3 install jupyter jupyterlab==1.2.6 --upgrade
+RUN pip3 install numpy matplotlib pandas seaborn sklearn
 RUN pip3 install dask distributed --upgrade && pip3 install bokeh
 RUN pip3 install setuptools==46.1.3 tensorflow==2.1.0 librosa==0.7.2 scikit-learn==0.22.2 scikit-image==0.16.2 kubeflow-kale==0.4.0
 USER audiouser
