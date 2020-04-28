@@ -1,19 +1,19 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-        name: kale-jupyterlab-kubeflow-0-4-0-1-14-0-tf
+        name: kale-jupyterlab-kubeflow-0-4-0-1-14-0-tf-cpu
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-kubeflow-0-4-0-1-14-0-tf-app
+                                app: kale-jupyterlab-kubeflow-0-4-0-1-14-0-tf-cpu-app
                         annotations:
-                                iam.amazonaws.com/role: "arn:aws:iam::<micuenta>:role/<mirol>"
+                                iam.amazonaws.com/role: "arn:aws:iam::arn:aws:iam::<micuenta>:role/<mirol>"
                 spec:
                         containers: 
-                        - name: kale-jupyterlab-kubeflow-0-4-0-1-14-0-tf
+                        - name: kale-jupyterlab-kubeflow-0-4-0-1-14-0-tf-cpu
                           imagePullPolicy: Always
                           image: sipecam/audio-kale:0.4.0_1.14.0_tf
                           ports:
@@ -28,10 +28,10 @@ spec:
                           resources:
                                   requests:
                                           cpu: "1" # This value depends of type of AWS instance chosen
-                                          memory: .5Gi # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
                                   limits:
                                           cpu: "1" # This value depends of type of AWS instance chosen
-                                          memory: .5Gi # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
                           volumeMounts:
                                   - name: efs-pvc
                                     mountPath: "/shared_volume"
