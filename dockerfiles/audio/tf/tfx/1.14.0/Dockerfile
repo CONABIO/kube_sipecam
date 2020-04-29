@@ -21,7 +21,8 @@ RUN useradd audiouser -g audiouser -m -s /bin/bash
 RUN echo 'audiouser ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo)
 RUN echo 'audiouser:audiouser' | chpasswd
 RUN pip3 install jupyter==1.0.0 jupyterlab==1.2.6 --upgrade
-RUN pip3 install apache_beam==2.14.0 six==1.12.0 tfx==0.14.0
+RUN pip3 install numpy matplotlib pandas seaborn
+RUN pip3 install apache_beam==2.14.0 six==1.12.0 tfx==0.14.0 tensorflow_data_validation==0.14.1 tensorflow-transform==0.14.0 tensorflow-model-analysis==0.14.0
 USER audiouser
 RUN jupyter notebook --generate-config && \
     sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
