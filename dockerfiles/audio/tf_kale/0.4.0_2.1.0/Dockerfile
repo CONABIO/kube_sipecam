@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-devel-ubuntu18.04
+FROM nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV KALE_VERSION=0.4.0
@@ -22,9 +22,9 @@ RUN useradd audiouser -g audiouser -m -s /bin/bash
 RUN echo 'audiouser ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo)
 RUN echo 'audiouser:audiouser' | chpasswd
 RUN pip3 install jupyter jupyterlab==1.2.6 --upgrade
-RUN pip3 install numpy matplotlib pandas seaborn sklearn
+RUN pip3 install numpy matplotlib pandas seaborn
 RUN pip3 install dask distributed --upgrade && pip3 install bokeh
-RUN pip3 install setuptools==46.1.3 tensorflow==2.1.0 librosa==0.7.2 scikit-learn==0.22.2 scikit-image==0.16.2 kubeflow-kale==0.4.0
+RUN pip3 install setuptools==46.1.3 tensorflow==2.1.0 librosa==0.7.2 scikit-learn==0.22.2 scikit-image==0.16.2 kubeflow-kale==0.4.0 keras==2.3.1 torch==1.5.0
 USER audiouser
 RUN jupyter notebook --generate-config && \
     sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
