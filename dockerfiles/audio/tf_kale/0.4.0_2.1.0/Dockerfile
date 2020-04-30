@@ -24,7 +24,8 @@ RUN echo 'audiouser:audiouser' | chpasswd
 RUN pip3 install jupyter jupyterlab==1.2.6 --upgrade
 RUN pip3 install numpy matplotlib pandas seaborn
 RUN pip3 install dask distributed --upgrade && pip3 install bokeh
-RUN pip3 install setuptools==46.1.3 tensorflow==2.1.0 librosa==0.7.2 scikit-learn==0.22.2 scikit-image==0.16.2 kubeflow-kale==0.4.0 keras==2.3.1 torch==1.5.0 torchvision=0.6.0
+RUN pip3 install setuptools==46.1.3 tensorflow==2.1.0 librosa==0.7.2 scikit-learn==0.22.2 scikit-image==0.16.2 kubeflow-kale==0.4.0 keras==2.3.1
+RUN pip3 install torch==1.4.0+cu100 torchvision==0.5.0+cu100 -f https://download.pytorch.org/whl/torch_stable.html
 USER audiouser
 RUN jupyter notebook --generate-config && \
     sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
