@@ -3,7 +3,7 @@ Set:
 ```
 KALE_AND_MAD_MEX_VERSION=0.5.0_0.1.0
 REPO_URL=sipecam/madmex-kale
-PATH_DIR_OF_CLONING=/home/<user>/<midir>/
+PATH_DIR_OF_CLONING=/home/<user>/<midir>/kube_sipecam
 BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/MAD_Mex/kale_geopython/0.5.0
 ```
 
