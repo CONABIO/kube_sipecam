@@ -16,5 +16,5 @@ git clone https://github.com/CONABIO/kube_sipecam.git $PATH_DIR_OF_CLONING
 Build:
 
 ```
-docker build $BUILD_DIR --force-rm -t $REPO_URL:$KALE_AND_MAD-MEX_VERSION
+docker build $BUILD_DIR --force-rm -t $REPO_URL:$KALE_AND_MAD_MEX_VERSION
 ```
