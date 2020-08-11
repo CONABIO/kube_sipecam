@@ -18,3 +18,9 @@ Build:
 ```
 docker build $BUILD_DIR --force-rm -t $REPO_URL:$KALE_AND_MAD_MEX_VERSION
 ```
+
+Check:
+
+```
+docker run --rm -v $(pwd):/datos --name sipecam-madmex -p 9999:8888 sipecam/madmex-kale:0.5.0_0.1.0
+```
