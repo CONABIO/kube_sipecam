@@ -29,7 +29,7 @@ spec:
                           resources:
                                   requests:
                                           cpu: "1" # This value depends of type of AWS instance chosen
-                                          memory: 15Gi # This value depends of type of AWS instance chosen
+                                          memory: 4Gi # This value depends of type of AWS instance chosen
                                   limits:
                                           cpu: "1" # This value depends of type of AWS instance chosen
-                                          memory: 15Gi # This value depends of type of AWS instance chosen
+                                          memory: 4Gi # This value depends of type of AWS instance chosen
