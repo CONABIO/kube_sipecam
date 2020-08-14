@@ -1,14 +1,14 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-        name: kale-jupyterlab-kubeflow-0.5.0-0.1.0
+        name: kale-jupyterlab-kubeflow-0-5-0-0-1-0
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-kubeflow-0.5.0-0.1.0-app
+                                app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-app
                 spec:
                         containers: 
                         - name: kale-jupyterlab-kubeflow-0.5.0-0.1.0
