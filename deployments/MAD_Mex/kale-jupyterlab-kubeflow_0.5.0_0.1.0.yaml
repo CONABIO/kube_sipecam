@@ -1,0 +1,32 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+        name: kale-jupyterlab-kubeflow-0.5.0-0.1.0
+        namespace: kubeflow
+spec:
+        replicas: 1 # This is the number of containers that are going to be deployed.
+        template:
+                metadata:
+                        labels:
+                                app: kale-jupyterlab-kubeflow-0.5.0-0.1.0-app
+                spec:
+                        containers: 
+                        - name: kale-jupyterlab-kubeflow-0.5.0-0.1.0
+                          imagePullPolicy: Always
+                          image: sipecam/madmex-kale:0.5.0_0.1.0
+                          ports:
+                                  - containerPort: 8888
+                          env:
+                                  - name: mount_point
+                                    value: /shared_volume
+                                  - name: LC_ALL
+                                    value: C.UTF-8
+                                  - name: LANG
+                                    value: C.UTF-8
+                          resources:
+                                  requests:
+                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
+                                  limits:
+                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
