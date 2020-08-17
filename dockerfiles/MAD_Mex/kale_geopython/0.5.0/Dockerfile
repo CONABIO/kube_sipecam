@@ -9,7 +9,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3-setuptools"
 ENV DEB_PACKAGES="python3-gdal"
-ENV PIP_PACKAGES="numpy==1.18.0 scipy==1.4.1 pandas matplotlib seaborn geopandas rasterio fiona click==7.0 six==1.12.0 setuptools==41.0.0 urllib3==1.24.2 kubeflow-kale==0.5.0"
+ENV PIP_PACKAGES="numpy==1.18.0 scipy==1.4.1 pandas matplotlib seaborn scikit-learn geopandas rasterio fiona click==7.0 six==1.12.0 setuptools==41.0.0 urllib3==1.24.2 kubeflow-kale==0.5.0"
 ENV CONTAINER_USER madmexuser
 ENV CONTAINER_USER_PASSWORD="madmexuser:qwerty"
 
