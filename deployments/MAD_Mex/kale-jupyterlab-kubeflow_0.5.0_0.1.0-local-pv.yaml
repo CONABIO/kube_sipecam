@@ -1,3 +1,4 @@
+#In this case I need to specify ip of hostname
 kind: Deployment
 apiVersion: apps/v1
 metadata:
