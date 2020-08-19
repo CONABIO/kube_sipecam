@@ -35,7 +35,7 @@ kubectl create -f $MADMEX_KALE_URL$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
 Create deployment:
 
 ```
-kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV.yaml
+kubectl create -f $MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV.yaml
 ```
 
 To check set:
