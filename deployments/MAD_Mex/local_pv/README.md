@@ -23,7 +23,7 @@ Create storage:
 ```
 kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_STORAGE.yaml
 kubectl create -f $MADMEX_KALE_PV.yaml
-kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_PVC
+kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_PVC.yaml
 ```
 
 Create service:
