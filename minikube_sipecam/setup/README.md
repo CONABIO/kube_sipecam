@@ -105,3 +105,6 @@ http://<ipv4 of ec2 instance>:$INGRESS_PORT
 ### Deployments
 
 Select one of the deployments inside [minikube_sipecam/deployments](../deployments)
+
+
+# Local machine
