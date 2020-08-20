@@ -11,7 +11,7 @@ ENV DEB_BUILD_DEPS="sudo nano less git wget curl build-essential cmake vim pytho
 ENV DEB_PACKAGES="python3-gdal"
 ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas xarray matplotlib seaborn"
 ENV PIP_PACKAGES_MADMEX="scikit-learn geopandas rasterio fiona cloudpickle xgboost lightgbm django dask distributed bokeh boto3 botocore awscli sentinelsat"
-ENV PIP_PACKAGES_ODC="psycopg2 hdf5 netcdf4 libnetcdf datacube[s3]==1.8.3"
+ENV PIP_PACKAGES_ODC="psycopg2 h5py netcdf4 libnetcdf datacube[s3]==1.8.3"
 ENV PIP_PACKAGES_KALE="click==7.0 six==1.12.0 setuptools==41.0.0 urllib3==1.24.2 kubeflow-kale==0.5.0"
 ENV CONTAINER_USER madmexuser
 ENV CONTAINER_USER_PASSWORD="madmexuser:qwerty"
