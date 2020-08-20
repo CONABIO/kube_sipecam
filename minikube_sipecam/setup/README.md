@@ -4,7 +4,7 @@
 
 In AWS we can select ami: `k8s-1.16-debian-buster-amd64-hvm-ebs-2020-04-27 - ami-0ab39819e336a3f3f` and instance `m5.2xlarge` with `50` gb of disk.
 
-Use next bash script for user data:
+Use next bash script for user data, this will start minikube using `none` driver:
 
 ```
 #!/bin/bash
