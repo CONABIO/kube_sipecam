@@ -1,6 +1,7 @@
 #Check this:
 #https://github.com/kubeflow-kale/kale/commit/acbe872bf7cf14a9f9c708bc8d4aeb1e7116e9af
 #https://github.com/kubeflow-kale/kale/issues/157
+#distributed 2.23.0 requires cloudpickle>=1.5.0, but you'll have cloudpickle 1.1.1 which is incompatible.
 FROM ubuntu:bionic
 
 ENV TIMEZONE America/Mexico_City
@@ -9,10 +10,10 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="sudo nano less git wget curl build-essential cmake vim python3-dev python3-pip python3-setuptools libhdf5-serial-dev libnetcdf-dev libgdal-dev hdf5-tools netcdf-bin gdal-bin"
 ENV DEB_PACKAGES="python3-gdal"
-ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas xarray matplotlib seaborn"
+ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas xarray matplotlib seaborn click==7.0 six==1.12.0 setuptools==41.2 urllib3==1.24.2"
 ENV PIP_PACKAGES_MADMEX="scikit-learn geopandas rasterio fiona cloudpickle==1.5.0 xgboost lightgbm django dask distributed bokeh boto3 botocore awscli sentinelsat"
 ENV PIP_PACKAGES_ODC="h5py datacube[s3]==1.8.3"
-ENV PIP_PACKAGES_KALE="click==7.0 six==1.12.0 setuptools==41.2 urllib3==1.24.2 kubeflow-kale==0.5.0"
+ENV PIP_PACKAGES_KALE="kubeflow-kale==0.5.0"
 ENV CONTAINER_USER madmexuser
 ENV CONTAINER_USER_PASSWORD="madmexuser:qwerty"
 
