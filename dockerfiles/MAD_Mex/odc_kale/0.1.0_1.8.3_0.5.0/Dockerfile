@@ -7,7 +7,7 @@ ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
-ENV DEB_BUILD_DEPS="sudo nano less git wget curl build-essential cmake vim python3-dev python3-pip python3-setuptools libhdf5-serial-dev libnetcdf-dev libgdal1-dev hdf5-tools netcdf-bin gdal-bin"
+ENV DEB_BUILD_DEPS="sudo nano less git wget curl build-essential cmake vim python3-dev python3-pip python3-setuptools libhdf5-serial-dev libnetcdf-dev libgdal-dev hdf5-tools netcdf-bin gdal-bin"
 ENV DEB_PACKAGES="python3-gdal"
 ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas xarray matplotlib seaborn"
 ENV PIP_PACKAGES_MADMEX="scikit-learn geopandas rasterio fiona cloudpickle xgboost lightgbm django dask distributed bokeh boto3 botocore awscli sentinelsat"
