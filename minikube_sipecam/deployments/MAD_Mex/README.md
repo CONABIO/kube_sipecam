@@ -5,7 +5,7 @@ Set:
 ```
 MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow_0.5.0_0.1.0
 MADMEX_KALE_JUPYTERLAB_SERVICE=kale-jupyterlab-kubeflow_0.5.0_0.1.0
-MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/MAD_Mex/
+MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/MAD_Mex/
 ```
 
 Next lines are not necessary but help to modify services:

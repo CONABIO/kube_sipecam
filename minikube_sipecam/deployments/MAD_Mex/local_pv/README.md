@@ -8,7 +8,7 @@ MADMEX_KALE_STORAGE=local-storageclass
 MADMEX_KALE_PV=local-pv
 MADMEX_KALE_PVC=local-pvc
 MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV=kale-jupyterlab-kubeflow_0.5.0_0.1.0-local-pv
-MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/MAD_Mex/
+MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/minikube_sipecam/master/deployments/MAD_Mex/
 ```
 
 Download and modify with ip of node for:
