@@ -100,6 +100,7 @@ And go to:
 
 ```
 http://<ipv4 of ec2 instance>:$INGRESS_PORT
+```
 
 ### Deployments
 
