@@ -16,11 +16,11 @@ git clone https://github.com/CONABIO/kube_sipecam.git $PATH_DIR_OF_CLONING
 Build:
 
 ```
-docker build $BUILD_DIR --force-rm -t $REPO_URL:$KALE_AND_MAD_MEX_VERSION
+docker build $BUILD_DIR --force-rm -t $REPO_URL:$MAD_MEX_ODC_AND_KALE_VERSION
 ```
 
 Check:
 
 ```
-docker run --rm -v $(pwd):/datos --name sipecam-madmex -p 9999:8888 sipecam/madmex-kale:0.1.0_1.8.3_0.5.0
+docker run --rm -v $(pwd):/datos --name sipecam-madmex -p 9999:8888 $REPO_URL:$MAD_MEX_ODC_AND_KALE_VERSION
 ```
