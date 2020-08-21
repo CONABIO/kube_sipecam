@@ -68,7 +68,11 @@ cd ${KF_DIR} && kfctl apply -V -f ${CONFIG_URI}
 ```
 
 
-Check installation in AWS instance with: `tail -n 15  /var/log/cloud-init-output.log` and also:
+Check installation in AWS instance with: `tail -n 15  /var/log/cloud-init-output.log`.
+
+Change to root with `sudo su`
+
+Check pods and status with:
 
 `minikube status`
 
