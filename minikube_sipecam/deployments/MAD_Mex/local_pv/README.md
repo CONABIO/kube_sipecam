@@ -29,7 +29,7 @@ kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_PVC.yaml
 Create service:
 
 ```
-kubectl create -f $MADMEX_KALE_URL$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
+kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
 ```
 
 Create deployment:
