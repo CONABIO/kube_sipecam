@@ -74,6 +74,7 @@ cd /root && minikube start --driver=none
 #kubeflow start
 cd ${KF_DIR} && kfctl apply -V -f ${CONFIG_URI}
 ```
+```
 WARNING! Your environment specifies an invalid locale.
  The unknown environment variables are:
    LC_CTYPE=UTF-8 LC_ALL=
