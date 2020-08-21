@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-        name: kale-service-kubeflow-0-1-0-1-8-3-0-5-0
+        name: kale-service-kubeflow-0-1-0-1-8-3-0-5-0-hostpath-pv
         namespace: kubeflow
 spec:
         type: LoadBalancer
@@ -11,4 +11,4 @@ spec:
                   protocol: TCP
                   nodePort: 30001 #select port of your preference
         selector:
-                app: kale-jupyterlab-kubeflow-0-1-0-1-8-3-0-5-0-app
+                app: kale-jupyterlab-kubeflow-0-1-0-1-8-3-0-5-0-hostpath-pv-app
