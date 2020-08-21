@@ -22,8 +22,8 @@ wget $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV.ya
 Create storage:
 
 ```
-kubectl create -f $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PV.yaml
-kubectl create -f $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PVC.yaml
+kubectl create -f $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PV.yaml
+kubectl create -f $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PVC.yaml
 ```
 
 Create service:
