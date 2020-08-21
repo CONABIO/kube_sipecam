@@ -103,6 +103,7 @@ export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -
 echo $INGRESS_PORT
 ```
 
+
 And go to:
 
 ```
