@@ -8,11 +8,11 @@ spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-app
+                        app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-local-pv-app
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-app
+                                app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-local-pv-app
                 spec:
                         containers: 
                         - name: kale-jupyterlab-kubeflow-0-5-0-0-1-0
