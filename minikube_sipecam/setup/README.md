@@ -57,6 +57,14 @@ echo "export KF_NAME=kf-test" >> ~/.profile
 echo "export BASE_DIR=/opt" >> ~/.profile
 source ~/.profile
 echo "export KF_DIR=${BASE_DIR}/${KF_NAME}" >> ~/.profile
+```
+Check installation in AWS instance with: `tail -n 15  /var/log/cloud-init-output.log`.
+
+Change to root with `sudo su`
+
+Ssh to instance, then:
+
+```
 CONFIG_URI="https://raw.githubusercontent.com/kubeflow/manifests/v1.0-branch/kfdef/kfctl_k8s_istio.v1.0.2.yaml"
 source ~/.profile
 chmod gou+wrx -R /opt/
@@ -66,11 +74,6 @@ cd /root && minikube start --driver=none
 #kubeflow start
 cd ${KF_DIR} && kfctl apply -V -f ${CONFIG_URI}
 ```
-
-
-Check installation in AWS instance with: `tail -n 15  /var/log/cloud-init-output.log`.
-
-Change to root with `sudo su`
 
 Check pods and status with:
 
