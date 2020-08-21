@@ -3,7 +3,7 @@
 Set:
 
 ```
-MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow_0-1-0-1-8-3-0-5-0
+MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow_0-1-0-1-8-3-0-5-0-hostpath-pv
 MADMEX_KALE_PV=hostpath-pv
 MADMEX_KALE_PVC=hostpath-pvc
 MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV=kale-jupyterlab-kubeflow_0.1.0_1.8.3_0.5.0-hostpath-pv
