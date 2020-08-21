@@ -3,8 +3,8 @@
 Set:
 
 ```
-MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow_0.5.0_0.1.0
-MADMEX_KALE_JUPYTERLAB_SERVICE=kale-jupyterlab-kubeflow_0.5.0_0.1.0
+MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow-0.5.0_0.1.0
+MADMEX_KALE_JUPYTERLAB_SERVICE=kale-jupyterlab-kubeflow-0.5.0_0.1.0
 MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/MAD_Mex/
 ```
 
@@ -30,8 +30,8 @@ kubectl create -f $MADMEX_KALE_URL$MADMEX_KALE_JUPYTERLAB_SERVICE.yaml
 To check set:
 
 ```
-MADMEX_KALE_LOAD_BALANCER_SERVICE=$(echo $MADMEX_KALE_LOAD_BALANCER_SERVICE|sed -n 's/\./-/g;s/_/-/g;p')
-MADMEX_KALE_JUPYTERLAB_SERVICE=$(echo $MADMEX_KALE_JUPYTERLAB_SERVICE|sed -n 's/\./-/g;s/_/-/g;p')
+MADMEX_KALE_LOAD_BALANCER_SERVICE=$(echo $MADMEX_KALE_LOAD_BALANCER_SERVICE|sed -n 's/\./-/g;p')
+MADMEX_KALE_JUPYTERLAB_SERVICE=$(echo $MADMEX_KALE_JUPYTERLAB_SERVICE|sed -n 's/\./-/g;p')
 ```
 
 Describe:
