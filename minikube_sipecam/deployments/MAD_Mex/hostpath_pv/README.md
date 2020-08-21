@@ -14,8 +14,8 @@ Next lines are not necessary but help to modify services:
 
 ```
 wget $MADMEX_KALE_URL$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
-wget $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PV.yaml
-wget $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PVC.yaml
+wget $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PV.yaml
+wget $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PVC.yaml
 wget $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV.yaml
 ```
 
