@@ -3,10 +3,10 @@
 Set:
 
 ```
-MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow_0.5.0_0.1.0
+MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow-0.1.0_1.8.3_0.5.0-hostpath-pv
 MADMEX_KALE_PV=hostpath-pv
 MADMEX_KALE_PVC=hostpath-pvc
-MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV=kale-jupyterlab-kubeflow_0.5.0_0.1.0-hostpath-pv
+MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV=kale-jupyterlab-kubeflow-0.1.0_1.8.3_0.5.0-hostpath-pv
 MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/MAD_Mex/
 ```
 
@@ -14,22 +14,22 @@ Next lines are not necessary but help to modify services:
 
 ```
 wget $MADMEX_KALE_URL$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
-wget $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PV.yaml
-wget $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PVC.yaml
+wget $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PV.yaml
+wget $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PVC.yaml
 wget $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV.yaml
 ```
 
 Create storage:
 
 ```
-kubectl create -f $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PV.yaml
-kubectl create -f $MADMEX_KALE_URL/hostpath/$MADMEX_KALE_PVC.yaml
+kubectl create -f $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PV.yaml
+kubectl create -f $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_PVC.yaml
 ```
 
 Create service:
 
 ```
-kubectl create -f $MADMEX_KALE_URL$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
+kubectl create -f $MADMEX_KALE_URL/hostpath_pv/$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
 ```
 
 Create deployment:
