@@ -33,3 +33,10 @@ spec:
                                   limits:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
                                           memory: 4Gi # This value depends of type of AWS instance chosen
+                          volumeMounts:
+                                  - name: hostpath-pv
+                                    mountPath: "/shared_volume"
+                        volumes:
+                        - name: hostpath-pv
+                          persistentVolumeClaim:
+                                  claimName: hostpath-pvc                                          
