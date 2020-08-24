@@ -3,6 +3,7 @@
 #Check this:
 #https://github.com/kubeflow-kale/kale/commit/acbe872bf7cf14a9f9c708bc8d4aeb1e7116e9af
 #https://github.com/kubeflow-kale/kale/issues/157
+#kfp 0.3.0 requires kfp-server-api<0.4.0,>=0.2.5, but you'll have kfp-server-api 0.1.18.3 which is incompatible.
 #distributed 2.23.0 requires cloudpickle>=1.5.0, but you'll have cloudpickle 1.1.1 which is incompatible.
 #could be dask and distributed versions 2.15.0, will leave 2.8.1...
 FROM ubuntu:bionic

@@ -3,10 +3,10 @@
 Set:
 
 ```
-MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow-0.1.0_1.8.3_0.5.0-hostpath-pv
+MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow-0.1.0_1.7.0_0.5.0-hostpath-pv
 MADMEX_KALE_PV=hostpath-pv
 MADMEX_KALE_PVC=hostpath-pvc
-MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV=kale-jupyterlab-kubeflow-0.1.0_1.8.3_0.5.0-hostpath-pv
+MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV=kale-jupyterlab-kubeflow-0.1.0_1.7.0_0.5.0-hostpath-pv
 MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/MAD_Mex/
 ```
 
