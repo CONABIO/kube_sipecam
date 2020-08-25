@@ -44,6 +44,9 @@ RUN pip3 install $PIP_PACKAGES_MADMEX --upgrade
 RUN pip3 install $PIP_PACKAGES_ODC --upgrade
 RUN pip3 install $PIP_PACKAGES_KALE --upgrade
 
+#next is necessary to read from s3 using rasterio
+RUN mkdir -p /etc/pki/tls/certs
+RUN cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
 
 RUN jupyter labextension install kubeflow-kale-launcher
 
