@@ -52,6 +52,9 @@ RUN jupyter labextension install kubeflow-kale-launcher
 
 RUN ln -sf /shared_volume/.antares ~/.antares && ln -sf /shared_volume/.datacube.conf ~/.datacube.conf
 
+#install antares3
+RUN pip3 install --user git+https://github.com/CONABIO/antares3.git@develop
+
 VOLUME ["/shared_volume"]
 
 ENV NB_PREFIX madmexurl
