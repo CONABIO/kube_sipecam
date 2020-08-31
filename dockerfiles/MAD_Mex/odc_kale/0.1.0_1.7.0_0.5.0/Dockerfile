@@ -50,6 +50,8 @@ RUN cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
 
 RUN jupyter labextension install kubeflow-kale-launcher
 
+RUN ln -sf /shared_volume/.antares ~/.antares && ln -sf /shared_volume/.datacube.conf ~/.datacube.conf
+
 VOLUME ["/shared_volume"]
 
 ENV NB_PREFIX madmexurl
