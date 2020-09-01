@@ -27,11 +27,11 @@ RUN pip3 install $PIP_PACKAGES --upgrade
 
 RUN jupyter labextension install kubeflow-kale-launcher
 
-RUN ln -sf /shared_volume/.geonode_conabio ~/.geonode_conabio
-
 #install geonode_conabio
 RUN pip3 install git+https://github.com/CONABIO/geonode#egg=geonode_conabio&subdirectory=python3_package_for_geonode
 
+#for geonode_conabio
+RUN ln -sf /shared_volume/.geonode_conabio ~/.geonode_conabio
 
 VOLUME ["/shared_volume"]
 
