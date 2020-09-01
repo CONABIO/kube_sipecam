@@ -8,8 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEB_BUILD_DEPS="sudo nano less git python3-dev python3-pip python3-setuptools curl wget"
 ENV DEB_PACKAGES="python3-gdal"
 ENV PIP_PACKAGES="numpy==1.18.0 scipy==1.4.1 pandas geopandas rasterio fiona docker python-dotenv click==7.0 six==1.12.0 setuptools==41.0.0 urllib3==1.24.2 kubeflow-kale==0.5.0"
-ENV CONTAINER_USER madmexuser
-ENV CONTAINER_USER_PASSWORD="madmexuser:qwerty"
+ENV CONTAINER_USER geonodeuser
+ENV CONTAINER_USER_PASSWORD="geonodeuser:qwerty"
 
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
@@ -31,14 +31,14 @@ RUN pip3 install $PIP_PACKAGES --upgrade
 RUN jupyter labextension install kubeflow-kale-launcher
 
 #install geonode_conabio
-RUN pip3 install git+https://github.com/CONABIO/geonode#egg=geonode_conabio&subdirectory=python3_package_for_geonode
+RUN pip3 install "git+https://github.com/CONABIO/geonode.git#egg=geonode_conabio&subdirectory=python3_package_for_geonode"
 
 #for geonode_conabio
 RUN ln -sf /shared_volume/.geonode_conabio ~/.geonode_conabio
 
 VOLUME ["/shared_volume"]
 
-ENV NB_PREFIX madmexurl
+ENV NB_PREFIX geonodeurl
 
-ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--LabApp.allow_origin='*'", "--LabApp.base_url=madmexurl"]
+ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--LabApp.allow_origin='*'", "--LabApp.base_url=geonodeurl"]
 
