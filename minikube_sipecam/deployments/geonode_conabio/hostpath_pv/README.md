@@ -63,7 +63,6 @@ kubectl describe pods -n kubeflow
 Scale: (if created automatically scale is 1)
 
 ```
-kubectl scale service -n kubeflow $GEONODE_CONABIO_LOAD_BALANCER_SERVICE --replicas=<0 or 1>
 kubectl scale deployment -n kubeflow $GEONODE_CONABIO_JUPYTERLAB_SERVICE_HOSTPATH_PV --replicas=<0 or 1>
 ```
 

@@ -63,7 +63,6 @@ kubectl describe pods -n kubeflow
 Scale: (if created automatically scale is 1)
 
 ```
-kubectl scale service -n kubeflow $MADMEX_KALE_LOAD_BALANCER_SERVICE --replicas=<0 or 1>
 kubectl scale deployment -n kubeflow $MADMEX_KALE_JUPYTERLAB_SERVICE_HOSTPATH_PV --replicas=<0 or 1>
 ```
 
