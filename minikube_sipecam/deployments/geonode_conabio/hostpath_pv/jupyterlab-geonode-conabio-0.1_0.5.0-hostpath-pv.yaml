@@ -36,7 +36,12 @@ spec:
                           volumeMounts:
                                   - name: hostpath-pv
                                     mountPath: "/shared_volume"
+                                  - name: docker-sock
+                                    mountPath: "/var/run/docker.sock"
                         volumes:
                         - name: hostpath-pv
                           persistentVolumeClaim:
-                                  claimName: hostpath-pvc                                          
+                                  claimName: hostpath-pvc 
+                        - name: docker-sock
+                          hostPath:
+                                  path: "/var/run/docker.sock"
