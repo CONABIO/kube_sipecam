@@ -1,3 +1,7 @@
+#volumeMount for docker-sock is not necessary as in
+#https://github.com/CONABIO/kube_sipecam_playground/blob/master/MAD_Mex/notebooks/2_issues_and_nbooks/1_issue_10_basic_setup_in_AWS_for_MAD_Mex_classif_pipeline.ipynb.ipynb
+#port 1111 is used to connect client of docker sdk python package, see:
+#https://docker-py.readthedocs.io/en/stable/client.html#client-reference
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -36,12 +40,12 @@ spec:
                           volumeMounts:
                                   - name: hostpath-pv
                                     mountPath: "/shared_volume"
-                                  - name: docker-sock
-                                    mountPath: "/var/run/docker.sock"
+                                  #- name: docker-sock
+                                  #  mountPath: "/var/run/docker.sock"
                         volumes:
                         - name: hostpath-pv
                           persistentVolumeClaim:
                                   claimName: hostpath-pvc 
-                        - name: docker-sock
-                          hostPath:
-                                  path: "/var/run/docker.sock"
+                        #- name: docker-sock
+                        #  hostPath:
+                        #          path: "/var/run/docker.sock"
