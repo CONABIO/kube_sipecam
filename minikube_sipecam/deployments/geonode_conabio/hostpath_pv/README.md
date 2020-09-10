@@ -13,7 +13,7 @@ GEONODE_CONABIO_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/maste
 Next lines are not necessary but help to modify services:
 
 ```
-wget $GEONODE_CONABIO_URL$GEONODE_CONABIO_LOAD_BALANCER_SERVICE.yaml
+wget $GEONODE_CONABIO_URL/hostpath_pv/$GEONODE_CONABIO_LOAD_BALANCER_SERVICE.yaml
 wget $GEONODE_CONABIO_URL/hostpath_pv/$GEONODE_CONABIO_PV.yaml
 wget $GEONODE_CONABIO_URL/hostpath_pv/$GEONODE_CONABIO_PVC.yaml
 wget $GEONODE_CONABIO_URL/hostpath_pv/$GEONODE_CONABIO_JUPYTERLAB_SERVICE_HOSTPATH_PV.yaml
