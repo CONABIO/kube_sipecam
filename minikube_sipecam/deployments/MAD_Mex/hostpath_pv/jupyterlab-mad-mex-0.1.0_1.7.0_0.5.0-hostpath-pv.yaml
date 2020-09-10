@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-        name: kale-jupyterlab-kubeflow-0-1-0-1-7-0-0-5-0-hostpath-pv
+        name: jupyterlab-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: kale-jupyterlab-kubeflow-0-1-0-1-7-0-0-5-0-hostpath-pv-app
+                        app: loadbalancer-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv-app
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-kubeflow-0-1-0-1-7-0-0-5-0-hostpath-pv-app
+                                app: jupyterlab-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv-app
                 spec:
                         containers: 
-                        - name: kale-jupyterlab-kubeflow-0-1-0-1-7-0-0-5-0
+                        - name: jupyterlab-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv
                           imagePullPolicy: Always
                           image: sipecam/madmex-odc-kale:0.1.0_1.7.0_0.5.0
                           ports:
