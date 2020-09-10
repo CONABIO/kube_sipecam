@@ -3,11 +3,11 @@
 Set:
 
 ```
-MAD_MEX_LOAD_BALANCER_SERVICE=kale-service-kubeflow-0.5.0_0.1.0-local-pv
+MAD_MEX_LOAD_BALANCER_SERVICE=loadbalancer-mad-mex-0.5.0_0.1.0-local-pv
 MAD_MEX_STORAGE=local-storageclass
 MAD_MEX_PV=local-pv
 MAD_MEX_PVC=local-pvc
-MAD_MEX_JUPYTERLAB_SERVICE=kale-jupyterlab-kubeflow-0.5.0_0.1.0-local-pv
+MAD_MEX_JUPYTERLAB_SERVICE=jupyterlab-mad-mex-0.5.0_0.1.0-local-pv
 MAD_MEX_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/minikube_sipecam/master/deployments/MAD_Mex/
 ```
 
