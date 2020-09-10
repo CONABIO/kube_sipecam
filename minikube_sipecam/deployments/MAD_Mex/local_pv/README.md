@@ -22,7 +22,7 @@ Create storage:
 
 ```
 kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_STORAGE.yaml
-kubectl create -f $MAD_MEX_PV.yaml
+kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_PV.yaml
 kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_PVC.yaml
 ```
 
@@ -35,7 +35,7 @@ kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_LOAD_BALANCER_SERVICE.yaml
 Create deployment:
 
 ```
-kubectl create -f $MAD_MEX_JUPYTERLAB_SERVICE.yaml
+kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_JUPYTERLAB_SERVICE.yaml
 ```
 
 To check set:

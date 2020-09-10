@@ -13,7 +13,7 @@ MAD_MEX_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/miniku
 Next lines are not necessary but help to modify services:
 
 ```
-wget $MAD_MEX_URL$MAD_MEX_LOAD_BALANCER_SERVICE.yaml
+wget $MAD_MEX_URL/hostpath_pv/$MAD_MEX_LOAD_BALANCER_SERVICE.yaml
 wget $MAD_MEX_URL/hostpath_pv/$MAD_MEX_PV.yaml
 wget $MAD_MEX_URL/hostpath_pv/$MAD_MEX_PVC.yaml
 wget $MAD_MEX_URL/hostpath_pv/$MAD_MEX_JUPYTERLAB_SERVICE.yaml
