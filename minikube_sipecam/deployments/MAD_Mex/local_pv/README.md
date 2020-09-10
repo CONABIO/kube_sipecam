@@ -3,56 +3,56 @@
 Set:
 
 ```
-MADMEX_KALE_LOAD_BALANCER_SERVICE=kale-service-kubeflow-0.5.0_0.1.0-local-pv
-MADMEX_KALE_STORAGE=local-storageclass
-MADMEX_KALE_PV=local-pv
-MADMEX_KALE_PVC=local-pvc
-MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV=kale-jupyterlab-kubeflow-0.5.0_0.1.0-local-pv
-MADMEX_KALE_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/minikube_sipecam/master/deployments/MAD_Mex/
+MAD_MEX_LOAD_BALANCER_SERVICE=kale-service-kubeflow-0.5.0_0.1.0-local-pv
+MAD_MEX_STORAGE=local-storageclass
+MAD_MEX_PV=local-pv
+MAD_MEX_PVC=local-pvc
+MAD_MEX_JUPYTERLAB_SERVICE=kale-jupyterlab-kubeflow-0.5.0_0.1.0-local-pv
+MAD_MEX_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/minikube_sipecam/master/deployments/MAD_Mex/
 ```
 
 Download and modify with ip of node for:
 
 ```
-wget $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_PV.yaml
-wget $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV.yaml
+wget $MAD_MEX_URL/local_pv/$MAD_MEX_PV.yaml
+wget $MAD_MEX_URL/local_pv/$MAD_MEX_JUPYTERLAB_SERVICE.yaml
 ```
 
 Create storage:
 
 ```
-kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_STORAGE.yaml
-kubectl create -f $MADMEX_KALE_PV.yaml
-kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_PVC.yaml
+kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_STORAGE.yaml
+kubectl create -f $MAD_MEX_PV.yaml
+kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_PVC.yaml
 ```
 
 Create service:
 
 ```
-kubectl create -f $MADMEX_KALE_URL/local_pv/$MADMEX_KALE_LOAD_BALANCER_SERVICE.yaml
+kubectl create -f $MAD_MEX_URL/local_pv/$MAD_MEX_LOAD_BALANCER_SERVICE.yaml
 ```
 
 Create deployment:
 
 ```
-kubectl create -f $MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV.yaml
+kubectl create -f $MAD_MEX_JUPYTERLAB_SERVICE.yaml
 ```
 
 To check set:
 
 ```
-MADMEX_KALE_LOAD_BALANCER_SERVICE=$(echo $MADMEX_KALE_LOAD_BALANCER_SERVICE|sed -n 's/\./-/g;s/_/-/g;p')
-MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV=$(echo $MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV|sed -n 's/\./-/g;s/_/-/g;p')
+MAD_MEX_LOAD_BALANCER_SERVICE=$(echo $MAD_MEX_LOAD_BALANCER_SERVICE|sed -n 's/\./-/g;s/_/-/g;p')
+MAD_MEX_JUPYTERLAB_SERVICE=$(echo $MAD_MEX_JUPYTERLAB_SERVICE|sed -n 's/\./-/g;s/_/-/g;p')
 ```
 
 Describe:
 
 ```
-kubectl describe service -n kubeflow $MADMEX_KALE_LOAD_BALANCER_SERVICE
-kubectl describe storageclass -n kubeflow $MADMEX_KALE_STORAGE
-kubectl describe pv -n kubeflow $MADMEX_KALE_PV
-kubectl describe pvc -n kubeflow $MADMEX_KALE_PVC
-kubectl describe deployment -n kubeflow $MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV
+kubectl describe service -n kubeflow $MAD_MEX_LOAD_BALANCER_SERVICE
+kubectl describe storageclass -n kubeflow $MAD_MEX_STORAGE
+kubectl describe pv -n kubeflow $MAD_MEX_PV
+kubectl describe pvc -n kubeflow $MAD_MEX_PVC
+kubectl describe deployment -n kubeflow $MAD_MEX_JUPYTERLAB_SERVICE
 ```
 
 ```
@@ -62,15 +62,15 @@ kubectl describe pods -n kubeflow
 Scale: (if created automatically scale is 1)
 
 ```
-kubectl scale deployment -n kubeflow $MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV --replicas=<0 or 1>
+kubectl scale deployment -n kubeflow $MAD_MEX_JUPYTERLAB_SERVICE --replicas=<0 or 1>
 ```
 
 Delete:
 
 ```
-kubectl delete service -n kubeflow $MADMEX_KALE_LOAD_BALANCER_SERVICE
-kubectl delete pvc -n kubeflow $MADMEX_KALE_PVC
-kubectl delete pv -n kubeflow $MADMEX_KALE_PV
-kubectl delete storageclass -n kubeflow $MADMEX_KALE_STORAGE
-kubectl delete deployment -n kubeflow $MADMEX_KALE_JUPYTERLAB_SERVICE_LOCAL_PV
+kubectl delete service -n kubeflow $MAD_MEX_LOAD_BALANCER_SERVICE
+kubectl delete pvc -n kubeflow $MAD_MEX_PVC
+kubectl delete pv -n kubeflow $MAD_MEX_PV
+kubectl delete storageclass -n kubeflow $MAD_MEX_STORAGE
+kubectl delete deployment -n kubeflow $MAD_MEX_JUPYTERLAB_SERVICE
 ```
