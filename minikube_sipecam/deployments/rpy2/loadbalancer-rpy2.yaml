@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+        name: loadbalancer-rpy2
+        namespace: kubeflow
+spec:
+        type: LoadBalancer
+        ports:
+                - port: 8888
+                  targetPort: 8888
+                  protocol: TCP
+                  nodePort: 30003 #select port of your preference
+        selector:
+                app: jupyterlab-rpy2-app

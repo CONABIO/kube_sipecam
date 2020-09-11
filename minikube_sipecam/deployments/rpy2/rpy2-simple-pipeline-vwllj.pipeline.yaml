@@ -1,0 +1,278 @@
+"apiVersion": |-
+  argoproj.io/v1alpha1
+"kind": |-
+  Workflow
+"metadata":
+  "annotations":
+    "pipelines.kubeflow.org/pipeline_spec": |-
+      {"description": "simple pipeline using rpy2", "inputs": [{"default": "hostpath-pvc", "name": "vol_shared_volume", "optional": true}], "name": "rpy2-simple-pipeline-vwllj"}
+  "generateName": |-
+    rpy2-simple-pipeline-vwllj-
+"spec":
+  "arguments":
+    "parameters":
+    - "name": |-
+        vol_shared_volume
+      "value": |-
+        hostpath-pvc
+  "entrypoint": |-
+    rpy2-simple-pipeline-vwllj
+  "serviceAccountName": |-
+    pipeline-runner
+  "templates":
+  - "container":
+      "args": []
+      "command":
+      - |-
+        python3
+      - |-
+        -u
+      - |-
+        -c
+      - |
+        def printresult():
+            from kale.utils import mlmd_utils as _kale_mlmd_utils
+            _kale_mlmd_utils.init_metadata()
+
+            data_loading_block = '''
+            # -----------------------DATA LOADING START--------------------------------
+            from kale.marshal import utils as _kale_marshal_utils
+            _kale_marshal_utils.set_kale_data_directory("/shared_volume/r_kernel/.simple-pipeline.ipynb.kale.marshal.dir")
+            _kale_marshal_utils.set_kale_directory_file_names()
+            a = _kale_marshal_utils.load("a")
+            # -----------------------DATA LOADING END----------------------------------
+            '''
+
+            block1 = '''
+            from IPython import get_ipython
+            ipython = get_ipython()
+            '''
+
+            block2 = '''
+            print(a)
+            ipython.magic('load_ext rpy2.ipython')
+            ipython.magic("Rpush a")
+            ipython.magic("R b <- 2; print(a+b)")
+            '''
+
+            # run the code blocks inside a jupyter kernel
+            from kale.utils.jupyter_utils import run_code as _kale_run_code
+            from kale.utils.kfp_utils import\
+                update_uimetadata as _kale_update_uimetadata
+            blocks = (data_loading_block,
+                      block1,
+                      block2,
+                      )
+            html_artifact = _kale_run_code(blocks)
+            with open("/printresult.html", "w") as f:
+                f.write(html_artifact)
+            _kale_update_uimetadata('printresult')
+
+            _kale_mlmd_utils.call("mark_execution_complete")
+
+        import argparse
+        _parser = argparse.ArgumentParser(prog='Printresult', description='')
+        _parsed_args = vars(_parser.parse_args())
+        _output_files = _parsed_args.pop("_output_paths", [])
+
+        _outputs = printresult(**_parsed_args)
+
+        _output_serializers = [
+
+        ]
+
+        import os
+        for idx, output_file in enumerate(_output_files):
+            try:
+                os.makedirs(os.path.dirname(output_file))
+            except OSError:
+                pass
+            with open(output_file, 'w') as f:
+                f.write(_output_serializers[idx](_outputs[idx]))
+      "image": |-
+        sipecam/rpy2-kale:0.5.0
+      "securityContext":
+        "runAsUser": !!int |-
+          0
+      "volumeMounts":
+      - "mountPath": |-
+          /shared_volume/
+        "name": |-
+          pvolume-ef6fe65091618f865041935b363277953274adf6b420fd4a7b8277d
+      "workingDir": |-
+        /shared_volume/r_kernel
+    "inputs":
+      "parameters":
+      - "name": |-
+          vol_shared_volume
+    "metadata":
+      "annotations":
+        "kubeflow-kale.org/dependent-templates": |-
+          ["Setvar"]
+        "pipelines.kubeflow.org/component_spec": |-
+          {"name": "Printresult"}
+      "labels":
+        "pipelines.kubeflow.org/metadata_written": |-
+          true
+    "name": |-
+      printresult
+    "outputs":
+      "artifacts":
+      - "name": |-
+          mlpipeline-ui-metadata
+        "path": |-
+          /mlpipeline-ui-metadata.json
+      - "name": |-
+          printresult
+        "path": |-
+          /printresult.html
+    "volumes":
+    - "name": |-
+        pvolume-ef6fe65091618f865041935b363277953274adf6b420fd4a7b8277d
+      "persistentVolumeClaim":
+        "claimName": |-
+          {{inputs.parameters.vol_shared_volume}}
+  - "dag":
+      "tasks":
+      - "arguments":
+          "parameters":
+          - "name": |-
+              vol_shared_volume
+            "value": |-
+              {{inputs.parameters.vol_shared_volume}}
+        "dependencies":
+        - |-
+          setvar
+        "name": |-
+          printresult
+        "template": |-
+          printresult
+      - "arguments":
+          "parameters":
+          - "name": |-
+              vol_shared_volume
+            "value": |-
+              {{inputs.parameters.vol_shared_volume}}
+        "name": |-
+          setvar
+        "template": |-
+          setvar
+    "inputs":
+      "parameters":
+      - "name": |-
+          vol_shared_volume
+    "name": |-
+      rpy2-simple-pipeline-vwllj
+  - "container":
+      "args": []
+      "command":
+      - |-
+        python3
+      - |-
+        -u
+      - |-
+        -c
+      - |
+        def setvar():
+            from kale.utils import mlmd_utils as _kale_mlmd_utils
+            _kale_mlmd_utils.init_metadata()
+
+            block1 = '''
+            from IPython import get_ipython
+            ipython = get_ipython()
+            '''
+
+            block2 = '''
+            ipython.magic('load_ext rpy2.ipython')
+            ipython.magic("""R library(Matrix);
+                          a <- 1
+                          """)
+            a = ipython.magic("Rget a")
+            print(a)
+            '''
+
+            data_saving_block = '''
+            # -----------------------DATA SAVING START---------------------------------
+            from kale.marshal import utils as _kale_marshal_utils
+            _kale_marshal_utils.set_kale_data_directory("/shared_volume/r_kernel/.simple-pipeline.ipynb.kale.marshal.dir")
+            _kale_marshal_utils.save(a, "a")
+            # -----------------------DATA SAVING END-----------------------------------
+            '''
+
+            # run the code blocks inside a jupyter kernel
+            from kale.utils.jupyter_utils import run_code as _kale_run_code
+            from kale.utils.kfp_utils import\
+                update_uimetadata as _kale_update_uimetadata
+            blocks = (
+                block1,
+                block2,
+                data_saving_block)
+            html_artifact = _kale_run_code(blocks)
+            with open("/setvar.html", "w") as f:
+                f.write(html_artifact)
+            _kale_update_uimetadata('setvar')
+
+            _kale_mlmd_utils.call("mark_execution_complete")
+
+        import argparse
+        _parser = argparse.ArgumentParser(prog='Setvar', description='')
+        _parsed_args = vars(_parser.parse_args())
+        _output_files = _parsed_args.pop("_output_paths", [])
+
+        _outputs = setvar(**_parsed_args)
+
+        _output_serializers = [
+
+        ]
+
+        import os
+        for idx, output_file in enumerate(_output_files):
+            try:
+                os.makedirs(os.path.dirname(output_file))
+            except OSError:
+                pass
+            with open(output_file, 'w') as f:
+                f.write(_output_serializers[idx](_outputs[idx]))
+      "image": |-
+        sipecam/rpy2-kale:0.5.0
+      "securityContext":
+        "runAsUser": !!int |-
+          0
+      "volumeMounts":
+      - "mountPath": |-
+          /shared_volume/
+        "name": |-
+          pvolume-ef6fe65091618f865041935b363277953274adf6b420fd4a7b8277d
+      "workingDir": |-
+        /shared_volume/r_kernel
+    "inputs":
+      "parameters":
+      - "name": |-
+          vol_shared_volume
+    "metadata":
+      "annotations":
+        "kubeflow-kale.org/dependent-templates": |-
+          []
+        "pipelines.kubeflow.org/component_spec": |-
+          {"name": "Setvar"}
+      "labels":
+        "pipelines.kubeflow.org/metadata_written": |-
+          true
+    "name": |-
+      setvar
+    "outputs":
+      "artifacts":
+      - "name": |-
+          mlpipeline-ui-metadata
+        "path": |-
+          /mlpipeline-ui-metadata.json
+      - "name": |-
+          setvar
+        "path": |-
+          /setvar.html
+    "volumes":
+    - "name": |-
+        pvolume-ef6fe65091618f865041935b363277953274adf6b420fd4a7b8277d
+      "persistentVolumeClaim":
+        "claimName": |-
+          {{inputs.parameters.vol_shared_volume}}
