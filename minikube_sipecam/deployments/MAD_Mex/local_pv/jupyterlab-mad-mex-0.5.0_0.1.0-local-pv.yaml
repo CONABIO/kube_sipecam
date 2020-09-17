@@ -1,22 +1,23 @@
+#In this case I need to specify ip of hostname
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-        name: kale-jupyterlab-kubeflow-0-1-0-1-8-3-0-5-0-hostpath-pv
+        name: jupyterlab-mad-mex-0-5-0-0-1-0-local-pv
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: kale-jupyterlab-kubeflow-0-1-0-1-8-3-0-5-0-hostpath-pv-app
+                        app: jupyterlab-mad-mex-0-5-0-0-1-0-local-pv-app
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-kubeflow-0-1-0-1-8-3-0-5-0-hostpath-pv-app
+                                app: jupyterlab-mad-mex-0-5-0-0-1-0-local-pv-app
                 spec:
                         containers: 
-                        - name: kale-jupyterlab-kubeflow-0-1-0-1-8-3-0-5-0
+                        - name: jupyterlab-mad-mex-0-5-0-0-1-0-local-pv
                           imagePullPolicy: Always
-                          image: sipecam/madmex-odc-kale:0.1.0_1.8.3_0.5.0
+                          image: sipecam/madmex-kale:0.5.0_0.1.0
                           ports:
                                   - containerPort: 8888
                           env:
@@ -33,3 +34,12 @@ spec:
                                   limits:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
                                           memory: 4Gi # This value depends of type of AWS instance chosen
+                          volumeMounts:
+                                  - name: local-pvc
+                                    mountPath: "/shared_volume"
+                        volumes:
+                        - name: local-pvc
+                          persistentVolumeClaim:
+                                  claimName: local-pvc
+                        nodeSelector:
+                          kubernetes.io/hostname: <ip of node example: ip-10-0-2-108>

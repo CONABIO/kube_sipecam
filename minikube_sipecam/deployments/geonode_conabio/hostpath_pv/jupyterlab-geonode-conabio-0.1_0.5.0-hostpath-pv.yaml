@@ -1,0 +1,51 @@
+#volumeMount for docker-sock is not necessary as in
+#https://github.com/CONABIO/kube_sipecam_playground/blob/master/MAD_Mex/notebooks/2_issues_and_nbooks/1_issue_10_basic_setup_in_AWS_for_MAD_Mex_classif_pipeline.ipynb.ipynb
+#port 1111 is used to connect client of docker sdk python package, see:
+#https://docker-py.readthedocs.io/en/stable/client.html#client-reference
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+        name: jupyterlab-geonode-conabio-0-1-0-5-0-hostpath-pv
+        namespace: kubeflow
+spec:
+        replicas: 1 # This is the number of containers that are going to be deployed.
+        selector:
+                matchLabels:
+                        app: jupyterlab-geonode-conabio-0-1-0-5-0-hostpath-pv-app
+        template:
+                metadata:
+                        labels:
+                                app: jupyterlab-geonode-conabio-0-1-0-5-0-hostpath-pv-app
+                spec:
+                        containers: 
+                        - name: jupyterlab-geonode-conabio-0-1-0-5-0
+                          imagePullPolicy: Always
+                          image: sipecam/geonode-conabio-kale:0.1_0.5.0
+                          ports:
+                                  - containerPort: 8888
+                          env:
+                                  - name: mount_point
+                                    value: /shared_volume
+                                  - name: LC_ALL
+                                    value: C.UTF-8
+                                  - name: LANG
+                                    value: C.UTF-8
+                          resources:
+                                  requests:
+                                          cpu: ".5" # This value depends of type of AWS instance chosen
+                                          memory: 4Gi # This value depends of type of AWS instance chosen
+                                  limits:
+                                          cpu: ".5" # This value depends of type of AWS instance chosen
+                                          memory: 4Gi # This value depends of type of AWS instance chosen
+                          volumeMounts:
+                                  - name: hostpath-pv
+                                    mountPath: "/shared_volume"
+                                  #- name: docker-sock
+                                  #  mountPath: "/var/run/docker.sock"
+                        volumes:
+                        - name: hostpath-pv
+                          persistentVolumeClaim:
+                                  claimName: hostpath-pvc 
+                        #- name: docker-sock
+                        #  hostPath:
+                        #          path: "/var/run/docker.sock"

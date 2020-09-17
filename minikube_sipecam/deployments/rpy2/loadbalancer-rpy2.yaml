@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-        name: kale-service-kubeflow-0-5-0-0-1-0
+        name: loadbalancer-rpy2
         namespace: kubeflow
 spec:
         type: LoadBalancer
@@ -9,6 +9,6 @@ spec:
                 - port: 8888
                   targetPort: 8888
                   protocol: TCP
-                  nodePort: 30001 #select port of your preference
+                  nodePort: 30003 #select port of your preference
         selector:
-                app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-app
+                app: jupyterlab-rpy2-app

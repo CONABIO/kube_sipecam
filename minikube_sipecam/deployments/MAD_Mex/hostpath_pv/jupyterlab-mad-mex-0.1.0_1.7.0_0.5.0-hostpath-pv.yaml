@@ -1,22 +1,22 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-        name: kale-jupyterlab-kubeflow-0-5-0-0-1-0
+        name: jupyterlab-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-app
+                        app: jupyterlab-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv-app
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-kubeflow-0-5-0-0-1-0-app
+                                app: jupyterlab-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv-app
                 spec:
                         containers: 
-                        - name: kale-jupyterlab-kubeflow-0-5-0-0-1-0
+                        - name: jupyterlab-mad-mex-0-1-0-1-7-0-0-5-0-hostpath-pv
                           imagePullPolicy: Always
-                          image: sipecam/madmex-kale:0.5.0_0.1.0
+                          image: sipecam/madmex-odc-kale:0.1.0_1.7.0_0.5.0
                           ports:
                                   - containerPort: 8888
                           env:
@@ -33,3 +33,10 @@ spec:
                                   limits:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
                                           memory: 4Gi # This value depends of type of AWS instance chosen
+                          volumeMounts:
+                                  - name: hostpath-pv
+                                    mountPath: "/shared_volume"
+                        volumes:
+                        - name: hostpath-pv
+                          persistentVolumeClaim:
+                                  claimName: hostpath-pvc                                          

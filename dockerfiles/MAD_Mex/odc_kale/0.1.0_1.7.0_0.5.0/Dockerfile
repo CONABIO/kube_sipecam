@@ -1,5 +1,3 @@
-#The docker image that builds with this Dockerfile has this issue:
-#https://github.com/CONABIO/kube_sipecam/issues/13
 #Check this:
 #https://github.com/kubeflow-kale/kale/commit/acbe872bf7cf14a9f9c708bc8d4aeb1e7116e9af
 #https://github.com/kubeflow-kale/kale/issues/157
@@ -15,7 +13,7 @@ ENV DEB_BUILD_DEPS="sudo nano less git wget curl build-essential cmake vim pytho
 ENV DEB_PACKAGES="python3-gdal"
 ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas xarray matplotlib seaborn click==7.0 six==1.12.0 setuptools==41.2 urllib3==1.24.2"
 ENV PIP_PACKAGES_MADMEX="geopandas rasterio fiona xgboost lightgbm django dask==2.15.0 distributed==2.15.0 bokeh boto3 botocore awscli sentinelsat"
-ENV PIP_PACKAGES_ODC="h5py datacube[s3]"
+ENV PIP_PACKAGES_ODC="h5py datacube[s3]==1.7.0"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.5.0"
 ENV CONTAINER_USER madmexuser
 ENV CONTAINER_USER_PASSWORD="madmexuser:qwerty"
@@ -46,8 +44,16 @@ RUN pip3 install $PIP_PACKAGES_MADMEX --upgrade
 RUN pip3 install $PIP_PACKAGES_ODC --upgrade
 RUN pip3 install $PIP_PACKAGES_KALE --upgrade
 
+#next is necessary to read from s3 using rasterio
+RUN mkdir -p /etc/pki/tls/certs
+RUN cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
 
 RUN jupyter labextension install kubeflow-kale-launcher
+
+RUN ln -sf /shared_volume/.antares ~/.antares && ln -sf /shared_volume/.datacube.conf ~/.datacube.conf
+
+#install antares3
+RUN pip3 install --user git+https://github.com/CONABIO/antares3.git@develop
 
 VOLUME ["/shared_volume"]
 
