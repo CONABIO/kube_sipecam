@@ -4,10 +4,10 @@ Set:
 
 ```
 ECOINF_KUBEFLOW_NAMESPACE=kubeflow-namespace
-ECOINF_LOAD_BALANCER_SERVICE_GPU=loadbalancer-ecoinf-gpu-0.5.0
+ECOINF_LOAD_BALANCER_SERVICE_GPU=loadbalancer-ecoinf-gpu-0.5.0-hostpath-pv
 ECOINF_PV=hostpath-pv
 ECOINF_PVC=hostpath-pvc
-ECOINF_JUPYTERLAB_SERVICE_GPU=jupyterlab-ecoinf-gpu-0.5.0
+ECOINF_JUPYTERLAB_SERVICE_GPU=jupyterlab-ecoinf-gpu-0.5.0-hostpath-pv
 ECOINF_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/ecoinf/gpu
 ```
 
