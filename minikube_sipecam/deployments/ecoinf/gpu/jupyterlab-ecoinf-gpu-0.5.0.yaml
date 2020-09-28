@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-        name: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv
+        name: jupyterlab-ecoinf-gpu-0-5-0
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv-app
+                        app: jupyterlab-ecoinf-gpu-0-5-0-app
         template:
                 metadata:
                         labels:
-                                app: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv-app
+                                app: jupyterlab-ecoinf-gpu-0-5-0-app
                 spec:
                         containers: 
-                        - name: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv
+                        - name: jupyterlab-ecoinf-gpu-0-5-0
                           imagePullPolicy: Always
                           image: sipecam/ecoinf-kale-gpu:0.5.0
                           ports:
