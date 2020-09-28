@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+        name: loadbalancer-ecoinf-gpu-0-0-5-0-hostpath-pv
+        namespace: kubeflow
+spec:
+        type: LoadBalancer
+        ports:
+                - port: 8888
+                  targetPort: 8888
+                  protocol: TCP
+                  nodePort: 30002 #select port of your preference
+        selector:
+                app: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv-app
