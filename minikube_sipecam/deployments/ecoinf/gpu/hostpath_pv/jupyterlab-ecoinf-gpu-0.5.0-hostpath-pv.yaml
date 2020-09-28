@@ -29,15 +29,8 @@ spec:
                           resources:
                                   requests:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
-                                          memory: 8Gi # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
                                   limits:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
-                                          memory: 8Gi # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
                                           nvidia.com/gpu: 1
-                          volumeMounts:
-                                  - name: hostpath-pv
-                                    mountPath: "/shared_volume"
-                        volumes:
-                        - name: hostpath-pv
-                          persistentVolumeClaim:
-                                  claimName: hostpath-pvc                                          
