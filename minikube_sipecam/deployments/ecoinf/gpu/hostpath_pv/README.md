@@ -14,17 +14,17 @@ ECOINF_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/min
 Next lines are not necessary but help to modify services:
 
 ```
-wget $ECOINF_URL_GPU/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
+wget $ECOINF_URL_GPU/hostpath_pv/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
 wget $ECOINF_URL/hostpath_pv/$ECOINF_PV.yaml
 wget $ECOINF_URL/hostpath_pv/$ECOINF_PVC.yaml
-wget $ECOINF_URL_GPU/$ECOINF_KUBEFLOW_NAMESPACE.yaml
-wget $ECOINF_URL_GPU/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
+wget $ECOINF_URL_GPU/hostpath_pv/$ECOINF_KUBEFLOW_NAMESPACE.yaml
+wget $ECOINF_URL_GPU/hostpath_pv/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
 ```
 
 Create kubeflow namespace:
 
 ```
-kubectl create -f $ECOINF_URL_GPU/$ECOINF_KUBEFLOW_NAMESPACE.yaml
+kubectl create -f $ECOINF_URL_GPU/hostpath_pv/$ECOINF_KUBEFLOW_NAMESPACE.yaml
 ```
 
 Create storage:
@@ -38,13 +38,13 @@ kubectl create -f $ECOINF_URL/hostpath_pv/$ECOINF_PVC.yaml
 Create service:
 
 ```
-kubectl create -f $ECOINF_URL_GPU/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
+kubectl create -f $ECOINF_URL_GPU/hostpath_pv/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
 ```
 
 Create deployment:
 
 ```
-kubectl create -f $ECOINF_URL_GPU/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
+kubectl create -f $ECOINF_URL_GPU/hostpath_pv/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
 ```
 
 To check set:
