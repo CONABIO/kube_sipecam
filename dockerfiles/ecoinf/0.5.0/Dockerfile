@@ -44,3 +44,43 @@ WORKDIR /
 
 ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--LabApp.allow_origin='*'", "--LabApp.base_url=ecoinf"]
 
+#tensorflow 2.1.0 requires numpy<2.0,>=1.16.0, but you'll have numpy 1.15.4 which is incompatible.
+#tensorflow 2.1.0 requires scipy==1.4.1; python_version >= "3", but you'll have scipy 1.2.1 which is #incompatible.
+#
+#  Attempting uninstall: six
+#    Found existing installation: six 1.13.0
+#    Uninstalling six-1.13.0:
+#      Successfully uninstalled six-1.13.0
+#  Attempting uninstall: setuptools
+#    Found existing installation: setuptools 44.0.0
+#    Uninstalling setuptools-44.0.0:
+#      Successfully uninstalled setuptools-44.0.0
+#  Attempting uninstall: urllib3
+#    Found existing installation: urllib3 1.25.7
+#    Uninstalling urllib3-1.25.7:
+#      Successfully uninstalled urllib3-1.25.7
+#  Attempting uninstall: cryptography
+#    Found existing installation: cryptography 2.1.4
+#    Uninstalling cryptography-2.1.4:
+#      Successfully uninstalled cryptography-2.1.4
+#  Attempting uninstall: nbformat
+#    Found existing installation: nbformat 5.0.3
+#    Uninstalling nbformat-5.0.3:
+#      Successfully uninstalled nbformat-5.0.3
+#  Attempting uninstall: ipykernel
+#    Found existing installation: ipykernel 5.1.3
+#    Uninstalling ipykernel-5.1.3:
+#      Successfully uninstalled ipykernel-5.1.3
+#  Attempting uninstall: numpy
+#    Found existing installation: numpy 1.15.4
+#    Uninstalling numpy-1.15.4:
+#      Successfully uninstalled numpy-1.15.4
+#  Attempting uninstall: scipy
+#    Found existing installation: scipy 1.2.1
+#    Uninstalling scipy-1.2.1:
+#      Successfully uninstalled scipy-1.2.1
+#
+#google-api-core 1.22.2 requires google-auth<2.0dev,>=1.21.1, but you'll have google-auth 1.10.0 which is #incompatible.
+#google-api-core 1.22.2 requires protobuf>=3.12.0, but you'll have protobuf 3.11.2 which is incompatible.
+#google-cloud-storage 1.31.2 requires google-auth<2.0dev,>=1.11.0, but you'll have google-auth 1.10.0 which #is incompatible.
+#kfp 0.3.0 requires kfp-server-api<0.4.0,>=0.2.5, but you'll have kfp-server-api 0.1.18.3 which is #incompatible.   
