@@ -20,19 +20,19 @@ wget $ECOINF_URL_GPU/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
 Create kubeflow namespace:
 
 ```
-kubectl create -f $ECOINF_URL_GPU/hostpath_pv/$ECOINF_KUBEFLOW_NAMESPACE.yaml
+kubectl create -f $ECOINF_URL_GPU/$ECOINF_KUBEFLOW_NAMESPACE.yaml
 ```
 
 Create service:
 
 ```
-kubectl create -f $ECOINF_URL_GPU/hostpath_pv/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
+kubectl create -f $ECOINF_URL_GPU/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
 ```
 
 Create deployment:
 
 ```
-kubectl create -f $ECOINF_URL_GPU/hostpath_pv/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
+kubectl create -f $ECOINF_URL_GPU/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
 ```
 
 To check set:
