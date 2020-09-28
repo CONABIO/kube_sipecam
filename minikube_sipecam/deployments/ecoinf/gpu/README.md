@@ -4,17 +4,17 @@ Set:
 
 ```
 ECOINF_KUBEFLOW_NAMESPACE=kubeflow-namespace
-ECOINF_LOAD_BALANCER_SERVICE_GPU=loadbalancer-ecoinf-gpu-0.5.0-hostpath-pv
-ECOINF_JUPYTERLAB_SERVICE_GPU=jupyterlab-ecoinf-gpu-0.5.0-hostpath-pv
+ECOINF_LOAD_BALANCER_SERVICE_GPU=loadbalancer-ecoinf-gpu-0.5.0
+ECOINF_JUPYTERLAB_SERVICE_GPU=jupyterlab-ecoinf-gpu-0.5.0
 ECOINF_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/ecoinf/gpu
 ```
 
 Next lines are not necessary but help to modify services:
 
 ```
-wget $ECOINF_URL_GPU/hostpath_pv/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
-wget $ECOINF_URL_GPU/hostpath_pv/$ECOINF_KUBEFLOW_NAMESPACE.yaml
-wget $ECOINF_URL_GPU/hostpath_pv/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
+wget $ECOINF_URL_GPU/$ECOINF_LOAD_BALANCER_SERVICE_GPU.yaml
+wget $ECOINF_URL_GPU/$ECOINF_KUBEFLOW_NAMESPACE.yaml
+wget $ECOINF_URL_GPU/$ECOINF_JUPYTERLAB_SERVICE_GPU.yaml
 ```
 
 Create kubeflow namespace:
