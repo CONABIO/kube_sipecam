@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-        name: jupyterlab-ecoinf-gpu-0-5-0
+        name: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: jupyterlab-ecoinf-gpu-0-5-0-app
+                        app: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv-app
         template:
                 metadata:
                         labels:
-                                app: jupyterlab-ecoinf-gpu-0-5-0-app
+                                app: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv-app
                 spec:
                         containers: 
-                        - name: jupyterlab-ecoinf-gpu-0-5-0
+                        - name: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv
                           imagePullPolicy: Always
                           image: sipecam/ecoinf-kale-gpu:0.5.0
                           ports:
@@ -34,3 +34,10 @@ spec:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
                                           memory: 15Gi # This value depends of type of AWS instance chosen
                                           nvidia.com/gpu: 1
+                          volumeMounts:
+                                  - name: hostpath-pv
+                                    mountPath: "/shared_volume"
+                        volumes:
+                        - name: hostpath-pv
+                          persistentVolumeClaim:
+                                  claimName: hostpath-pvc    

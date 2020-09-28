@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-        name: loadbalancer-ecoinf-gpu-0-0-5-0
+        name: loadbalancer-ecoinf-gpu-0-0-5-0-hostpath-pv
         namespace: kubeflow
 spec:
         type: LoadBalancer
@@ -11,4 +11,4 @@ spec:
                   protocol: TCP
                   nodePort: 30002 #select port of your preference
         selector:
-                app: jupyterlab-ecoinf-gpu-0-5-0-app
+                app: jupyterlab-ecoinf-gpu-0-5-0-hostpath-pv-app
