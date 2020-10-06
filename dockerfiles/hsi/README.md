@@ -1,0 +1,28 @@
+Set:
+
+```
+REPO_URL=sipecam/hsi-kale
+VERSION=0.5.1
+PATH_DIR_OF_CLONING=/home/<user>/<midir>/kube_sipecam
+BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/hsi/$VERSION/
+```
+
+Clone:
+
+```
+git clone https://github.com/CONABIO/kube_sipecam.git $PATH_DIR_OF_CLONING
+```
+
+Build:
+
+```
+docker build $BUILD_DIR --force-rm -t $REPO_URL:VERSION
+```
+
+Check:
+
+```
+docker run --rm -d -v $(pwd):/datos --name sipecam-hsi -p 8888:8888 $REPO_URL:$VERSION
+```
+
+
