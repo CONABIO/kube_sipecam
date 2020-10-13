@@ -10,8 +10,6 @@ ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas matplotlib seaborn"
 ENV PIP_PACKAGES_R="rpy2"
 ENV PIP_PACKAGES_KALE="click==7.0 setuptools==41.2 urllib3==1.24.2"
 
-ENV R_PACKAGES="var=\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest\""
-
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
 
