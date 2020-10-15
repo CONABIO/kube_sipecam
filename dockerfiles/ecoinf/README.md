@@ -22,5 +22,5 @@ docker build $BUILD_DIR --force-rm -t $REPO_URL:$ECOINF_AND_KALE
 Check:
 
 ```
-docker run --rm -v $(pwd):/datos --name sipecam-ecoinf-kale -p 8888:8888 $REPO_URL:ECOINF_AND_KALE
+docker run -dit --rm -v $(pwd):/datos --name sipecam-ecoinf-kale -p 8888:8888 $REPO_URL:$ECOINF_AND_KALE
 ```

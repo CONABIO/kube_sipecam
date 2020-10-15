@@ -22,5 +22,5 @@ docker build $BUILD_DIR --force-rm -t $REPO_URL:$ECOINF_AND_KALE_GPU
 Check:
 
 ```
-docker run --rm -v $(pwd):/datos --name sipecam-ecoinf-kale-gpu -p 8888:8888 $REPO_URL:ECOINF_AND_KALE_GPU
+docker run -dit --rm -v $(pwd):/datos --name sipecam-ecoinf-kale-gpu -p 8888:8888 $REPO_URL:$ECOINF_AND_KALE_GPU
 ```
