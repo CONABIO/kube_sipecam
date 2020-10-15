@@ -6,7 +6,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3-setuptools"
 ENV DEB_PACKAGES=""
-ENV PIP_PACKAGES_COMMON=""
+ENV PIP_PACKAGES_COMMON="scikit-learn==0.23.2"
 ENV PIP_PACKAGES_ECOINF="tensorflow_hub"
 ENV PIP_PACKAGES_KALE="click==7.0 six==1.12.0 setuptools==41.0.0 urllib3==1.24.2 kubeflow-kale==0.5.0"
 ENV PYTHONPATH=$PYTHONPATH:/lib/conabio_ml/conabio_ml/trainer/images/models/research:/lib/conabio_ml/conabio_ml/trainer/images/models/research/slim:/lib/conabio_ml
@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 i
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 
 RUN pip3 install jupyter "jupyterlab<2.0.0" --upgrade
+RUN pip3 install $PIP_PACKAGES_COMMON
 
 #next password is dummy
 
@@ -100,8 +101,8 @@ ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--
 #tensorflow-gpu 2.1.0 requires scipy==1.4.1; python_version >= "3", but you'll have scipy 1.2.1 which is incompatible.
 #tensorflow-gpu 2.1.0 requires tensorboard<2.2.0,>=2.1.0, but you'll have tensorboard 2.3.0 which is incompatible.
 #tensorflow-gpu 2.1.0 requires tensorflow-estimator<2.2.0,>=2.1.0rc0, but you'll have tensorflow-estimator 2.3.0 which is incompatible.
-#google-api-core 1.22.2 requires google-auth<2.0dev,>=1.21.1, but you'll have google-auth 1.10.0 which is incompatible.
-#google-api-core 1.22.2 requires protobuf>=3.12.0, but you'll have protobuf 3.11.2 which is incompatible.
+#google-api-core 1.22.4 requires google-auth<2.0dev,>=1.21.1, but you'll have google-auth 1.10.0 which is incompatible.
+#google-api-core 1.22.4 requires protobuf>=3.12.0, but you'll have protobuf 3.11.2 which is incompatible.
+#google-api-core 1.22.4 requires six>=1.13.0, but you'll have six 1.12.0 which is incompatible.
 #google-cloud-storage 1.31.2 requires google-auth<2.0dev,>=1.11.0, but you'll have google-auth 1.10.0 which is incompatible.
-#kfp 0.3.0 requires kfp-server-api<0.4.0,>=0.2.5, but you'll have kfp-server-api 0.1.18.3 which is incompatible.
-
+#kfp 0.3.0 requires kfp-server-api<0.4.0,>=0.2.5, but you'll have kfp-server-api 0.1.18.3 which is incompatible.#
