@@ -37,6 +37,13 @@ RUN cd /root/kale/labextension/ && jlpm install && jlpm run build && jupyter lab
 #r package hsi
 RUN R -e 'devtools::install_github("luismurao/hsi")'
 
+#r kernel
+
+RUN chmod gou+w /usr/local/lib/R/site-library && \
+    R -e 'install.packages(c("repr", "IRdisplay", "pbdZMQ"), lib="/usr/local/lib/R/site-library/")' && \
+    R -e 'devtools::install_github("IRkernel/IRkernel")' && \
+    R -e 'IRkernel::installspec(user=FALSE)'
+
 VOLUME ["/shared_volume"]
 
 ENV NB_PREFIX rpy2url
