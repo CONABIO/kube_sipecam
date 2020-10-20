@@ -10,6 +10,8 @@ ENV DEB_PACKAGES=""
 ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas matplotlib seaborn"
 ENV PIP_PACKAGES_R="rpy2"
 
+ENV R_PACKAGES="var=\"repr IRdisplay pbdZMQ geojsonio\""
+
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
 
@@ -39,8 +41,8 @@ RUN R -e 'devtools::install_github("luismurao/hsi")'
 
 #r kernel
 
-RUN chmod gou+w /usr/local/lib/R/site-library && \
-    R -e 'install.packages(c("repr", "IRdisplay", "pbdZMQ"), lib="/usr/local/lib/R/site-library/")' && \
+RUN echo $R_PACKAGES >  ~/.Renviron && \
+    R -e 'install.packages(strsplit(system("echo $var", intern=TRUE)," ")[[1]], lib="/usr/local/lib/R/site-library/")' && \
     R -e 'devtools::install_github("IRkernel/IRkernel")' && \
     R -e 'IRkernel::installspec(user=FALSE)'
 
