@@ -10,7 +10,7 @@ ENV DEB_PACKAGES=""
 ENV PIP_PACKAGES_COMMON="numpy==1.18.0 scipy==1.4.1 pandas matplotlib seaborn"
 ENV PIP_PACKAGES_R="rpy2"
 
-ENV R_PACKAGES="var=\"repr IRdisplay pbdZMQ geojsonio\""
+ENV R_PACKAGES="var=\"repr IRdisplay pbdZMQ\""
 
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
