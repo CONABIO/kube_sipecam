@@ -1,3 +1,10 @@
+#ERROR: After October 2020 you may experience errors when installing or updating packages. This is because pip will change the way that it resolves dependency conflicts.
+
+#We recommend you use --use-feature=2020-resolver to test your packages with the new resolver before it becomes the default.
+
+#tensorflow 2.1.0 requires numpy<2.0,>=1.16.0, but you'll have numpy 1.15.4 which is incompatible.
+#tensorflow 2.1.0 requires scipy==1.4.1; python_version >= "3", but you'll have scipy 1.2.1 which is incompatible.
+
 FROM tensorflow/tensorflow:latest-py3-jupyter
 
 ENV TIMEZONE America/Mexico_City
