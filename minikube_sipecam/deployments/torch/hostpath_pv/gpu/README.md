@@ -13,29 +13,29 @@ TORCH_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube
 Next lines are not necessary but help to modify services:
 
 ```
-wget $TORCH_URL/hostpath_pv/$TORCH_LOAD_BALANCER_SERVICE_GPU.yaml
-wget $TORCH_URL/hostpath_pv/$TORCH_PV.yaml
-wget $TORCH_URL/hostpath_pv/$TORCH_PVC.yaml
-wget $TORCH_URL/hostpath_pv/$TORCH_JUPYTERLAB_SERVICE_GPU.yaml
+wget $TORCH_URL/hostpath_pv/gpu/$TORCH_LOAD_BALANCER_SERVICE_GPU.yaml
+wget $TORCH_URL/hostpath_pv/gpu/$TORCH_PV.yaml
+wget $TORCH_URL/hostpath_pv/gpu/$TORCH_PVC.yaml
+wget $TORCH_URL/hostpath_pv/gpu/$TORCH_JUPYTERLAB_SERVICE_GPU.yaml
 ```
 
 Create storage:
 
 ```
-kubectl create -f $TORCH_URL/hostpath_pv/$TORCH_PV.yaml
-kubectl create -f $TORCH_URL/hostpath_pv/$TORCH_PVC.yaml
+kubectl create -f $TORCH_URL/hostpath_pv/gpu/$TORCH_PV.yaml
+kubectl create -f $TORCH_URL/hostpath_pv/gpu/$TORCH_PVC.yaml
 ```
 
 Create service:
 
 ```
-kubectl create -f $TORCH_URL/hostpath_pv/$TORCH_LOAD_BALANCER_SERVICE_GPU.yaml
+kubectl create -f $TORCH_URL/hostpath_pv/gpu/$TORCH_LOAD_BALANCER_SERVICE_GPU.yaml
 ```
 
 Create deployment:
 
 ```
-kubectl create -f $TORCH_URL/hostpath_pv/$TORCH_JUPYTERLAB_SERVICE_GPU.yaml
+kubectl create -f $TORCH_URL/hostpath_pv/gpu/$TORCH_JUPYTERLAB_SERVICE_GPU.yaml
 ```
 
 To check set:
@@ -73,6 +73,5 @@ Delete:
 kubectl delete service -n kubeflow $TORCH_LOAD_BALANCER_SERVICE_GPU
 kubectl delete pvc -n kubeflow $TORCH_PVC
 kubectl delete pv -n kubeflow $TORCH_PV
-kubectl delete deployment -n kubeflow $TORCH_JUPYTERLAB_SERVICE_GPU 
+kubectl delete deployment -n kubeflow $TORCH_JUPYTERLAB_SERVICE_GPU
 ```
-
