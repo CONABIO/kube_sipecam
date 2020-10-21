@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+        name: loadbalancer-torch-1-4-0-0-5-1-hostpath-pv-cpu
+        namespace: kubeflow
+spec:
+        type: LoadBalancer
+        ports:
+                - port: 8888
+                  targetPort: 8888
+                  protocol: TCP
+                  nodePort: 30001 #select port of your preference
+        selector:
+                app: jupyterlab-torch-1-4-0-0-5-1-hostpath-pv-cpu-app
