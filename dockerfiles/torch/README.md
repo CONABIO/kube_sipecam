@@ -1,7 +1,7 @@
 Set:
 
 ```
-TORCH_AND_KALE_VERSION=1.4.0_0.5.0
+TORCH_AND_KALE_VERSION=1.4.0_0.5.1
 REPO_URL=sipecam/torch-kale
 PATH_DIR_OF_CLONING=/home/<user>/<midir>/kube_sipecam
 BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/torch/$TORCH_AND_KALE_VERSION
