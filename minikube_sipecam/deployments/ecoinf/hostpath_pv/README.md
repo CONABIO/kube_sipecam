@@ -3,10 +3,10 @@
 Set:
 
 ```
-ECOINF_LOAD_BALANCER_SERVICE=loadbalancer-ecoinf-0.5.0-hostpath-pv
+ECOINF_LOAD_BALANCER_SERVICE=loadbalancer-ecoinf-0.5.1-hostpath-pv
 ECOINF_PV=hostpath-pv
 ECOINF_PVC=hostpath-pvc
-ECOINF_JUPYTERLAB_SERVICE=jupyterlab-ecoinf-0.5.0-hostpath-pv
+ECOINF_JUPYTERLAB_SERVICE=jupyterlab-ecoinf-0.5.1-hostpath-pv
 ECOINF_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/ecoinf/
 ```
 
