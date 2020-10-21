@@ -1,10 +1,10 @@
 Set:
 
 ```
-ECOINF_AND_KALE=0.5.0
+ECOINF_AND_KALE=0.5.1
 REPO_URL=sipecam/ecoinf-kale
 PATH_DIR_OF_CLONING=/home/<user>/<midir>/kube_sipecam
-BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/ecoinf/0.5.0
+BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/ecoinf/0.5.1
 ```
 
 Clone:
