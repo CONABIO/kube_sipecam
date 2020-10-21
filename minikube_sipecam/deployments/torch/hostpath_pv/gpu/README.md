@@ -3,10 +3,10 @@
 Set:
 
 ```
-TORCH_LOAD_BALANCER_SERVICE_GPU=loadbalancer-torch-1.4.0_0.5.0-hostpath-pv-gpu
+TORCH_LOAD_BALANCER_SERVICE_GPU=loadbalancer-torch-1.4.0_0.5.1-hostpath-pv-gpu
 TORCH_PV=hostpath-pv
 TORCH_PVC=hostpath-pvc
-TORCH_JUPYTERLAB_SERVICE_GPU=jupyterlab-torch-1.4.0_0.5.0-hostpath-pv-gpu
+TORCH_JUPYTERLAB_SERVICE_GPU=jupyterlab-torch-1.4.0_0.5.1-hostpath-pv-gpu
 TORCH_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/torch/
 ```
 
