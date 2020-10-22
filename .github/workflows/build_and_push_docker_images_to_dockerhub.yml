@@ -39,6 +39,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: sipecam/example-kale:0.5.0
+jobs:
   path-context:
     runs-on: ubuntu-latest
     steps:
