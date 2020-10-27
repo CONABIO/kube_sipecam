@@ -37,7 +37,7 @@ cd /root/kale/backend/ && pip3 install --upgrade . --use-feature=2020-resolver
 RUN cd /root/kale/labextension/ && jlpm install && jlpm run build && jupyter labextension install .
 
 #r package hsi
-RUN R -e 'devtools::install_github("luismurao/hsi")'
+RUN R -e 'devtools::install_github("conabio/hsi")'
 
 #r kernel
 
