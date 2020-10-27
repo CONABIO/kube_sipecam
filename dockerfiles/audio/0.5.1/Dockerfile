@@ -21,14 +21,22 @@ RUN git clone https://github.com/CONABIO-audio/yuntu.git .
 RUN git checkout restruct
 RUN python3 setup.py install
 WORKDIR /home/jovyan
+#Update yarn
+RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+     apt-get update && apt-get install -y yarn
 # Install nodejs deps
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 # Install jupyterlab
 RUN python3 -m pip install Pygments==2.6.1
-RUN python3 -m pip install --upgrade "jupyterlab<2.0.0" && \
-    python3 -m pip install https://storage.googleapis.com/ml-pipeline/release/latest/kfp.tar.gz --upgrade && \
-    python3 -m pip install -U kubeflow-kale && \
-    jupyter labextension install kubeflow-kale-labextension kubeflow-kale-launcher
+RUN python3 -m pip install jupyterlab --upgrade --use-feature=2020-resolver && \
+    python3 -m pip install https://storage.googleapis.com/ml-pipeline/release/latest/kfp.tar.gz --upgrade
+#kale installation
+RUN cd && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
+cd kale/backend/ && pip3 install --upgrade . --use-feature=2020-resolver
+RUN cd && cd kale/labextension/ && jlpm install && jlpm run build && jupyter labextension install .
+WORKDIR /
+
 #next password is dummy
 RUN jupyter notebook --generate-config && sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" ~/.jupyter/jupyter_notebook_config.py
 VOLUME ["/shared_volume"]
