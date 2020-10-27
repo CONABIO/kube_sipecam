@@ -19,12 +19,6 @@ wget $AUDIO_URL_GPU/hostpath_pv/$AUDIO_PVC.yaml
 wget $AUDIO_URL_GPU/hostpath_pv/$AUDIO_JUPYTERLAB_SERVICE_GPU.yaml
 ```
 
-Create kubeflow namespace:
-
-```
-kubectl create -f $AUDIO_URL_GPU/hostpath_pv/$ECOINF_KUBEFLOW_NAMESPACE.yaml
-```
-
 Create storage:
 
 ```
