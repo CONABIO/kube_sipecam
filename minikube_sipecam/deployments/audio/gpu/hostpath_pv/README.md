@@ -3,11 +3,11 @@
 Set:
 
 ```
-AUDIO_LOAD_BALANCER_SERVICE_GPU=loadbalancer-ecoinf-gpu-0.5.1-hostpath-pv
+AUDIO_LOAD_BALANCER_SERVICE_GPU=loadbalancer-audio-gpu-0.5.1-hostpath-pv
 AUDIO_PV=hostpath-pv
 AUDIO_PVC=hostpath-pvc
-AUDIO_JUPYTERLAB_SERVICE_GPU=jupyterlab-ecoinf-gpu-0.5.1-hostpath-pv
-AUDIO_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/ecoinf/gpu
+AUDIO_JUPYTERLAB_SERVICE_GPU=jupyterlab-audio-gpu-0.5.1-hostpath-pv
+AUDIO_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/audio/gpu
 ```
 
 Next lines are not necessary but help to modify services:
