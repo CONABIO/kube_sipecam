@@ -1,5 +1,6 @@
 #ERROR: nbclient 0.5.1 requires nbformat>=5.0, but you'll have nbformat 4.4.0 which is incompatible.
 FROM rocker/geospatial:4.0.2
+
 ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
