@@ -30,6 +30,7 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get i
 # Install jupyterlab
 RUN python3 -m pip install Pygments==2.6.1
 RUN python3 -m pip install jupyterlab --upgrade --use-feature=2020-resolver && \
+    python3 -m pip install boto3 && \
     python3 -m pip install https://storage.googleapis.com/ml-pipeline/release/latest/kfp.tar.gz --upgrade
 #kale installation
 RUN cd && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
