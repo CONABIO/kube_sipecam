@@ -30,7 +30,7 @@ RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 RUN pip3 install $PIP_PACKAGES_COMMON --upgrade --use-feature=2020-resolver
 # Install jupyterlab
-RUN pip3 install jupyterlab --use-feature=2020-resolver
+RUN pip3 install jupyterlab --upgrade --use-feature=2020-resolver
 #kale installation
 RUN cd && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
 cd kale/backend/ && pip3 install --upgrade . --use-feature=2020-resolver
