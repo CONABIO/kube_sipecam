@@ -2,7 +2,7 @@ Set:
 
 ```
 REPO_URL=sipecam/audio-dgpi-kale
-VERSION=0.6.1
+VERSION=0.5.1
 PATH_DIR_OF_CLONING=/home/<user>/<midir>/kube_sipecam
 BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/audio/$VERSION/
 ```
