@@ -10,7 +10,7 @@ on:
     paths:
     - dockerfiles/example/0.5.0/Dockerfile
     - dockerfiles/hsi/0.5.1/Dockerfile
-    - dockerfiles/audio/0.6.1/Dockerfile
+    - dockerfiles/audio/tensorflow-gpu/0.6.1/Dockerfile
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -67,4 +67,4 @@ jobs:
           file: dockerfiles/audio/0.6.1/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: sipecam/audio-dgpi-kale:0.6.1
+          tags: sipecam/audio-dgpi-kale-tensorflow-gpu:0.6.1
