@@ -1,7 +1,7 @@
 Set:
 
 ```
-REPO_URL=sipecam/audio-dgpi-kale
+REPO_URL=sipecam/audio-dgpi-kale-tensorflow-gpu
 VERSION=0.6.1
 PATH_DIR_OF_CLONING=/home/<user>/<midir>/kube_sipecam
 BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/audio/tensorflow-gpu/$VERSION/
