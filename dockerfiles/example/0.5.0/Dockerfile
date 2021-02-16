@@ -32,6 +32,8 @@ RUN jupyter labextension install kubeflow-kale-launcher
 
 VOLUME ["/shared_volume"]
 
+WORKDIR /
+
 ENV NB_PREFIX myurl
 
 ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--LabApp.allow_origin='*'", "--LabApp.base_url=myurl"]
