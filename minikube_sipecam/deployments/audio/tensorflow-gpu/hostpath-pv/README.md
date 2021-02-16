@@ -8,7 +8,7 @@ AUDIO_LOAD_BALANCER_SERVICE_GPU=loadbalancer-audio-tensorflow-gpu-0.6.1-hostpath
 AUDIO_PV=hostpath-pv
 AUDIO_PVC=hostpath-pvc
 AUDIO_JUPYTERLAB_SERVICE_GPU=jupyterlab-audio-tensorflow-gpu-0.6.1-hostpath-pv
-AUDIO_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/deployments/audio/tensorflow-gpu
+AUDIO_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/audio/tensorflow-gpu
 ```
 
 Next lines are not necessary but help to modify services:
