@@ -16,7 +16,7 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get i
 RUN python3 -m pip install jupyterlab && \
     python3 -m pip install sidekit && \
     python3 -m pip install -U kubeflow-kale && \
-    jupyter labextension install kubeflow-kale-labextension kubeflow-kale-launcher && \
+    jupyter labextension install kubeflow-kale-launcher && \
     python3 -m pip install scikit-image && \
     python3 -m pip install sidekit==1.3.6.1 && \
     python3 -m pip install pyannote.algorithms && \
