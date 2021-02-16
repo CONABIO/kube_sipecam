@@ -10,14 +10,17 @@ ENV DEB_PACKAGES=""
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
 RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 install --upgrade pip  
+RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+     apt-get update && apt-get install -y yarn
 # Install nodejs deps
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 # Install jupyterlab
-RUN python3 -m pip install jupyterlab && \
+RUN python3 -m pip install -U "jupyterlab>=2.0.0,<3.0.0" && \
     python3 -m pip install sidekit && \
-    cd && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
-    cd /root/kale/backend/ && python3 -m pip install --upgrade . && \
-    cd /root/kale/labextension/ && jlpm install && jlpm run build && jupyter labextension install . && \
+    cd ~ && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
+    cd ~/kale/backend/ && python3 -m pip install --upgrade . && \
+    cd ~/kale/labextension/ && jlpm install && jlpm run build && jupyter labextension install . && \
     python3 -m pip install scikit-image && \
     python3 -m pip install sidekit==1.3.6.1 && \
     python3 -m pip install pyannote.algorithms && \
