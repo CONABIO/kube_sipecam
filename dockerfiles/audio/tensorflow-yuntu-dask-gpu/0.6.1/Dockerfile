@@ -1,3 +1,4 @@
+#
 FROM tensorflow/tensorflow:nightly-gpu-py3
 USER root
 ENV TIMEZONE America/Mexico_City
