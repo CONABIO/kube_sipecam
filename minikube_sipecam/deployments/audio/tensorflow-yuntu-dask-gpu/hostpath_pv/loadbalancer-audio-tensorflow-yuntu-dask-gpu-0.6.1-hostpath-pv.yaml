@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-        name: loadbalancer-audio-tensorflow-yuntu-dask-gpu-0-6-1-hostpath-pv
+        name: loadbalancer-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv
         namespace: kubeflow
 spec:
         type: LoadBalancer
@@ -11,4 +11,4 @@ spec:
                   protocol: TCP
                   nodePort: 30002 #select port of your preference
         selector:
-                app: jupyterlab-audio-tensorflow-yuntu-dask-gpu-0-6-1-hostpath-pv-app
+                app: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv-app
