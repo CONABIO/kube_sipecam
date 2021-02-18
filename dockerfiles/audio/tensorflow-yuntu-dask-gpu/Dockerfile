@@ -1,0 +1,40 @@
+FROM tensorflow/tensorflow:nightly-gpu-py3
+USER root
+ENV TIMEZONE America/Mexico_City
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3-setuptools iptables ffmpeg libsndfile1 libpq-dev python3-llvmlite libsndfile1-dev python3-soundfile python-soundfile gcc graphviz graphviz-dev"
+ENV DEB_PACKAGES=""
+RUN apt-get update && export $DEBIAN_FRONTEND && \
+    echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
+RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 install --upgrade pip  
+RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+     apt-get update && apt-get install -y yarn
+ # Install yuntu from git with deps
+RUN mkdir -p /yuntu && \
+    cd /yuntu && \
+    git clone https://github.com/CONABIO-audio/yuntu.git . && \
+    git checkout restruct && \
+    python3 setup.py install
+# Install nodejs deps
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
+# Install jupyterlab
+RUN python3 -m pip install -U "jupyterlab>=2.0.0,<3.0.0" && \
+    python3 -m pip install scikeras>=0.1.8 && \
+    python3 -m pip install dask-cuda && \
+    python3 -m pip install sidekit && \
+    cd ~ && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
+    cd ~/kale/backend/ && python3 -m pip install --upgrade . && \
+    cd ~/kale/labextension/ && jlpm install && jlpm run build && jupyter labextension install . && \
+    python3 -m pip install pyannote.algorithms && \
+    python3 -m pip install pyannote.core && \
+    python3 -m pip install pyannote.parser && \
+    python3 -m pip install Pyro4
+# Assign jupyter password
+RUN jupyter notebook --generate-config && sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:9361dd216701:df4736638013cd671a09ef12a671195e8fc61505'/" ~/.jupyter/jupyter_notebook_config.py
+VOLUME ["/shared_volume"]
+ENV NB_PREFIX audio_dgpi
+WORKDIR /
+ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--LabApp.allow_origin='*'", "--LabApp.base_url=audio_dgpi"]
