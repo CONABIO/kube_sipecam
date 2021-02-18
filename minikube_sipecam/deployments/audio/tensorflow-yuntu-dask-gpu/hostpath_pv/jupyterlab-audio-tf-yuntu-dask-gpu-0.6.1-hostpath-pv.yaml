@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-        name: jupyterlab-audio-tensorflow-yuntu-dask-gpu-0-6-1-hostpath-pv
+        name: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: jupyterlab-audio-tensorflow-yuntu-dask-gpu-0-6-1-hostpath-pv-app
+                        app: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv-app
         template:
                 metadata:
                         labels:
-                                app: jupyterlab-audio-tensorflow-yuntu-dask-gpu-0-6-1-hostpath-pv-app
+                                app: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv-app
                 spec:
                         containers: 
-                        - name: jupyterlab-audio-tensorflow-yuntu-dask-gpu-0-6-1-hostpath-pv
+                        - name: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv
                           imagePullPolicy: Always
                           image: sipecam/audio-dgpi-kale-tensorflow-yuntu-dask-gpu:0.6.1
                           ports:
