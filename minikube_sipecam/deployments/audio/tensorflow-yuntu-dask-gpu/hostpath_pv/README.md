@@ -4,10 +4,10 @@ Set:
 
 ```
 AUDIO_KUBEFLOW_NAMESPACE=kubeflow-namespace
-AUDIO_LOAD_BALANCER_SERVICE_GPU=loadbalancer-audio-tensorflow-yuntu-dask-gpu-0.6.1-hostpath-pv
+AUDIO_LOAD_BALANCER_SERVICE_GPU=loadbalancer-audio-tf-yuntu-dask-gpu-0.6.1-hostpath-pv
 AUDIO_PV=hostpath-pv
 AUDIO_PVC=hostpath-pvc
-AUDIO_JUPYTERLAB_SERVICE_GPU=jupyterlab-audio-tensorflow-yuntu-dask-gpu-0.6.1-hostpath-pv
+AUDIO_JUPYTERLAB_SERVICE_GPU=jupyterlab-audio-tf-yuntu-dask-gpu-0.6.1-hostpath-pv
 AUDIO_URL_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/audio/tensorflow-yuntu-dask-gpu
 ```
 
