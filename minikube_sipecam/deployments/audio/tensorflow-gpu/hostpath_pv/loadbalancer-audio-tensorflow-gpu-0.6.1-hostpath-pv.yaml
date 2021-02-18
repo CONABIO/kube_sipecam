@@ -1,7 +1,6 @@
 kind: Service
 apiVersion: v1
 metadata:
-        name: loadbalancer-ecoinf-gpu-0-5-1-hostpath-pv
         name: loadbalancer-audio-tensorflow-gpu-0-6-1-hostpath-pv
         namespace: kubeflow
 spec:
