@@ -1,5 +1,4 @@
-#
-FROM tensorflow/tensorflow:nightly-gpu-py3
+FROM tensorflow/tensorflow:2.4.1-gpu
 USER root
 ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
@@ -13,22 +12,31 @@ RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 i
 RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
      apt-get update && apt-get install -y yarn
- # Install yuntu from git with deps
-RUN mkdir -p /yuntu && \
-    cd /yuntu && \
+# Install nodejs deps
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
+# Install dask-cuda
+RUN mkdir -p /extra_code
+RUN cd /extra_code && \
+    mkdir -p dask_cuda && \
+    cd dask_cuda && \
+    git clone https://github.com/rapidsai/dask-cuda.git . && \
+    python3 setup.py install
+# Install yuntu from git with deps
+RUN cd /extra_code && \
+    mkdir -p yuntu && \
+    cd yuntu && \
     git clone https://github.com/CONABIO-audio/yuntu.git . && \
     git checkout restruct && \
     python3 setup.py install
-# Install nodejs deps
-RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
-# Install jupyterlab
-RUN python3 -m pip install -U "jupyterlab>=2.0.0,<3.0.0" && \
-    python3 -m pip install scikeras>=0.1.8 && \
-    python3 -m pip install dask-cuda && \
-    python3 -m pip install sidekit && \
-    cd ~ && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
-    cd ~/kale/backend/ && python3 -m pip install --upgrade . && \
-    cd ~/kale/labextension/ && jlpm install && jlpm run build && jupyter labextension install . && \
+# Install jupyterlab and kale
+RUN python3 -m pip install kubeflow-kale && \
+    python3 -m pip install -U "jupyterlab>=2.0.0,<3.0.0" && \
+    jupyter labextension install kubeflow-kale-labextension
+#    cd ~ && git clone --single-branch -b master https://github.com/kubeflow-kale/kale.git && \
+#    cd ~/kale/backend/ && python3 -m pip install --upgrade . && \
+#    cd ~/kale/labextension/ && jlpm install && jlpm run build && jupyter labextension install .
+# Install deps for inavad
+RUN python3 -m pip install sidekit && \
     python3 -m pip install pyannote.algorithms && \
     python3 -m pip install pyannote.core && \
     python3 -m pip install pyannote.parser && \
