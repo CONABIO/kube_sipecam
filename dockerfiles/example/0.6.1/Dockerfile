@@ -1,6 +1,7 @@
 #Check this:
 #https://github.com/kubeflow-kale/kale/commit/acbe872bf7cf14a9f9c708bc8d4aeb1e7116e9af
 #https://github.com/kubeflow-kale/kale/issues/157
+#
 FROM ubuntu:bionic
 USER root
 ENV TIMEZONE America/Mexico_City
