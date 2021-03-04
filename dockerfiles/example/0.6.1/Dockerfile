@@ -33,7 +33,7 @@ RUN jupyter notebook --generate-config && \
 RUN pip3 install $PIP_PACKAGES_COMMON --upgrade
 RUN pip3 install $PIP_PACKAGES_KALE --upgrade
 
-RUN jupyter labextension install kubeflow-kale-launcher
+RUN jupyter labextension install kubeflow-kale-labextension
 
 VOLUME ["/shared_volume"]
 
