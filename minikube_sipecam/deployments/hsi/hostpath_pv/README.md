@@ -3,10 +3,10 @@
 Set:
 
 ```
-HSI_LOAD_BALANCER_SERVICE=loadbalancer-hsi-0.5.1-hostpath-pv
+HSI_LOAD_BALANCER_SERVICE=loadbalancer-hsi-0.6.1-hostpath-pv
 HSI_PV=hostpath-pv
 HSI_PVC=hostpath-pvc
-HSI_JUPYTERLAB_SERVICE_HOSTPATH_PV=jupyterlab-hsi-0.5.1-hostpath-pv
+HSI_JUPYTERLAB_SERVICE_HOSTPATH_PV=jupyterlab-hsi-0.6.1-hostpath-pv
 HSI_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/hsi/
 ```
 
