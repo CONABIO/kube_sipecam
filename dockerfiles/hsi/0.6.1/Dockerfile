@@ -12,7 +12,7 @@ ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 
 ENV R_PACKAGES="var=\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest\""
 #next to avoid error when loading rpy2
-ENV LD_LIBRARY_PATH=/usr/local/lib/R/lib/
+ENV LD_LIBRARY_PATH=/usr/local/lib/R/lib/:$LD_LIBRARY_PATH
 
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
