@@ -26,7 +26,7 @@ RUN pip3 install $PIP_PACKAGES_COMMON --upgrade --use-feature=2020-resolver
 RUN pip3 install $PIP_PACKAGES_R --upgrade --use-feature=2020-resolver
 RUN pip3 install $PIP_PACKAGES_KALE --upgrade --use-feature=2020-resolver
 
-RUN pip3 install jupyterlab --use-feature=2020-resolver
+RUN pip3 install jupyter "jupyterlab>=2.0.0,<3.0.0" --upgrade
 
 RUN jupyter notebook --generate-config && sed -i "s/.*c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /root/.jupyter/jupyter_notebook_config.py
 
