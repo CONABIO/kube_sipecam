@@ -10,7 +10,7 @@ ENV PIP_PACKAGES_COMMON="numpy scipy matplotlib pandas seaborn"
 ENV PIP_PACKAGES_R="rpy2"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 
-ENV R_PACKAGES="var=\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest tidyverse\""
+ENV R_PACKAGES="var=\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest\""
 #next to avoid error when loading rpy2
 ENV LD_LIBRARY_PATH=/usr/local/lib/R/lib/
 
@@ -34,13 +34,12 @@ RUN jupyter notebook --generate-config && sed -i "s/.*c.NotebookApp.password = .
 RUN R -e 'devtools::install_github("luismurao/hsi")'
 
 #r kernel and packages
+   
 RUN echo $R_PACKAGES >  ~/.Renviron && \
-    sudo chmod gou+w $R_SITE_LIBRARY && \
     R -e 'install.packages(strsplit(system("echo $var", intern=TRUE)," ")[[1]], lib="/usr/local/lib/R/site-library/")' && \
     R -e 'devtools::install_github("IRkernel/IRkernel")' && \
-    sudo R -e 'IRkernel::installspec(user=FALSE)'
-   
-
+    R -e 'IRkernel::installspec(user=FALSE)'
+    
 VOLUME ["/shared_volume"]
 
 ENV NB_PREFIX hsiurl
