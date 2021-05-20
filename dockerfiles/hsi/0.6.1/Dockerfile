@@ -28,7 +28,7 @@ RUN pip3 install $PIP_PACKAGES_COMMON --upgrade
 RUN pip3 install $PIP_PACKAGES_R --upgrade 
 RUN pip3 install $PIP_PACKAGES_KALE --upgrade
 
-RUN jupyter labextension install kubeflow-kale-labextension
+RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
 
 #r package hsi
 RUN R -e 'devtools::install_github("luismurao/hsi")'
