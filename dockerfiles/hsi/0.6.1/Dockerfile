@@ -8,7 +8,6 @@ ENV DEB_BUILD_DEPS="python3-dev python3-pip python3-setuptools software-properti
 ENV DEB_PACKAGES="sudo nano less git wget curl"
 ENV PIP_PACKAGES_COMMON="numpy scipy matplotlib pandas seaborn"
 ENV PIP_PACKAGES_R="rpy2"
-ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 
 ENV R_PACKAGES="var=\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest\""
 #next to avoid error when loading rpy2
@@ -21,15 +20,18 @@ RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 i
     
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 
-RUN pip3 install jupyter "jupyterlab>=2.0.0,<3.0.0" --upgrade
-
-RUN jupyter notebook --generate-config && sed -i "s/.*c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /root/.jupyter/jupyter_notebook_config.py
+RUN groupadd hsiuser
+RUN useradd hsiuser -g hsiuser -m -s /bin/bash
+RUN echo 'hsiuser ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo)
+RUN echo 'hsiuser:qwerty' | chpasswd
+USER hsiuser
 
 RUN pip3 install $PIP_PACKAGES_COMMON --upgrade 
 RUN pip3 install $PIP_PACKAGES_R --upgrade 
-RUN pip3 install $PIP_PACKAGES_KALE --upgrade
 
-RUN jupyter labextension install kubeflow-kale-labextension
+RUN pip3 install jupyter jupyterlab==$JUPYTERLAB_VERSION
+
+RUN jupyter notebook --generate-config && sed -i "s/.*c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /root/.jupyter/jupyter_notebook_config.py
 
 #r package hsi
 RUN R -e 'devtools::install_github("luismurao/hsi")'
@@ -43,7 +45,4 @@ RUN echo $R_PACKAGES >  ~/.Renviron && \
     
 VOLUME ["/shared_volume"]
 
-ENV NB_PREFIX hsiurl
-
-ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--LabApp.allow_origin='*'", "--LabApp.base_url=hsiurl"]
-
+ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
