@@ -25,7 +25,7 @@ RUN jupyter notebook --generate-config && \
 
 #RUN pip install $PIP_PACKAGES_COMMON --upgrade
 RUN pip install $PIP_PACKAGES_KALE --upgrade
-RUN jupyter labextension install kubeflow-kale-labextension
+RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
 
 
 VOLUME ["/shared_volume"]
