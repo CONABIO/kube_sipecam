@@ -1,6 +1,7 @@
 #dummy line to trigger build
 FROM rocker/geospatial:4.0.2
 ENV TIMEZONE America/Mexico_City
+ENV JUPYTERLAB_VERSION 3.0.0
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
