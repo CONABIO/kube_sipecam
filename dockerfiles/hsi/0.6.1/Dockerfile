@@ -9,7 +9,7 @@ ENV DEB_BUILD_DEPS="python3-dev python3-pip python3-setuptools software-properti
 ENV DEB_PACKAGES="sudo nano less git wget curl"
 ENV PIP_PACKAGES_COMMON="numpy scipy matplotlib pandas seaborn"
 ENV PIP_PACKAGES_R="rpy2"
-
+ENV R_SITE_LIBRARY="/usr/local/lib/R/site-library"
 ENV R_PACKAGES="var=\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest\""
 #next to avoid error when loading rpy2
 ENV LD_LIBRARY_PATH=/usr/local/lib/R/lib/
