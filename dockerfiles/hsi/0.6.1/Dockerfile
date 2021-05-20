@@ -32,18 +32,20 @@ RUN pip3 install $PIP_PACKAGES_R --upgrade
 
 RUN pip3 install jupyter jupyterlab==$JUPYTERLAB_VERSION
 
-RUN jupyter notebook --generate-config && sed -i "s/.*c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /root/.jupyter/jupyter_notebook_config.py
+RUN jupyter notebook --generate-config && sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/hsiuser/.jupyter/jupyter_notebook_config.py
 
+#r kernel and packages
+RUN echo $R_PACKAGES >  ~/.Renviron && \
+    sudo chmod gou+w $R_SITE_LIBRARY && \
+    R -e 'install.packages(strsplit(system("echo $var", intern=TRUE)," ")[[1]], lib="/usr/local/lib/R/site-library/")' && \
+    R -e 'devtools::install_github("IRkernel/IRkernel")' && \
+    sudo R -e 'IRkernel::installspec(user=FALSE)'
+    
 #r package hsi
 RUN R -e 'devtools::install_github("luismurao/hsi")'
 
-#r kernel and packages
-   
-RUN echo $R_PACKAGES >  ~/.Renviron && \
-    R -e 'install.packages(strsplit(system("echo $var", intern=TRUE)," ")[[1]], lib="/usr/local/lib/R/site-library/")' && \
-    R -e 'devtools::install_github("IRkernel/IRkernel")' && \
-    R -e 'IRkernel::installspec(user=FALSE)'
-    
+RUN sudo chmod gou+wx -R /home/hsiuser/.local
+
 VOLUME ["/shared_volume"]
 
 ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
