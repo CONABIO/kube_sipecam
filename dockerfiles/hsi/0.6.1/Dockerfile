@@ -25,14 +25,14 @@ RUN groupadd hsiuser
 RUN useradd hsiuser -g hsiuser -m -s /bin/bash
 RUN echo 'hsiuser ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo)
 RUN echo 'hsiuser:qwerty' | chpasswd
+RUN pip3 install jupyter jupyterlab==$JUPYTERLAB_VERSION
 USER hsiuser
+
+RUN jupyter notebook --generate-config && sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/hsiuser/.jupyter/jupyter_notebook_config.py
 
 RUN pip3 install $PIP_PACKAGES_COMMON --upgrade 
 RUN pip3 install $PIP_PACKAGES_R --upgrade 
 
-RUN pip3 install jupyter jupyterlab==$JUPYTERLAB_VERSION
-
-RUN jupyter notebook --generate-config && sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/hsiuser/.jupyter/jupyter_notebook_config.py
 
 #r kernel and packages
 RUN echo $R_PACKAGES >  ~/.Renviron && \
