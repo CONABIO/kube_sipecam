@@ -12,7 +12,7 @@ ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 
 ENV R_PACKAGES="var=\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest\""
 #next to avoid error when loading rpy2
-ENV LD_LIBRARY_PATH=/usr/local/lib/R/lib/:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/usr/local/lib/R/lib/
 
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
@@ -26,7 +26,7 @@ RUN pip3 install $PIP_PACKAGES_COMMON --upgrade --use-feature=2020-resolver
 RUN pip3 install $PIP_PACKAGES_R --upgrade --use-feature=2020-resolver
 RUN pip3 install $PIP_PACKAGES_KALE --upgrade --use-feature=2020-resolver
 
-RUN pip3 install jupyter "jupyterlab>=2.0.0,<3.0.0" --upgrade
+RUN pip3 install jupyter "jupyterlab>=2.0.0,<3.0.0"
 
 RUN jupyter notebook --generate-config && sed -i "s/.*c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /root/.jupyter/jupyter_notebook_config.py
 
