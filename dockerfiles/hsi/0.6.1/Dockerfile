@@ -5,7 +5,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="python3-dev python3-pip python3-setuptools software-properties-common"
 ENV DEB_PACKAGES="sudo nano less git wget curl"
-ENV PIP_PACKAGES_COMMON="numpy scipy matplotlib pandas seaborn"
+ENV PIP_PACKAGES_COMMON="numpy scipy matplotlib pandas seaborn awscli"
 ENV PIP_PACKAGES_R="rpy2"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 
