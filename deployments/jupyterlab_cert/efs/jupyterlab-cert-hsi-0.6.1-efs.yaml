@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+        name: kale-jupyterlab
+        namespace: kubeflow
+spec:
+        replicas: 1 # This is the number of containers that are going to be deployed.
+        selector:
+                matchLabels:
+                        app: kale-jupyterlab-2iam-app
+        template:
+                metadata:
+                        labels:
+                                app: kale-jupyterlab-2iam-app
+                spec:
+                        containers: 
+                        - name: kale-jupyterlab
+                          imagePullPolicy: Always
+                          image: sipecam/jupyterlab-cert-kale:0.6.1
+                          ports:
+                                  - containerPort: 8888
+                          env:
+                                  - name: mount_point
+                                    value: /shared_volume
+                                  - name: LC_ALL
+                                    value: C.UTF-8
+                                  - name: LANG
+                                    value: C.UTF-8
+                          resources:
+                                  requests:
+                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          memory: .5Gi # This value depends of type of AWS instance chosen
+                                  limits:
+                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          memory: .5Gi # This value depends of type of AWS instance chosen
+                          volumeMounts:
+                                  - name: efs-pvc
+                                    mountPath: "/shared_volume"
+                        volumes:
+                        - name: efs-pvc
+                          persistentVolumeClaim:
+                                  claimName: efs
