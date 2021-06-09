@@ -1,4 +1,3 @@
-#dummy line to trigger build
 FROM tensorflow/tensorflow:2.4.1-gpu
 USER root
 ENV TIMEZONE America/Mexico_City
