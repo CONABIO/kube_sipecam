@@ -38,5 +38,5 @@ jobs:
           file: dockerfiles/audio/tensorflow-yuntu-dask-gpu/0.6.1/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: sipecam/audio-dgpi-kale-tensorflow-yuntu-dask-gpu-jupyterlab-cert:0.6.1
+          tags: sipecam/audio-dgpi-kale-tensorflow-yuntu-dask-gpu-cert:0.6.1
 
