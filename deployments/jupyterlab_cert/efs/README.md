@@ -2,8 +2,8 @@
 Set:
 
 ```
-HSI_LOAD_BALANCER_SERVICE=loadbalancer-hsi-0.6.1-efs
-HSI_JUPYTERLAB_SERVICE_HOSTPATH_PV=jupyterlab-cert-hsi-0.6.1-efs
+HSI_LOAD_BALANCER_SERVICE=loadbalancer-0.6.1-efs
+HSI_JUPYTERLAB_SERVICE_HOSTPATH_PV=jupyterlab-cert-0.6.1-efs
 HSI_URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/jupyterlab_cert/
 ```
 
