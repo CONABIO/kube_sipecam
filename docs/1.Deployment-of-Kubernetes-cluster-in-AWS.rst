@@ -504,7 +504,7 @@ Scale up worker nodes of cluster using `kops`.
 	 
 	 .. code-block:: bash
 	 
-	          kops edit
+	          dummy line to trigger build
 	 
 	 
 
