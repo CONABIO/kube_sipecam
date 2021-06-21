@@ -1,0 +1,26 @@
+name: kube-sipecam-doc
+
+on:
+  push:
+    branches:
+    - master
+    paths:
+    - docs/**
+    
+jobs:
+  deploy-kube-sipecam-doc:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies    
+      run: pip install docs/requirements.txt
+      
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v3.7.3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_build/html      
