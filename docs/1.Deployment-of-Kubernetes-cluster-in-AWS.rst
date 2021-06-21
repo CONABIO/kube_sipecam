@@ -1,15 +1,11 @@
 .. image:: imgs/KUBE_SIPECAM_AWS.png 
 	:width: 400
 
-Kubernetes
-==========
+Cluster creation (first time only)
+==================================
 
 
-Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications (see `Kubernetes`_ and `Kubernetes github page`_ ). 
-
-
-Cluster creation
-----------------
+Kube SIPECAM cluster uses Kubernetes which is an open-source system for automating deployment, scaling, and management of containerized applications (see `Kubernetes`_ and `Kubernetes github page`_ ). 
 
 The nex steps follow `kops`_ and `kops - Kubernetes Operations`_ guides (another guide: `Step Zero Kubernetes on AWS`_).
 
@@ -421,6 +417,99 @@ To delete components of kubernetes dashboard:
         $kubectl delete serviceaccount kubernetes-dashboard -n kubernetes-dashboard
         $kubectl delete secret kubernetes-dashboard-certs -n kubernetes-dashboard
         $kubectl delete namespace kubernetes-dashboard -n kubernetes-dashboard
+	
+	
+Cluster usage
+=============
+
+Once cluster was created in `us-west-2` region initiate a `t2.micro` instance in which we will execute `kubectl` commands. For this choose a suitable name for your instance and change it in the next *bash script* which will install `docker`, `kops` and `kubectl`.
+
+.. code-block:: bash
+
+         #!/bin/bash
+         ##variables:
+         region=us-west-2
+         name_instance=###############here write a suitable name for your t2 micro instance
+         shared_volume=/shared_volume
+         user=ubuntu
+         ##System update
+         export DEBIAN_FRONTEND=noninteractive
+         apt-get update -yq
+         ##Install awscli
+         apt-get install -y python3-pip && pip3 install --upgrade pip
+         pip3 install awscli --upgrade
+         ##Tag instance
+         INSTANCE_ID=$(curl -s http://instance-data/latest/meta-data/instance-id)
+         PUBLIC_IP=$(curl -s http://instance-data/latest/meta-data/public-ipv4)
+         aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance-$PUBLIC_IP --region=$region
+         ##Set variables for completion of bash commands
+         echo "export LC_ALL=C.UTF-8" >> /home/$user/.profile
+         echo "export LANG=C.UTF-8" >> /home/$user/.profile
+         ##Set variable mount_point
+         echo "export mount_point=$shared_volume" >> /home/$user/.profile
+         ##Useful software for common operations
+         apt-get install -y nfs-common jq git htop nano
+         ##Create shared volume
+         mkdir $shared_volume
+         ##install docker for ubuntu:
+         apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+         add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+         apt-get update -yq
+         apt-get install -y docker-ce
+         service docker start
+         ##install kops version 1.19.0:
+         wget -O kops https://github.com/kubernetes/kops/releases/download/v1.19.1/kops-linux-amd64
+         chmod +x ./kops
+         sudo mv ./kops /usr/local/bin/
+         ##install kubernetes command line tool v1.19: kubectl
+         wget -O kubectl https://storage.googleapis.com/kubernetes-release/release/v1.19.1/bin/linux/amd64/kubectl
+         chmod +x ./kubectl
+         sudo mv ./kubectl /usr/local/bin/kubectl
+         ##enable completion for kubectl:
+         echo "source <(kubectl completion bash)" >> /home/$user/.bashrc        
+
+
+Use `ssh` to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:
+
+.. code-block:: bash
+
+         # For testing
+         
+         export DOMAIN_NAME="dummy.route53-kube-sipecam.net"
+         export CLUSTER_ALIAS="k8s-dummy"
+         export CLUSTER_FULL_NAME="${CLUSTER_ALIAS}.${DOMAIN_NAME}"
+         export KUBERNETES_VERSION="1.19.1"
+         export KOPS_STATE_STORE="s3://${CLUSTER_FULL_NAME}-state"
+         export EDITOR=nano
+         
+         # For production
+         
+         export DOMAIN_NAME="proc-sys.route53-kube-sipecam.net"
+         export CLUSTER_ALIAS="k8s"
+         export CLUSTER_FULL_NAME="${CLUSTER_ALIAS}.${DOMAIN_NAME}"
+         export KUBERNETES_VERSION="1.19.1"
+         export KOPS_STATE_STORE="s3://${CLUSTER_FULL_NAME}-state"
+         export EDITOR=nano
+
+Scale up worker nodes of cluster using `kops`.
+
+.. code-block:: bash
+
+         kops edit ig nodes-us-west-2a --name $CLUSTER_FULL_NAME
+	 
+.. note::
+
+         If you will use GPU then add under `spec` next lines:
+	 
+	 .. code-block:: bash
+	 
+	          kops edit
+	 
+	 
+
+
+
 
 .. Kubernetes references:
 
