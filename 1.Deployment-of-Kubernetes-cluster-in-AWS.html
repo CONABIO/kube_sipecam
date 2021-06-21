@@ -438,6 +438,18 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 </pre></div>
 </div>
 </div>
+<p>Next line is just to see what changes are going to be applied.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops update cluster --name <span class="nv">$CLUSTER_FULL_NAME</span>
+</pre></div>
+</div>
+<p>Apply the changes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops update cluster --name <span class="nv">$CLUSTER_FULL_NAME</span> --yes --admin
+</pre></div>
+</div>
+<p>Next line is useful to know when cluster is ready</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops validate cluster --wait 10m
+</pre></div>
+</div>
 </div>
 
 

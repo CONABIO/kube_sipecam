@@ -505,7 +505,24 @@ Scale up worker nodes of cluster using `kops`.
 	 .. code-block:: bash
 	 
 		  dummy line to trigger build
-	 
+
+Next line is just to see what changes are going to be applied.
+
+.. code-block:: bash
+
+         kops update cluster --name $CLUSTER_FULL_NAME
+
+Apply the changes.
+
+.. code-block:: bash
+
+         kops update cluster --name $CLUSTER_FULL_NAME --yes --admin
+
+Next line is useful to know when cluster is ready
+
+.. code-block:: bash
+
+         kops validate cluster --wait 10m
 	 
 
 
