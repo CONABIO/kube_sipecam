@@ -446,10 +446,59 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops update cluster --name <span class="nv">$CLUSTER_FULL_NAME</span> --yes --admin
 </pre></div>
 </div>
-<p>Next line is useful to know when cluster is ready</p>
+<p>Next line is useful to know when cluster is ready.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops validate cluster --wait 10m
 </pre></div>
 </div>
+<p>When cluster is ready <strong>scale up</strong> next:</p>
+<ul class="simple">
+<li><p>Dashboard components</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas<span class="o">=</span><span class="m">1</span>
+kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Get the port of dashboard UI with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get service kubernetes-dashboard -n kubernetes-dashboard
+</pre></div>
+</div>
+<p>Access to dashboard UI using:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>Elastic File System</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubeflow scale deployments/nfs-client-provisioner --replicas<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Kubeflow components</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl scale -n kubeflow deployment cache-deployer-deployment --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment cache-server --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment workflow-controller --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment ml-pipeline-ui --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment ml-pipeline-scheduledworkflow --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment ml-pipeline-persistenceagent --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment ml-pipeline --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment metadata-writer --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment metadata-envoy-deployment --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment metadata-grpc-deployment --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment ml-pipeline-viewer-crd --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment ml-pipeline-visualizationserver --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment mysql --replicas<span class="o">=</span><span class="m">1</span>
+kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Get the port of kubeflow UI with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get service ml-pipeline-ui -n kubeflow
+</pre></div>
+</div>
+<p>Access to dashboard UI using:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span>
+<span class="pre">`</span></code></p>
 </div>
 
 

@@ -518,14 +518,70 @@ Apply the changes.
 
          kops update cluster --name $CLUSTER_FULL_NAME --yes --admin
 
-Next line is useful to know when cluster is ready
+Next line is useful to know when cluster is ready.
 
 .. code-block:: bash
 
          kops validate cluster --wait 10m
 	 
 
+When cluster is ready **scale up** next:
 
+* Dashboard components
+
+.. code-block:: bash
+
+         kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas=1
+         kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas=1
+	 
+Get the port of dashboard UI with
+
+.. code-block:: bash
+
+         kubectl get service kubernetes-dashboard -n kubernetes-dashboard
+	 
+Access to dashboard UI using:
+
+```
+https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>
+```
+
+* Elastic File System
+
+.. code-block:: bash
+ 
+         kubectl -n kubeflow scale deployments/nfs-client-provisioner --replicas=1
+	 
+* Kubeflow components
+
+.. code-block:: bash
+
+         kubectl scale -n kubeflow deployment cache-deployer-deployment --replicas=1
+         kubectl scale -n kubeflow deployment cache-server --replicas=1
+         kubectl scale -n kubeflow deployment workflow-controller --replicas=1
+         kubectl scale -n kubeflow deployment ml-pipeline-ui --replicas=1
+         kubectl scale -n kubeflow deployment ml-pipeline-scheduledworkflow --replicas=1
+         kubectl scale -n kubeflow deployment ml-pipeline-persistenceagent --replicas=1
+         kubectl scale -n kubeflow deployment ml-pipeline --replicas=1
+         kubectl scale -n kubeflow deployment metadata-writer --replicas=1
+         kubectl scale -n kubeflow deployment metadata-envoy-deployment --replicas=1
+         kubectl scale -n kubeflow deployment metadata-grpc-deployment --replicas=1
+         kubectl scale -n kubeflow deployment ml-pipeline-viewer-crd --replicas=1
+         kubectl scale -n kubeflow deployment ml-pipeline-visualizationserver --replicas=1
+         kubectl scale -n kubeflow deployment mysql --replicas=1
+         kubectl scale -n kubeflow deployment controller-manager --replicas=1
+	 
+Get the port of kubeflow UI with
+
+.. code-block:: bash
+
+         kubectl get service ml-pipeline-ui -n kubeflow
+	 
+Access to dashboard UI using:
+
+```
+http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>
+```	 
 
 
 .. Kubernetes references:
