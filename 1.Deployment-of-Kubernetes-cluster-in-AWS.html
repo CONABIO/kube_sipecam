@@ -462,10 +462,8 @@ kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replica
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get service kubernetes-dashboard -n kubernetes-dashboard
 </pre></div>
 </div>
-<p>Access to dashboard UI using:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span>
-<span class="pre">`</span></code></p>
+<p>Access dashboard UI using:</p>
+<p><cite>https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port retrieved with last command&gt;</cite></p>
 <ul class="simple">
 <li><p>Elastic File System</p></li>
 </ul>
@@ -495,10 +493,10 @@ kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get service ml-pipeline-ui -n kubeflow
 </pre></div>
 </div>
-<p>Access to dashboard UI using:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span>
-<span class="pre">`</span></code></p>
+<p>Access kubeflow dashboard UI using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.<span class="nv">$CLUSTER_ALIAS</span>.<span class="nv">$DOMAIN_NAME</span>:&lt;port retrieved with last command&gt;
+</pre></div>
+</div>
 </div>
 
 
