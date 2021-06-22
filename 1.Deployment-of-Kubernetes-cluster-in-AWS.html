@@ -360,9 +360,9 @@ privkey.pem -&gt; ../../archive/&lt;location&gt;/privkey1.pem
 </div>
 </div>
 </div>
-<div class="section" id="cluster-usage">
-<h1>Cluster usage<a class="headerlink" href="#cluster-usage" title="Permalink to this headline">¶</a></h1>
-<p>Once cluster is created in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region launch a <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance in which we will execute <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands.</p>
+<div class="section" id="cluster-deployment">
+<h1>Cluster deployment<a class="headerlink" href="#cluster-deployment" title="Permalink to this headline">¶</a></h1>
+<p>Once cluster is created in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region launch a <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance in which we will execute <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands to deploy cluster.</p>
 <p>Use next <em>bash script</em> which will install <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">kops</span></code> and <code class="docutils literal notranslate"><span class="pre">kubectl</span></code>. Also choose a suitable name for your instance and write it down in <code class="docutils literal notranslate"><span class="pre">name_instance</span></code> variable.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
@@ -408,6 +408,8 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <span class="nb">echo</span> <span class="s2">&quot;source &lt;(kubectl completion bash)&quot;</span> &gt;&gt; /home/<span class="nv">$user</span>/.bashrc
 </pre></div>
 </div>
+<div class="section" id="scale-up-of-components">
+<h2>Scale up of components<a class="headerlink" href="#scale-up-of-components" title="Permalink to this headline">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For testing</span>
 
@@ -451,8 +453,6 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops validate cluster --wait 10m
 </pre></div>
 </div>
-<div class="section" id="scale-up-of-components">
-<h2>Scale up of components<a class="headerlink" href="#scale-up-of-components" title="Permalink to this headline">¶</a></h2>
 <p>When cluster is ready <strong>scale up</strong> next:</p>
 <ul class="simple">
 <li><p>Dashboard components</p></li>
@@ -572,7 +572,7 @@ kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replica
 <li class="toctree-l2"><a class="reference internal" href="#kubernetes-dashboard">Kubernetes dashboard</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#cluster-usage">Cluster usage</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="#cluster-deployment">Cluster deployment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#scale-up-of-components">Scale up of components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scale-down-of-components">Scale down of components</a></li>
 </ul>
