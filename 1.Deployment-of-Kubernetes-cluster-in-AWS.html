@@ -433,7 +433,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you will use GPU then add under <cite>spec</cite> next lines:</p>
+<p>If you will use GPU then add under <code class="docutils literal notranslate"><span class="pre">spec</span></code> next lines:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dummy line to trigger build
 </pre></div>
 </div>
@@ -458,12 +458,12 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas<span class="o">=</span><span class="m">1</span>
 </pre></div>
 </div>
-<p>Get the port of dashboard UI with</p>
+<p>Get port of dashboard UI with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get service kubernetes-dashboard -n kubernetes-dashboard
 </pre></div>
 </div>
-<p>Access dashboard UI using:</p>
-<p><cite>https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port retrieved with last command&gt;</cite></p>
+<p>Access dashboard UI:</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span></code></p>
 <ul class="simple">
 <li><p>Elastic File System</p></li>
 </ul>
@@ -489,14 +489,12 @@ kubectl scale -n kubeflow deployment mysql --replicas<span class="o">=</span><sp
 kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o">=</span><span class="m">1</span>
 </pre></div>
 </div>
-<p>Get the port of kubeflow UI with</p>
+<p>Get port of kubeflow UI with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get service ml-pipeline-ui -n kubeflow
 </pre></div>
 </div>
-<p>Access kubeflow dashboard UI using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://api.<span class="nv">$CLUSTER_ALIAS</span>.<span class="nv">$DOMAIN_NAME</span>:&lt;port retrieved with last command&gt;
-</pre></div>
-</div>
+<p>Access kubeflow dashboard UI:</p>
+<p><code class="docutils literal notranslate"><span class="pre">http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span></code></p>
 </div>
 
 
