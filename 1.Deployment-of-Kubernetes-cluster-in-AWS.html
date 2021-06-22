@@ -362,7 +362,8 @@ privkey.pem -&gt; ../../archive/&lt;location&gt;/privkey1.pem
 </div>
 <div class="section" id="cluster-usage">
 <h1>Cluster usage<a class="headerlink" href="#cluster-usage" title="Permalink to this headline">¶</a></h1>
-<p>Once cluster was created in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region initiate a <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance in which we will execute <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands. For this choose a suitable name for your instance and change it in the next <em>bash script</em> which will install <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">kops</span></code> and <a href="#id1"><span class="problematic" id="id2">``</span></a>kubectl`.</p>
+<p>Once cluster is created in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region launch a <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance in which we will execute <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands.</p>
+<p>Use next <em>bash script</em> which will install <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">kops</span></code> and <code class="docutils literal notranslate"><span class="pre">kubectl</span></code>. Also choose a suitable name for your instance and write it down in <code class="docutils literal notranslate"><span class="pre">name_instance</span></code> variable.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
 <span class="nv">region</span><span class="o">=</span>us-west-2
