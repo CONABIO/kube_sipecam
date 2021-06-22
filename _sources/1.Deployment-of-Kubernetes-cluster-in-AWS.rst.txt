@@ -424,7 +424,7 @@ Cluster deployment
 
 Once cluster is created in ``us-west-2`` region launch a ``t2.micro`` instance in which we will execute ``kubectl`` commands to deploy cluster. 
 
-Use next *bash script* which will install ``docker``, ``kops`` and ``kubectl``. Also choose a suitable name for your instance and write it down in ``name_instance`` variable.
+Use next *bash script* which will install ``docker``, ``kops`` and ``kubectl``. Also choose a suitable name for your instance and write it for ``name_instance`` variable.
 
 .. code-block:: bash
 
