@@ -500,7 +500,7 @@ Scale up worker nodes of cluster using `kops`.
 	 
 .. note::
 
-         If you will use GPU then add under `spec` next lines:
+         If you will use GPU then add under ``spec`` next lines:
 	 
 	 .. code-block:: bash
 	 
@@ -534,15 +534,15 @@ When cluster is ready **scale up** next:
          kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas=1
          kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas=1
 	 
-Get the port of dashboard UI with
+Get port of dashboard UI with:
 
 .. code-block:: bash
 
          kubectl get service kubernetes-dashboard -n kubernetes-dashboard
 	 
-Access dashboard UI using:
+Access dashboard UI:
 
-`https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>`
+``https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>``
 
 * Elastic File System
 
@@ -569,17 +569,15 @@ Access dashboard UI using:
          kubectl scale -n kubeflow deployment mysql --replicas=1
          kubectl scale -n kubeflow deployment controller-manager --replicas=1
 	 
-Get the port of kubeflow UI with
+Get port of kubeflow UI with:
 
 .. code-block:: bash
 
          kubectl get service ml-pipeline-ui -n kubeflow
 	 
-Access kubeflow dashboard UI using:
+Access kubeflow dashboard UI:
 
-.. code-block:: bash
-
-         http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>
+``http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>``
 
 
 .. Kubernetes references:
