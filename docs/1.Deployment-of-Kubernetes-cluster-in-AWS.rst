@@ -419,10 +419,10 @@ To delete components of kubernetes dashboard:
         $kubectl delete namespace kubernetes-dashboard -n kubernetes-dashboard
 	
 	
-Cluster usage
-=============
+Cluster deployment
+==================
 
-Once cluster is created in ``us-west-2`` region launch a ``t2.micro`` instance in which we will execute ``kubectl`` commands. 
+Once cluster is created in ``us-west-2`` region launch a ``t2.micro`` instance in which we will execute ``kubectl`` commands to deploy cluster. 
 
 Use next *bash script* which will install ``docker``, ``kops`` and ``kubectl``. Also choose a suitable name for your instance and write it down in ``name_instance`` variable.
 
@@ -471,6 +471,8 @@ Use next *bash script* which will install ``docker``, ``kops`` and ``kubectl``. 
          ##enable completion for kubectl:
          echo "source <(kubectl completion bash)" >> /home/$user/.bashrc        
 
+Scale up of components
+----------------------
 
 Use ``ssh`` to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:
 
@@ -525,9 +527,6 @@ Next line is useful to know when cluster is ready.
 .. code-block:: bash
 
          kops validate cluster --wait 10m
-	 
-Scale up of components
-----------------------
 
 When cluster is ready **scale up** next:
 
