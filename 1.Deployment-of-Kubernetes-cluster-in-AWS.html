@@ -362,7 +362,7 @@ privkey.pem -&gt; ../../archive/&lt;location&gt;/privkey1.pem
 </div>
 <div class="section" id="cluster-usage">
 <h1>Cluster usage<a class="headerlink" href="#cluster-usage" title="Permalink to this headline">¶</a></h1>
-<p>Once cluster was created in <cite>us-west-2</cite> region initiate a <cite>t2.micro</cite> instance in which we will execute <cite>kubectl</cite> commands. For this choose a suitable name for your instance and change it in the next <em>bash script</em> which will install <cite>docker</cite>, <cite>kops</cite> and <cite>kubectl</cite>.</p>
+<p>Once cluster was created in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region initiate a <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance in which we will execute <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands. For this choose a suitable name for your instance and change it in the next <em>bash script</em> which will install <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">kops</span></code> and <a href="#id1"><span class="problematic" id="id2">``</span></a>kubectl`.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
 <span class="nv">region</span><span class="o">=</span>us-west-2
@@ -407,7 +407,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <span class="nb">echo</span> <span class="s2">&quot;source &lt;(kubectl completion bash)&quot;</span> &gt;&gt; /home/<span class="nv">$user</span>/.bashrc
 </pre></div>
 </div>
-<p>Use <cite>ssh</cite> to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For testing</span>
 
 <span class="nb">export</span> <span class="nv">DOMAIN_NAME</span><span class="o">=</span><span class="s2">&quot;dummy.route53-kube-sipecam.net&quot;</span>
@@ -427,7 +427,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <span class="nb">export</span> <span class="nv">EDITOR</span><span class="o">=</span>nano
 </pre></div>
 </div>
-<p>Scale up worker nodes of cluster using <cite>kops</cite>.</p>
+<p>Scale up worker nodes of cluster using <code class="docutils literal notranslate"><span class="pre">kops</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops edit ig nodes-us-west-2a --name <span class="nv">$CLUSTER_FULL_NAME</span>
 </pre></div>
 </div>
@@ -450,6 +450,8 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops validate cluster --wait 10m
 </pre></div>
 </div>
+<div class="section" id="scale-up-of-components">
+<h2>Scale up of components<a class="headerlink" href="#scale-up-of-components" title="Permalink to this headline">¶</a></h2>
 <p>When cluster is ready <strong>scale up</strong> next:</p>
 <ul class="simple">
 <li><p>Dashboard components</p></li>
@@ -496,6 +498,55 @@ kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o
 <p>Access kubeflow dashboard UI:</p>
 <p><code class="docutils literal notranslate"><span class="pre">http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span></code></p>
 </div>
+<div class="section" id="scale-down-of-components">
+<h2>Scale down of components<a class="headerlink" href="#scale-down-of-components" title="Permalink to this headline">¶</a></h2>
+<p>Once the work is done <strong>scale down</strong> next:</p>
+<ul class="simple">
+<li><p>Kubeflow components</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl scale -n kubeflow deployment cache-deployer-deployment --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment cache-server --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment workflow-controller --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment ml-pipeline-ui --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment ml-pipeline-scheduledworkflow --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment ml-pipeline-persistenceagent --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment ml-pipeline --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment metadata-writer --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment metadata-envoy-deployment --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment metadata-grpc-deployment --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment ml-pipeline-viewer-crd --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment ml-pipeline-visualizationserver --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment mysql --replicas<span class="o">=</span><span class="m">0</span>
+kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Dashboard components</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas<span class="o">=</span><span class="m">0</span>
+kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Elastic File System</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubeflow scale deployments/nfs-client-provisioner --replicas<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Wait 5 minutes then scale down worker nodes of cluster using <code class="docutils literal notranslate"><span class="pre">kops</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops edit ig nodes-us-west-2a --name <span class="nv">$CLUSTER_FULL_NAME</span>
+</pre></div>
+</div>
+<p>Next line is just to see what changes are going to be applied.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops update cluster --name <span class="nv">$CLUSTER_FULL_NAME</span>
+</pre></div>
+</div>
+<p>Apply the changes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops update cluster --name <span class="nv">$CLUSTER_FULL_NAME</span> --yes --admin
+</pre></div>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -520,7 +571,11 @@ kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o
 <li class="toctree-l2"><a class="reference internal" href="#kubernetes-dashboard">Kubernetes dashboard</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#cluster-usage">Cluster usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#cluster-usage">Cluster usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scale-up-of-components">Scale up of components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scale-down-of-components">Scale down of components</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">

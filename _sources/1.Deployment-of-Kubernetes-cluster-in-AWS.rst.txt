@@ -422,7 +422,7 @@ To delete components of kubernetes dashboard:
 Cluster usage
 =============
 
-Once cluster was created in `us-west-2` region initiate a `t2.micro` instance in which we will execute `kubectl` commands. For this choose a suitable name for your instance and change it in the next *bash script* which will install `docker`, `kops` and `kubectl`.
+Once cluster was created in ``us-west-2`` region initiate a ``t2.micro`` instance in which we will execute ``kubectl`` commands. For this choose a suitable name for your instance and change it in the next *bash script* which will install ``docker``, ``kops`` and ``kubectl`.
 
 .. code-block:: bash
 
@@ -470,7 +470,7 @@ Once cluster was created in `us-west-2` region initiate a `t2.micro` instance in
          echo "source <(kubectl completion bash)" >> /home/$user/.bashrc        
 
 
-Use `ssh` to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:
+Use ``ssh`` to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:
 
 .. code-block:: bash
 
@@ -490,9 +490,9 @@ Use `ssh` to login to ec2 instance. Choose which type of cluster you will use an
          export CLUSTER_FULL_NAME="${CLUSTER_ALIAS}.${DOMAIN_NAME}"
          export KUBERNETES_VERSION="1.19.1"
          export KOPS_STATE_STORE="s3://${CLUSTER_FULL_NAME}-state"
-         export EDITOR=nano
+         export EDITOR=nano	 
 
-Scale up worker nodes of cluster using `kops`.
+Scale up worker nodes of cluster using ``kops``.
 
 .. code-block:: bash
 
@@ -524,6 +524,8 @@ Next line is useful to know when cluster is ready.
 
          kops validate cluster --wait 10m
 	 
+Scale up of components
+----------------------
 
 When cluster is ready **scale up** next:
 
@@ -580,6 +582,64 @@ Access kubeflow dashboard UI:
 ``http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>``
 
 
+Scale down of components
+------------------------
+
+Once the work is done **scale down** next:
+
+* Kubeflow components
+
+.. code-block:: bash
+
+         kubectl scale -n kubeflow deployment cache-deployer-deployment --replicas=0
+         kubectl scale -n kubeflow deployment cache-server --replicas=0
+         kubectl scale -n kubeflow deployment workflow-controller --replicas=0
+         kubectl scale -n kubeflow deployment ml-pipeline-ui --replicas=0
+         kubectl scale -n kubeflow deployment ml-pipeline-scheduledworkflow --replicas=0
+         kubectl scale -n kubeflow deployment ml-pipeline-persistenceagent --replicas=0
+         kubectl scale -n kubeflow deployment ml-pipeline --replicas=0
+         kubectl scale -n kubeflow deployment metadata-writer --replicas=0
+         kubectl scale -n kubeflow deployment metadata-envoy-deployment --replicas=0
+         kubectl scale -n kubeflow deployment metadata-grpc-deployment --replicas=0
+         kubectl scale -n kubeflow deployment ml-pipeline-viewer-crd --replicas=0
+         kubectl scale -n kubeflow deployment ml-pipeline-visualizationserver --replicas=0
+         kubectl scale -n kubeflow deployment mysql --replicas=0
+         kubectl scale -n kubeflow deployment controller-manager --replicas=0
+
+
+* Dashboard components
+
+.. code-block:: bash
+
+         kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas=0
+         kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas=0
+	 
+* Elastic File System
+
+.. code-block:: bash
+ 
+         kubectl -n kubeflow scale deployments/nfs-client-provisioner --replicas=0
+	 
+
+Wait 5 minutes then scale down worker nodes of cluster using ``kops``.
+
+.. code-block:: bash
+
+         kops edit ig nodes-us-west-2a --name $CLUSTER_FULL_NAME
+	 
+Next line is just to see what changes are going to be applied.
+
+.. code-block:: bash
+
+         kops update cluster --name $CLUSTER_FULL_NAME
+
+Apply the changes.
+
+.. code-block:: bash
+
+         kops update cluster --name $CLUSTER_FULL_NAME --yes --admin	 
+	 
+	 
 .. Kubernetes references:
 
 .. _JupyterHub: https://jupyterhub.readthedocs.io/en/stable/
