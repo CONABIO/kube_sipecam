@@ -363,7 +363,7 @@ privkey.pem -&gt; ../../archive/&lt;location&gt;/privkey1.pem
 <div class="section" id="cluster-deployment">
 <h1>Cluster deployment<a class="headerlink" href="#cluster-deployment" title="Permalink to this headline">¶</a></h1>
 <p>Once cluster is created in <code class="docutils literal notranslate"><span class="pre">us-west-2</span></code> region launch a <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> instance in which we will execute <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> commands to deploy cluster.</p>
-<p>Use next <em>bash script</em> which will install <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">kops</span></code> and <code class="docutils literal notranslate"><span class="pre">kubectl</span></code>. Also choose a suitable name for your instance and write it for <code class="docutils literal notranslate"><span class="pre">name_instance</span></code> variable.</p>
+<p>Use next <em>bash script</em> which will install <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">kops</span></code> and <code class="docutils literal notranslate"><span class="pre">kubectl</span></code>. Also choose a suitable name for your instance and write it as value of <code class="docutils literal notranslate"><span class="pre">name_instance</span></code> variable.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
 <span class="nv">region</span><span class="o">=</span>us-west-2
