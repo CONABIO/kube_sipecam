@@ -422,7 +422,9 @@ To delete components of kubernetes dashboard:
 Cluster usage
 =============
 
-Once cluster was created in ``us-west-2`` region initiate a ``t2.micro`` instance in which we will execute ``kubectl`` commands. For this choose a suitable name for your instance and change it in the next *bash script* which will install ``docker``, ``kops`` and ``kubectl`.
+Once cluster is created in ``us-west-2`` region launch a ``t2.micro`` instance in which we will execute ``kubectl`` commands. 
+
+Use next *bash script* which will install ``docker``, ``kops`` and ``kubectl``. Also choose a suitable name for your instance and write it down in ``name_instance`` variable.
 
 .. code-block:: bash
 
