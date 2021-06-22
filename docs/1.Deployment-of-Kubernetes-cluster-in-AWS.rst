@@ -540,11 +540,9 @@ Get the port of dashboard UI with
 
          kubectl get service kubernetes-dashboard -n kubernetes-dashboard
 	 
-Access to dashboard UI using:
+Access dashboard UI using:
 
-```
-https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>
-```
+`https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>`
 
 * Elastic File System
 
@@ -577,11 +575,11 @@ Get the port of kubeflow UI with
 
          kubectl get service ml-pipeline-ui -n kubeflow
 	 
-Access to dashboard UI using:
+Access kubeflow dashboard UI using:
 
-```
-http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>
-```	 
+.. code-block:: bash
+
+         http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>
 
 
 .. Kubernetes references:
