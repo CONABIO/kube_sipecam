@@ -12,8 +12,4 @@ Welcome to kube sipecam's documentation!
 
    1.Deployment-of-Kubernetes-cluster-in-AWS
 
-
-Indices and tables
-==================
-
-* :ref:`search`
+:ref:`search`
