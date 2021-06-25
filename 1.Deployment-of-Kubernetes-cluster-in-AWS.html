@@ -408,8 +408,8 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <span class="nb">echo</span> <span class="s2">&quot;source &lt;(kubectl completion bash)&quot;</span> &gt;&gt; /home/<span class="nv">$user</span>/.bashrc
 </pre></div>
 </div>
-<div class="section" id="scale-up-of-components">
-<h2>Scale up of components<a class="headerlink" href="#scale-up-of-components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scale-up-of-worker-nodes">
+<h2>Scale up of worker nodes<a class="headerlink" href="#scale-up-of-worker-nodes" title="Permalink to this headline">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">ssh</span></code> to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For testing</span>
 
@@ -453,6 +453,9 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops validate cluster --wait 10m
 </pre></div>
 </div>
+</div>
+<div class="section" id="scale-up-of-components">
+<h2>Scale up of components<a class="headerlink" href="#scale-up-of-components" title="Permalink to this headline">¶</a></h2>
 <p>When cluster is ready <strong>scale up</strong> next:</p>
 <ul class="simple">
 <li><p>Dashboard components</p></li>
@@ -549,6 +552,9 @@ kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replica
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubeflow scale deployments/kale-jupyterlab --replicas<span class="o">=</span><span class="m">0</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="scale-down-of-worker-nodes">
+<h2>Scale down of worker nodes<a class="headerlink" href="#scale-down-of-worker-nodes" title="Permalink to this headline">¶</a></h2>
 <p>Wait 5 minutes then scale down worker nodes of cluster using <code class="docutils literal notranslate"><span class="pre">kops</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kops edit ig nodes-us-west-2a --name <span class="nv">$CLUSTER_FULL_NAME</span>
 </pre></div>
@@ -588,8 +594,10 @@ kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replica
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#cluster-deployment">Cluster deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scale-up-of-worker-nodes">Scale up of worker nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scale-up-of-components">Scale up of components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scale-down-of-components">Scale down of components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scale-down-of-worker-nodes">Scale down of worker nodes</a></li>
 </ul>
 </li>
 </ul>
