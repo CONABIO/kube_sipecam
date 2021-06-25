@@ -505,12 +505,8 @@ kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o
 </pre></div>
 </div>
 <p>Access jupyterlab UI:</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
-# For testing
-<a class="reference external" href="https://api.k8s-dummy.dummy.route53-kube-sipecam.net:30001/myurl">https://api.k8s-dummy.dummy.route53-kube-sipecam.net:30001/myurl</a></p>
-<p># For production</p>
-<p><a class="reference external" href="https://proc-sys.route53-kube-sipecam.net:30001/myurl">https://proc-sys.route53-kube-sipecam.net:30001/myurl</a></p>
-<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>For testing</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:30001/myurl</span></code></p>
 </div>
 <div class="section" id="scale-down-of-components">
 <h2>Scale down of components<a class="headerlink" href="#scale-down-of-components" title="Permalink to this headline">¶</a></h2>
