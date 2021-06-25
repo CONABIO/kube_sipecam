@@ -593,9 +593,6 @@ Access kubeflow dashboard UI:
 	 
 Access jupyterlab UI:
 
-
-For testing
-
 ``https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:30001/myurl``
 	 
 
