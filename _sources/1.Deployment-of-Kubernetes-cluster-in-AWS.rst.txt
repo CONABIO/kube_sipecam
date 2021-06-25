@@ -582,6 +582,23 @@ Access kubeflow dashboard UI:
 
 ``http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:<port retrieved with last command>``
 
+* Jupyterlab service
+
+.. code-block:: bash
+ 
+         kubectl -n kubeflow scale deployments/kale-jupyterlab --replicas=1
+	 
+Access jupyterlab UI:
+
+```
+# For testing
+https://api.k8s-dummy.dummy.route53-kube-sipecam.net:30001/myurl
+
+# For production
+
+https://proc-sys.route53-kube-sipecam.net:30001/myurl
+
+```	 
 
 Scale down of components
 ------------------------
@@ -620,6 +637,12 @@ Once the work is done **scale down** next:
 .. code-block:: bash
  
          kubectl -n kubeflow scale deployments/nfs-client-provisioner --replicas=0
+	 
+* Jupyterlab service
+
+.. code-block:: bash
+ 
+         kubectl -n kubeflow scale deployments/kale-jupyterlab --replicas=0
 	 
 
 Wait 5 minutes then scale down worker nodes of cluster using ``kops``.

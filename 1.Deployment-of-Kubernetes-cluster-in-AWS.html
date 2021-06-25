@@ -498,6 +498,19 @@ kubectl scale -n kubeflow deployment controller-manager --replicas<span class="o
 </div>
 <p>Access kubeflow dashboard UI:</p>
 <p><code class="docutils literal notranslate"><span class="pre">http://api.$CLUSTER_ALIAS.$DOMAIN_NAME:&lt;port</span> <span class="pre">retrieved</span> <span class="pre">with</span> <span class="pre">last</span> <span class="pre">command&gt;</span></code></p>
+<ul class="simple">
+<li><p>Jupyterlab service</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubeflow scale deployments/kale-jupyterlab --replicas<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Access jupyterlab UI:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+# For testing
+<a class="reference external" href="https://api.k8s-dummy.dummy.route53-kube-sipecam.net:30001/myurl">https://api.k8s-dummy.dummy.route53-kube-sipecam.net:30001/myurl</a></p>
+<p># For production</p>
+<p><a class="reference external" href="https://proc-sys.route53-kube-sipecam.net:30001/myurl">https://proc-sys.route53-kube-sipecam.net:30001/myurl</a></p>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
 </div>
 <div class="section" id="scale-down-of-components">
 <h2>Scale down of components<a class="headerlink" href="#scale-down-of-components" title="Permalink to this headline">¶</a></h2>
@@ -532,6 +545,12 @@ kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replica
 <li><p>Elastic File System</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubeflow scale deployments/nfs-client-provisioner --replicas<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Jupyterlab service</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl -n kubeflow scale deployments/kale-jupyterlab --replicas<span class="o">=</span><span class="m">0</span>
 </pre></div>
 </div>
 <p>Wait 5 minutes then scale down worker nodes of cluster using <code class="docutils literal notranslate"><span class="pre">kops</span></code>.</p>
