@@ -590,15 +590,11 @@ Access kubeflow dashboard UI:
 	 
 Access jupyterlab UI:
 
-```
-# For testing
-https://api.k8s-dummy.dummy.route53-kube-sipecam.net:30001/myurl
 
-# For production
+For testing
 
-https://proc-sys.route53-kube-sipecam.net:30001/myurl
-
-```	 
+``https://api.$CLUSTER_ALIAS.$DOMAIN_NAME:30001/myurl``
+	 
 
 Scale down of components
 ------------------------
