@@ -471,8 +471,8 @@ Use next *bash script* which will install ``docker``, ``kops`` and ``kubectl``. 
          ##enable completion for kubectl:
          echo "source <(kubectl completion bash)" >> /home/$user/.bashrc        
 
-Scale up of components
-----------------------
+Scale up of worker nodes
+------------------------
 
 Use ``ssh`` to login to ec2 instance. Choose which type of cluster you will use and set next variables accordingly:
 
@@ -527,6 +527,9 @@ Next line is useful to know when cluster is ready.
 .. code-block:: bash
 
          kops validate cluster --wait 10m
+
+Scale up of components
+----------------------
 
 When cluster is ready **scale up** next:
 
@@ -640,6 +643,8 @@ Once the work is done **scale down** next:
  
          kubectl -n kubeflow scale deployments/kale-jupyterlab --replicas=0
 	 
+Scale down of worker nodes
+--------------------------
 
 Wait 5 minutes then scale down worker nodes of cluster using ``kops``.
 
