@@ -659,7 +659,10 @@ Apply the changes.
 
 .. code-block:: bash
 
-         kops update cluster --name $CLUSTER_FULL_NAME --yes --admin	 
+         kops update cluster --name $CLUSTER_FULL_NAME --yes --admin
+	 
+	 
+Terminate ``t2.micro`` instance.
 	 
 	 
 .. Kubernetes references:
