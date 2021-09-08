@@ -66,9 +66,8 @@ You can check kops and kubectl versions with:
 
 .. code-block:: bash
 
-	$kops version
-
-	$kubectl version
+	kops version
+	kubectl version
 
 
 .. note:: 
@@ -115,7 +114,7 @@ You can check kops and kubectl versions with:
 .. code-block:: bash
 
     #Bucket will be created in us-east (N. Virginia)
-    $aws s3api create-bucket --bucket ${CLUSTER_FULL_NAME}-state
+    aws s3api create-bucket --bucket ${CLUSTER_FULL_NAME}-state
 	
 
 5. Create group and user kops and generate access keys for user kops:
@@ -129,30 +128,21 @@ Create group and permissions of it:
 
 .. code-block:: bash
 
-        $name=kops
-
-	$aws iam create-group --group-name $name
-
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess --group-name $name
-
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonRoute53FullAccess --group-name $name 
-
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --group-name $name 
-
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/IAMFullAccess --group-name $name 
-
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonVPCFullAccess --group-name $name 
-
-	$aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess --group-name $name
-
+        name=kops
+	aws iam create-group --group-name $name
+	aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess --group-name $name
+	aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonRoute53FullAccess --group-name $name 
+	aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --group-name $name 
+	aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/IAMFullAccess --group-name $name 
+	aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonVPCFullAccess --group-name $name 
+	aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess --group-name $name
 
 Create user kops and add it to already created group kops:
 
 .. code-block:: bash
 
-	$aws iam create-user --user-name $name 
-
-	$aws iam add-user-to-group --user-name $name --group-name $name
+	aws iam create-user --user-name $name 
+	aws iam add-user-to-group --user-name $name --group-name $name
 
 
 Create access keys for user kops:
@@ -160,22 +150,22 @@ Create access keys for user kops:
 
 .. code-block:: bash
 
-	$aws iam create-access-key --user-name $name
+	aws iam create-access-key --user-name $name
  
 
 This will generate an **AccessKeyId** and **SecretAccessKey** that must be kept in a safe place. Use them to configure awscli and set next variables:
 
 .. code-block:: bash
 
-	$aws configure 
+	aws configure 
 		AWS Access Key ID [None]: xxxx
 		AWS Secret Access Key [None]: xxxxxxx
 		Default region name [None]: <leave it empty>
 		Default output format [None]: <leave it empty>
 
-	$export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+	export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
 
-	$export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+	export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
 
 6. Create a Key Pair with AWS console and a Public Key. See `Amazon EC2 Key Pairs`_ sections: **Creating a Key Pair Using Amazon EC2** and **Creating a Key Pair Using Amazon EC2**. Save the Public Key in ``/home/ubuntu/.ssh/id_rsa.pub``.
@@ -186,7 +176,7 @@ This will generate an **AccessKeyId** and **SecretAccessKey** that must be kept 
 
 .. code-block:: bash
 
-	$kops create cluster \
+	kops create cluster \
 	--name=${CLUSTER_FULL_NAME} \
 	--zones=${CLUSTER_AWS_AZ} \
 	--master-size="t2.medium" \
@@ -196,7 +186,7 @@ This will generate an **AccessKeyId** and **SecretAccessKey** that must be kept 
 	--ssh-public-key="/home/ubuntu/.ssh/id_rsa.pub" \
 	--kubernetes-version=${KUBERNETES_VERSION}
 
-        $kops update cluster --name ${CLUSTER_FULL_NAME} --yes
+        kops update cluster --name ${CLUSTER_FULL_NAME} --yes
 
 .. note:: 
 
@@ -224,7 +214,7 @@ Using the key-pem already created for the kops user execute:
 
 .. code-block:: bash
 
-    $ssh -i <key>.pem admin@api.$CLUSTER_FULL_NAME
+    ssh -i <key>.pem admin@api.$CLUSTER_FULL_NAME
 
 
 .. note:: 
@@ -245,30 +235,25 @@ Install certbot and Route53 plugin for Let's Encrypt client:
 
 .. code-block:: bash
 
-	$sudo apt-get update
-	$sudo apt-get install -y software-properties-common
-        $sudo add-apt-repository universe
-	$sudo add-apt-repository ppa:certbot/certbot
-	$sudo apt-get update
-	$sudo apt-get install -y certbot
+	sudo apt-get install -y certbot
 	#check version of certbot and install route53 plugin:
 	certbot_v=$(certbot --version|cut -d' ' -f2)
-	$sudo pip3 install certbot_dns_route53==$certbot_v
+	sudo pip3 install certbot_dns_route53==$certbot_v
 
 Create some useful directories:
 
 .. code-block:: bash
 
-	$mkdir -p ~/letsencrypt/log/	
-	$mkdir -p ~/letsencrypt/config/
-	$mkdir -p ~/letsencrypt/work/
+	mkdir -p ~/letsencrypt/log/	
+	mkdir -p ~/letsencrypt/config/
+	mkdir -p ~/letsencrypt/work/
 
 
 Using ``kubectl`` retrieve where is kubernetes master running:
 
 .. code-block:: bash
 
-	$ kubectl cluster-info
+	kubectl cluster-info
 	Kubernetes master is running at <location>
 	KubeDNS is running at <location>/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 	
@@ -286,7 +271,7 @@ Generate certificate for the <location> (remove https if it's the case, just the
 	
 	.. code-block:: bash
 	
-		$certbot renew --dns-route53 --logs-dir letsencrypt/log/ \
+		certbot renew --dns-route53 --logs-dir letsencrypt/log/ \
 		 --config-dir letsencrypt/config/ --work-dir letsencrypt/work/ \
 		 --non-interactive	
 
@@ -306,9 +291,9 @@ Create directory ``certs`` and copy cert and private key:
 
 .. code-block:: bash
 
-	$mkdir certs
-	$cp letsencrypt/config/archive/<location>/fullchain1.pem certs/
-	$cp letsencrypt/config/archive/<location>/privkey1.pem certs/
+	mkdir certs
+	cp letsencrypt/config/archive/<location>/fullchain1.pem certs/
+	cp letsencrypt/config/archive/<location>/privkey1.pem certs/
 
 
 .. note::
@@ -320,30 +305,30 @@ Retrieve `yaml` to deploy kubernetes dashboard and change some values:
 
 .. code-block:: bash
 
-    $curl -O https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-rc5/aio/deploy/recommended.yaml
-    $sed -ni 's/- --auto-generate-certificates/#- --auto-generate-certificates/;p' recommended.yaml
-    $sed -i '/args:/a \ \ \ \ \ \ \ \ \ \ \ \ - --tls-cert-file=fullchain1.pem' recommended.yaml
-    $sed -i '/args:/a \ \ \ \ \ \ \ \ \ \ \ \ - --tls-key-file=privkey1.pem' recommended.yaml
+    curl -O https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
+    sed -ni 's/- --auto-generate-certificates/#- --auto-generate-certificates/;p' recommended.yaml
+    sed -i '/args:/a \ \ \ \ \ \ \ \ \ \ \ \ - --tls-cert-file=fullchain1.pem' recommended.yaml
+    sed -i '/args:/a \ \ \ \ \ \ \ \ \ \ \ \ - --tls-key-file=privkey1.pem' recommended.yaml
  
 
 Create deployments and services with ``kubernetes-dashboard.yaml`` :
 
 .. code-block:: bash
 
-	$kubectl apply -f recommended.yaml 
+	kubectl apply -f recommended.yaml 
 
 Delete `certs` and recreate secrets using the `.pem` that we created with `certbot`:
 
 .. code-block:: bash
 
-        $kubectl delete secret kubernetes-dashboard-certs -n kubernetes-dashboard
-        $kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kubernetes-dashboard
+        kubectl delete secret kubernetes-dashboard-certs -n kubernetes-dashboard
+        kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kubernetes-dashboard
 
 You can check that containers are running by executing:
 
 .. code-block:: bash
 
-    $kubectl -n kubernetes-dashboard get pods
+    kubectl -n kubernetes-dashboard get pods
 
 
 To visualize kubernetes-dashboard one possibility is to change type ``ClusterIP`` to ``NodePort`` (see `Accessing Dashboard 1.7.X and above`_) when executing next command:
@@ -351,13 +336,13 @@ To visualize kubernetes-dashboard one possibility is to change type ``ClusterIP`
 
 .. code-block:: bash
 
-	$kubectl edit service kubernetes-dashboard -n kubernetes-dashboard
+	kubectl edit service kubernetes-dashboard -n kubernetes-dashboard
 
 and get port with:
 
 .. code-block:: bash
 
-	$kubectl get service kubernetes-dashboard -n kubernetes-dashboard 
+	kubectl get service kubernetes-dashboard -n kubernetes-dashboard 
 
 Open port retrieved by last command in masters security group of kubernetes cluster with aws console. In your browser type:
 
@@ -383,15 +368,15 @@ To scale down components of kubernetes dashboard:
 
 .. code-block:: bash
 
-        $kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas=0
-        $kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas=0
+        kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas=0
+        kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas=0
 
 To scale up components of kubernetes dashboard:
 
 .. code-block:: bash
 
-        $kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas=1
-        $kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas=1
+        kubectl -n kubernetes-dashboard scale deployments/dashboard-metrics-scraper --replicas=1
+        kubectl -n kubernetes-dashboard scale deployments/kubernetes-dashboard --replicas=1
 
 To delete components of kubernetes dashboard:
 
@@ -399,24 +384,24 @@ To delete components of kubernetes dashboard:
 
         #delete admin-user created:
 
-        $kubectl -n kubernetes-dashboard delete serviceaccount admin-user
-        $kubectl -n kubernetes-dashboard delete ClusterRoleBinding admin-user
+        kubectl -n kubernetes-dashboard delete serviceaccount admin-user
+        kubectl -n kubernetes-dashboard delete ClusterRoleBinding admin-user
 
         #delete dashboard components:
-        $kubectl delete deployment kubernetes-metrics-scraper -n kubernetes-dashboard
-        $kubectl delete deployment kubernetes-dashboard -n kubernetes-dashboard
-        $kubectl delete service dashboard-metrics-scraper -n kubernetes-dashboard
-        $kubectl delete clusterrolebinding kubernetes-dashboard -n kubernetes-dashboard
-        $kubectl delete rolebinding kubernetes-dashboard -n kubernetes-dashboard
-        $kubectl delete clusterrole kubernetes-dashboard -n kubernetes-dashboard
-        $kubectl delete role kubernetes-dashboard -n kubernetes-dashboard
-        $kubectl delete configmap kubernetes-dashboard-settings -n kubernetes-dashboard
-        $kubectl delete secret kubernetes-dashboard-key-holder -n kubernetes-dashboard
-        $kubectl delete secret kubernetes-dashboard-csrf -n kubernetes-dashboard
-        $kubectl delete service kubernetes-dashboard -n kubernetes-dashboard
-        $kubectl delete serviceaccount kubernetes-dashboard -n kubernetes-dashboard
-        $kubectl delete secret kubernetes-dashboard-certs -n kubernetes-dashboard
-        $kubectl delete namespace kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete deployment kubernetes-metrics-scraper -n kubernetes-dashboard
+        kubectl delete deployment kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete service dashboard-metrics-scraper -n kubernetes-dashboard
+        kubectl delete clusterrolebinding kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete rolebinding kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete clusterrole kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete role kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete configmap kubernetes-dashboard-settings -n kubernetes-dashboard
+        kubectl delete secret kubernetes-dashboard-key-holder -n kubernetes-dashboard
+        kubectl delete secret kubernetes-dashboard-csrf -n kubernetes-dashboard
+        kubectl delete service kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete serviceaccount kubernetes-dashboard -n kubernetes-dashboard
+        kubectl delete secret kubernetes-dashboard-certs -n kubernetes-dashboard
+        kubectl delete namespace kubernetes-dashboard -n kubernetes-dashboard
 	
 	
 Cluster deployment
