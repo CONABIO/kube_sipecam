@@ -410,6 +410,7 @@ Jupyterlab deployment for pipelines
 Create deployment `kale-jupyterlab` that has Kale installed:
 
 .. code-block:: bash
+
          LOAD_BALANCER_SERVICE=loadbalancer-0.6.1-efs
          JUPYTERLAB_SERVICE_HOSTPATH_PV=jupyterlab-cert-0.6.1-efs
          URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/jupyterlab_cert/
