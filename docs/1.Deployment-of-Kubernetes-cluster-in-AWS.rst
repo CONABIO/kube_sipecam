@@ -403,7 +403,19 @@ To delete components of kubernetes dashboard:
         kubectl delete secret kubernetes-dashboard-certs -n kubernetes-dashboard
         kubectl delete namespace kubernetes-dashboard -n kubernetes-dashboard
 	
-	
+
+Jupyterlab deployment for pipelines
+-----------------------------------
+
+Create deployment `kale-jupyterlab` that has Kale installed:
+
+.. code-block:: bash
+         LOAD_BALANCER_SERVICE=loadbalancer-0.6.1-efs
+         JUPYTERLAB_SERVICE_HOSTPATH_PV=jupyterlab-cert-0.6.1-efs
+         URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/jupyterlab_cert/
+	 kubectl create -f $URL/efs/$LOAD_BALANCER_SERVICE.yaml
+	 kubectl create -f $URL/efs/$JUPYTERLAB_SERVICE_HOSTPATH_PV.yaml
+
 Cluster deployment
 ==================
 
