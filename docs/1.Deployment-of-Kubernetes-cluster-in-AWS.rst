@@ -407,7 +407,7 @@ To delete components of kubernetes dashboard:
 Jupyterlab deployment for pipelines
 -----------------------------------
 
-Create deployment `kale-jupyterlab` that has Kale installed: 
+Create deployment ``kale-jupyterlab`` that has Kale installed: 
 
 .. code-block:: bash
 
@@ -746,4 +746,4 @@ Terminate ``t2.micro`` instance.
 
 .. Deployment references:
 
-.. Yamls for kale-jupyterlab deployment: https://github.com/CONABIO/kube_sipecam/tree/master/deployments/jupyterlab_cert/efs
+.. _Yamls for kale-jupyterlab deployment: https://github.com/CONABIO/kube_sipecam/tree/master/deployments/jupyterlab_cert/efs
