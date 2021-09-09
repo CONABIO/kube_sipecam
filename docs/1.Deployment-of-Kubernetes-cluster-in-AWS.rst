@@ -407,7 +407,7 @@ To delete components of kubernetes dashboard:
 Jupyterlab deployment for pipelines
 -----------------------------------
 
-Create deployment `kale-jupyterlab` that has Kale installed:
+Create deployment `kale-jupyterlab` that has Kale installed: 
 
 .. code-block:: bash
 
@@ -416,6 +416,8 @@ Create deployment `kale-jupyterlab` that has Kale installed:
          URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/jupyterlab_cert/
 	 kubectl create -f $URL/efs/$LOAD_BALANCER_SERVICE.yaml
 	 kubectl create -f $URL/efs/$JUPYTERLAB_SERVICE_HOSTPATH_PV.yaml
+	 
+Check `Yamls for kale-jupyterlab deployment`_ for last version.	 
 
 Cluster deployment
 ==================
@@ -682,7 +684,6 @@ Apply the changes.
 	 
 Terminate ``t2.micro`` instance.
 	 
-	 
 .. Kubernetes references:
 
 .. _JupyterHub: https://jupyterhub.readthedocs.io/en/stable/
@@ -742,3 +743,7 @@ Terminate ``t2.micro`` instance.
 .. _Step Zero Kubernetes on AWS: https://zero-to-jupyterhub.readthedocs.io/en/latest/amazon/step-zero-aws.html
 
 .. _Why change reclaim policy of a PersistentVolume: https://kubernetes.io/docs/tasks/administer-cluster/change-pv-reclaim-policy/
+
+.. Deployment references:
+
+.. Yamls for kale-jupyterlab deployment: https://github.com/CONABIO/kube_sipecam/tree/master/deployments/jupyterlab_cert/efs
