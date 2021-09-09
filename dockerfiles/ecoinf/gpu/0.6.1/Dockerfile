@@ -53,8 +53,8 @@ RUN pip3 install --upgrade tensorflow-gpu
 ###
 
 #kale installation
-RUN pip install $PIP_PACKAGES_KALE --upgrade
-RUN jupyter labextension install kubeflow-kale-labextension
+RUN pip install $PIP_PACKAGES_KALE
+RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
 
 VOLUME ["/shared_volume"]
 
