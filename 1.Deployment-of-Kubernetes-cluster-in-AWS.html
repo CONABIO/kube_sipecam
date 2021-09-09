@@ -423,7 +423,27 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you will use GPU then add under <code class="docutils literal notranslate"><span class="pre">spec</span></code> next lines:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dummy line to trigger build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spec:
+  additionalUserData:
+  - name: install_dependencies_for_kube_sipecam_gpu.sh
+    type: text/x-shellscript
+    content: <span class="p">|</span>-
+      <span class="c1">#!/bin/bash</span>
+      sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install -y build-essential
+      <span class="c1">#install nvidia driver</span>
+      <span class="nb">cd</span> ~ <span class="o">&amp;&amp;</span> wget http://us.download.nvidia.com/tesla/460.32.03/NVIDIA-Linux-x86_64-460.32.03.run
+      chmod a+x NVIDIA-Linux-x86_64-460.32.03.run
+      sudo ./NVIDIA-Linux-x86_64-460.32.03.run --accept-license --silent
+      <span class="c1">#install nvidia-docker2</span>
+      curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey <span class="p">|</span> sudo apt-key add -
+      <span class="nv">distribution</span><span class="o">=</span><span class="k">$(</span>. /etc/os-release<span class="p">;</span><span class="nb">echo</span> <span class="nv">$ID$VERSION_ID</span><span class="k">)</span>
+      curl -s -L https://nvidia.github.io/nvidia-docker/<span class="nv">$distribution</span>/nvidia-docker.list <span class="p">|</span> sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+      sudo apt-get update
+      sudo apt-get install -y nvidia-docker2
+      sudo systemctl restart docker
+      sudo su <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s1">&#39;{&quot;default-runtime&quot;: &quot;nvidia&quot;,&quot;runtimes&quot;: {&quot;nvidia&quot;: {&quot;path&quot;: &quot;/usr/bin/nvidia-container-runtime&quot;,&quot;runtimeArgs&quot;: []}}}&#39;</span> &gt; /etc/docker/daemon.json <span class="o">&amp;&amp;</span> pkill -SIGHUP dockerd <span class="o">&amp;&amp;</span> systemctl restart kubelet
+  image: <span class="m">099720109477</span>/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20210315
+  machineType: p2.xlarge
 </pre></div>
 </div>
 </div>

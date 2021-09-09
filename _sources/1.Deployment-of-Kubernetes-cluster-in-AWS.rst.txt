@@ -493,7 +493,27 @@ Scale up worker nodes of cluster using ``kops``.
 	 
 	 .. code-block:: bash
 	 
-		  dummy line to trigger build
+                  spec:
+                    additionalUserData:
+                    - name: install_dependencies_for_kube_sipecam_gpu.sh
+                      type: text/x-shellscript
+                      content: |-
+                        #!/bin/bash
+                        sudo apt-get update && sudo apt-get install -y build-essential
+			#install nvidia driver
+                        cd ~ && wget http://us.download.nvidia.com/tesla/460.32.03/NVIDIA-Linux-x86_64-460.32.03.run
+                        chmod a+x NVIDIA-Linux-x86_64-460.32.03.run
+                        sudo ./NVIDIA-Linux-x86_64-460.32.03.run --accept-license --silent
+                        #install nvidia-docker2
+                        curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -   
+                        distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+                        curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+                        sudo apt-get update
+                        sudo apt-get install -y nvidia-docker2
+                        sudo systemctl restart docker
+                        sudo su && echo '{"default-runtime": "nvidia","runtimes": {"nvidia": {"path": "/usr/bin/nvidia-container-runtime","runtimeArgs": []}}}' > /etc/docker/daemon.json && pkill -SIGHUP dockerd && systemctl restart kubelet
+                    image: 099720109477/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20210315
+                    machineType: p2.xlarge  
 
 Next line is just to see what changes are going to be applied.
 
