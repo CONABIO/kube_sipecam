@@ -347,7 +347,7 @@ kubectl delete namespace kubernetes-dashboard -n kubernetes-dashboard
 </div>
 <div class="section" id="jupyterlab-deployment-for-pipelines">
 <h2>Jupyterlab deployment for pipelines<a class="headerlink" href="#jupyterlab-deployment-for-pipelines" title="Permalink to this headline">¶</a></h2>
-<p>Create deployment <cite>kale-jupyterlab</cite> that has Kale installed:</p>
+<p>Create deployment <code class="docutils literal notranslate"><span class="pre">kale-jupyterlab</span></code> that has Kale installed:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LOAD_BALANCER_SERVICE</span><span class="o">=</span>loadbalancer-0.6.1-efs
 <span class="nv">JUPYTERLAB_SERVICE_HOSTPATH_PV</span><span class="o">=</span>jupyterlab-cert-0.6.1-efs
 <span class="nv">URL</span><span class="o">=</span>https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/jupyterlab_cert/
@@ -355,7 +355,7 @@ kubectl create -f <span class="nv">$URL</span>/efs/<span class="nv">$LOAD_BALANC
 kubectl create -f <span class="nv">$URL</span>/efs/<span class="nv">$JUPYTERLAB_SERVICE_HOSTPATH_PV</span>.yaml
 </pre></div>
 </div>
-<p>Check <a href="#id2"><span class="problematic" id="id3">`Yamls for kale-jupyterlab deployment`_</span></a> for last version.</p>
+<p>Check <a class="reference external" href="https://github.com/CONABIO/kube_sipecam/tree/master/deployments/jupyterlab_cert/efs">Yamls for kale-jupyterlab deployment</a> for last version.</p>
 </div>
 </div>
 <div class="section" id="cluster-deployment">
