@@ -22,8 +22,8 @@ RUN pip3 install jupyter "jupyterlab>=2.0.0,<3.0.0" --upgrade
 
 RUN jupyter notebook --generate-config && \
     sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" ~/.jupyter/jupyter_notebook_config.py && \
-    sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/kubeflow\/aws-efs\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
-    sed -i "s/#c.NotebookApp.keyfile = .*/c.NotebookApp.keyfile = u'\/shared_volume\/kubeflow\/aws-efs\/certs\/privkey1.pem'/" ~/.jupyter/jupyter_notebook_config.py
+    sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/fullchain1.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
+    sed -i "s/#c.NotebookApp.keyfile = .*/c.NotebookApp.keyfile = u'\/shared_volume\/certs\/privkey1.pem'/" ~/.jupyter/jupyter_notebook_config.py
         
 
 #RUN pip install $PIP_PACKAGES_COMMON --upgrade
