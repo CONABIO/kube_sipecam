@@ -50,7 +50,7 @@ RUN git clone -b conabio_ml_core https://bitbucket.org/conabio_cmd/conabio_ml.gi
 RUN pip3 install -r /lib/conabio_ml_vision/conabio_ml/requirements.txt
 
 RUN pip3 install tqdm keras
-RUN pip3 install --upgrade tensorflow-gpu
+RUN pip3 install --upgrade tensorflow-gpu==2.3.0
 ###
 
 #kale installation
