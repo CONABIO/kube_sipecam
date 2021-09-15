@@ -45,7 +45,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
 <span class="nv">region</span><span class="o">=</span>&lt;region&gt;
-<span class="nv">name_instance</span><span class="o">=</span>conabio-kubernetes
+<span class="nv">name_instance</span><span class="o">=</span>deploy-k8s
 <span class="nv">shared_volume</span><span class="o">=</span>/shared_volume
 <span class="nv">user</span><span class="o">=</span>ubuntu
 <span class="c1">##System update</span>
@@ -366,7 +366,7 @@ kubectl create -f <span class="nv">$URL</span>/efs/<span class="nv">$JUPYTERLAB_
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
 <span class="nv">region</span><span class="o">=</span>us-west-2
-<span class="nv">name_instance</span><span class="o">=</span><span class="c1">###############here write a suitable name for your t2 micro instance</span>
+<span class="nv">name_instance</span><span class="o">=</span>deploy-k8s
 <span class="nv">shared_volume</span><span class="o">=</span>/shared_volume
 <span class="nv">user</span><span class="o">=</span>ubuntu
 <span class="c1">##System update</span>
