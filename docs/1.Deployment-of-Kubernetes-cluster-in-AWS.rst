@@ -21,7 +21,7 @@ The nex steps follow `kops`_ and `kops - Kubernetes Operations`_ guides (another
 	#!/bin/bash
 	##variables:
 	region=<region>
-	name_instance=conabio-kubernetes
+	name_instance=deploy-k8s
 	shared_volume=/shared_volume
 	user=ubuntu
 	##System update
@@ -431,7 +431,7 @@ Use next *bash script* which will install ``docker``, ``kops`` and ``kubectl``. 
          #!/bin/bash
          ##variables:
          region=us-west-2
-         name_instance=###############here write a suitable name for your t2 micro instance
+         name_instance=deploy-k8s
          shared_volume=/shared_volume
          user=ubuntu
          ##System update
