@@ -8,6 +8,7 @@ ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3
 ENV DEB_PACKAGES=""
 ENV PIP_PACKAGES_COMMON="scikit-learn==0.23.2"
 ENV PIP_PACKAGES_ECOINF="tensorflow_hub"
+ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 
 ###
 ENV PYTHONPATH=$PYTHONPATH:/lib/conabio_ml_vision:/lib/conabio_ml_vision/conabio_ml:/lib/conabio_ml_vision/conabio_ml_vision/trainer/models/research:/lib/conabio_ml_vision/conabio_ml_vision/trainer/models/research/slim
