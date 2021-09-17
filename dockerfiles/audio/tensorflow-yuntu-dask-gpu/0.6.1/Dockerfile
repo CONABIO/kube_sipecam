@@ -16,7 +16,7 @@ RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
 # Install nodejs deps
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 # Install dask-cuda
-RUN python3 -m pip install dask-cuda==21.8.0a210917
+RUN pip install dask-cuda==21.8.0a210917
 # Install yuntu from git with deps
 RUN cd /extra_code && \
     mkdir -p yuntu && \
