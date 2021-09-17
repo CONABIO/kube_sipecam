@@ -9,14 +9,14 @@ ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3
 ENV DEB_PACKAGES=""
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
-RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && python3 -m pip install --upgrade pip  
+RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip install --upgrade pip  
 RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
      apt-get update && apt-get install -y yarn
 # Install nodejs deps
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 # Install dask-cuda
-RUN python3 -m pip install dask-cuda==21.8.0a210917
+RUN python3 -m pip install dask-cuda==21.08.00
 # Install yuntu from git with deps
 RUN cd /extra_code && \
     mkdir -p yuntu && \
