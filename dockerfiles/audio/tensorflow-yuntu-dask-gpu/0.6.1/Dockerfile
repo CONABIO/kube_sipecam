@@ -16,6 +16,7 @@ RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
 # Install nodejs deps
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 # Install dask-cuda
+RUN mkdir -p /extra_code
 RUN cd /extra_code && \
     mkdir -p dask_cuda && \
     cd dask_cuda && \
