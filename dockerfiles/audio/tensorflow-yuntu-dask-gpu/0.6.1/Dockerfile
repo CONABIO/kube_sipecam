@@ -9,7 +9,7 @@ ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3
 ENV DEB_PACKAGES=""
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
-RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 install --upgrade pip  
+RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && python3 -m pip install --upgrade pip  
 RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
      apt-get update && apt-get install -y yarn
