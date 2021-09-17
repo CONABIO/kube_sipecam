@@ -42,7 +42,7 @@ RUN python3 -m pip install sidekit && \
     python3 -m pip install pyannote.core && \
     python3 -m pip install pyannote.parser && \
     python3 -m pip install Pyro4 && \
-    python3 -m pip install guano timezonefinder
+    python3 -m pip install guano timezonefinder s3fs tensorflow_probability==0.12.1
 # Assign jupyter password
 RUN jupyter notebook --generate-config && \
     sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:9361dd216701:df4736638013cd671a09ef12a671195e8fc61505'/" ~/.jupyter/jupyter_notebook_config.py && \
