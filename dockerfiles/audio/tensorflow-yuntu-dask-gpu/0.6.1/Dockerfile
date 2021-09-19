@@ -27,10 +27,6 @@ RUN cd /extra_code && \
     python3 setup.py install
 # Install deps for inavad
 RUN python3 -m pip install sidekit && \
-    python3 -m pip install pyannote.algorithms && \
-    python3 -m pip install pyannote.core && \
-    python3 -m pip install pyannote.parser && \
-    python3 -m pip install Pyro4 && \
     python3 -m pip install guano timezonefinder s3fs tensorflow_probability==0.12.1
 # Install jupyterlab and kale
 RUN python3 -m pip install kubeflow-kale==0.6.1 && \
