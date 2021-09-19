@@ -18,6 +18,7 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get i
 # Install dask-cuda
 RUN python3 -m pip install dask-cuda==0.20.0a210416
 # Install yuntu from git with deps
+RUN mkdir -p /extra_code
 RUN cd /extra_code && \
     mkdir -p yuntu && \
     cd yuntu && \
