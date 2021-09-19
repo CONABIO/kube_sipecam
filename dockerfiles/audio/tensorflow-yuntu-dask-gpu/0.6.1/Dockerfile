@@ -1,5 +1,5 @@
 #dummy line to trigger build
-FROM tensorflow/tensorflow:2.4.1-gpu
+FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
 USER root
 ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
@@ -36,6 +36,8 @@ RUN cd /extra_code && \
 # Install deps for inavad
 RUN python3 -m pip install sidekit && \
     python3 -m pip install guano timezonefinder s3fs tensorflow_probability==0.12.1
+    
+RUN pip3 install --upgrade tensorflow-gpu==2.3.0    
 
 #kale installation
 RUN pip install $PIP_PACKAGES_KALE
