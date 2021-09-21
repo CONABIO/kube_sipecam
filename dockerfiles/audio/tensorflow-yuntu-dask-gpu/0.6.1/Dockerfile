@@ -37,8 +37,6 @@ RUN cd /extra_code && \
 RUN python3 -m pip install sidekit && \
     python3 -m pip install guano timezonefinder s3fs tensorflow_probability==0.12.1
     
-RUN pip3 install --upgrade tensorflow-gpu==2.4.1   
-
 #kale installation
 RUN pip install $PIP_PACKAGES_KALE
 RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
