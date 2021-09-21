@@ -36,7 +36,9 @@ RUN cd /extra_code && \
 # Install deps for inavad
 RUN python3 -m pip install sidekit && \
     python3 -m pip install guano timezonefinder s3fs tensorflow_probability==0.12.1
-    
+#from statement installs 2.1.0, next line upgrade to specific version
+RUN pip3 install --upgrade tensorflow-gpu==2.3.0
+
 #kale installation
 RUN pip install $PIP_PACKAGES_KALE
 RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
