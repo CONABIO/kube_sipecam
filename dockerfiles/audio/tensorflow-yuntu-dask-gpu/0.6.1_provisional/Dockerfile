@@ -1,5 +1,5 @@
 #dummy line to trigger build
-FROM tensorflow/tensorflow:2.3.0rc2-gpu-jupyter
+FROM nvidia/cuda:11.0.3-cudnn8-runtime-ubuntu20.04
 USER root
 ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
@@ -7,6 +7,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3-setuptools iptables ffmpeg libsndfile1 libpq-dev libsndfile1-dev python3-soundfile python-soundfile gcc graphviz graphviz-dev"
 ENV DEB_PACKAGES=""
+ENV PIP_PACKAGES="matplotlib tensorflow==2.4.1"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
@@ -35,8 +36,7 @@ RUN cd /extra_code && \
     python3 setup.py install
 # Install deps for inavad
 RUN python3 -m pip install sidekit guano timezonefinder s3fs "tensorflow_probability<=0.11.1"    
-#from statement installs 2.1.0, next line upgrade to specific version
-RUN pip3 install --upgrade tensorflow-gpu==2.6.0
+RUN pip3 install --upgrade $PIP_PACKAGES
 
 #kale installation
 RUN pip install $PIP_PACKAGES_KALE
