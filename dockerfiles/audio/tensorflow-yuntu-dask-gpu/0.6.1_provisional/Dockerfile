@@ -5,13 +5,13 @@ ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
-ENV DEB_BUILD_DEPS="sudo nano less git wget curl gcc python3-dev python3-pip python3-setuptools software-properties-common"
-ENV DEB_PACKAGES="iptables ffmpeg libsndfile1 libpq-dev libsndfile1-dev python3-soundfile python-soundfile graphviz graphviz-dev"
+ENV DEB_BUILD_DEPS="sudo nano less git wget curl gcc python3-dev python3-pip python3-setuptools"
+ENV DEB_PACKAGES="iptables ffmpeg libsndfile1 libpq-dev libsndfile1-dev python3-soundfile graphviz graphviz-dev"
 ENV PIP_PACKAGES="matplotlib tensorflow==2.4.1"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
-RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS && apt-add-repository -y universe && apt-get install -y $DEB_PACKAGES && pip install --upgrade pip  
+RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip install --upgrade pip  
 RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
      apt-get update && apt-get install -y yarn
