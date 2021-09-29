@@ -11,7 +11,7 @@ ENV PIP_PACKAGES="matplotlib tensorflow==2.4.1"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
-RUN apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip install --upgrade pip  
+RUN apt-add-repository -y universe && apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip install --upgrade pip  
 RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
      apt-get update && apt-get install -y yarn
