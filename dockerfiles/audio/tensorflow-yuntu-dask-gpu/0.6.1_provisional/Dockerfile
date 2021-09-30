@@ -21,9 +21,9 @@ RUN pip3 install jupyter "jupyterlab>=2.0.0,<3.0.0" --upgrade
 
 # Assign jupyter password
 RUN jupyter notebook --generate-config && \
-    sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:9361dd216701:df4736638013cd671a09ef12a671195e8fc61505'/" ~/.jupyter/jupyter_notebook_config.py && \
-    sed -i "s/#c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/cert.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
-    sed -i "s/#c.NotebookApp.keyfile = .*/c.NotebookApp.keyfile = u'\/shared_volume\/certs\/privkey.key'/" ~/.jupyter/jupyter_notebook_config.py
+    sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:9361dd216701:df4736638013cd671a09ef12a671195e8fc61505'/" ~/.jupyter/jupyter_notebook_config.py && \
+    sed -i "s/# c.NotebookApp.certfile = .*/c.NotebookApp.certfile = u'\/shared_volume\/certs\/cert.pem'/" ~/.jupyter/jupyter_notebook_config.py && \
+    sed -i "s/# c.NotebookApp.keyfile = .*/c.NotebookApp.keyfile = u'\/shared_volume\/certs\/privkey.key'/" ~/.jupyter/jupyter_notebook_config.py
 
 RUN pip3 install --upgrade $PIP_PACKAGES    
 # Install dask-cuda
@@ -42,6 +42,9 @@ RUN python3 -m pip install sidekit guano timezonefinder s3fs "tensorflow_probabi
 #kale installation
 RUN pip install $PIP_PACKAGES_KALE
 RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
+
+#nbformat
+RUN pip install nbformat==5.0.2
 
 VOLUME ["/shared_volume"]
 ENV NB_PREFIX audio_dgpi
