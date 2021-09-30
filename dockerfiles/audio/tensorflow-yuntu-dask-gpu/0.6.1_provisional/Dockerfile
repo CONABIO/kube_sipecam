@@ -44,7 +44,7 @@ RUN pip install $PIP_PACKAGES_KALE
 RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
 
 #nbformat
-RUN pip install nbformat==5.0.2
+RUN pip install nbformat==5.0.2 nbconvert==6.0.0
 
 VOLUME ["/shared_volume"]
 ENV NB_PREFIX audio_dgpi
