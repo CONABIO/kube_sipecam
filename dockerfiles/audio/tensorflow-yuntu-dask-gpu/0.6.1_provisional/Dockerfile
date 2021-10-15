@@ -1,4 +1,3 @@
-#dummy line to trigger build
 FROM nvidia/cuda:11.0.3-cudnn8-runtime-ubuntu20.04
 USER root
 ENV TIMEZONE America/Mexico_City
