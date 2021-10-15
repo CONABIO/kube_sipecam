@@ -17,7 +17,7 @@ RUN  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
      apt-get update && apt-get install -y yarn
 # Install nodejs deps
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
-RUN pip3 install jupyter "jupyterlab>=2.0.0,<3.0.0" --upgrade
+RUN pip3 install jupyter-client==5.3.4 jupyter "jupyterlab>=2.0.0,<3.0.0"
 
 # Assign jupyter password
 RUN jupyter notebook --generate-config && \
@@ -42,9 +42,6 @@ RUN python3 -m pip install sidekit guano timezonefinder s3fs "tensorflow_probabi
 #kale installation
 RUN pip install $PIP_PACKAGES_KALE
 RUN jupyter labextension install kubeflow-kale-labextension@0.6.1
-
-#nbformat
-RUN pip install nbformat==5.0.2 nbconvert==6.0.0
 
 VOLUME ["/shared_volume"]
 ENV NB_PREFIX audio_dgpi
