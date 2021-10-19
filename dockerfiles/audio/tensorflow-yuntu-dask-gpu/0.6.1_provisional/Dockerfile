@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.0.3-cudnn8-runtime-ubuntu20.04
+FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
 USER root
 ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
@@ -6,7 +6,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEB_BUILD_DEPS="sudo nano less git wget curl gcc python3-dev python3-pip python3-setuptools"
 ENV DEB_PACKAGES="iptables ffmpeg libsndfile1 libpq-dev libsndfile1-dev python3-soundfile graphviz graphviz-dev"
-ENV PIP_PACKAGES="numpy matplotlib tensorflow==2.4.1"
+ENV PIP_PACKAGES="numpy matplotlib tensorflow-gpu==2.6.0"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 RUN apt-get update && export $DEBIAN_FRONTEND && \
     echo $TIMEZONE > /etc/timezone && apt-get install -y tzdata
