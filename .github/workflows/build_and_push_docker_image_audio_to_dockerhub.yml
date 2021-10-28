@@ -8,7 +8,7 @@ on:
   push:
     branches: [ master ]
     paths:
-    - dockerfiles/audio/tensorflow-yuntu-dask-gpu/0.6.1_provisional/Dockerfile
+    - dockerfiles/audio/tensorflow-yuntu-dask-gpu/0.6.1/Dockerfile
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: dockerfiles/audio/tensorflow-yuntu-dask-gpu/0.6.1_provisional/Dockerfile
+          file: dockerfiles/audio/tensorflow-yuntu-dask-gpu/0.6.1/Dockerfile
           platforms: linux/amd64
           push: true
           tags: sipecam/audio-dgpi-kale-tensorflow-yuntu-dask-gpu-cert:0.6.1
