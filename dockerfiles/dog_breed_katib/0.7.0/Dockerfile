@@ -1,5 +1,4 @@
-#dummy line to trigger build
-FROM ubuntu:20.04
+FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
 USER root
 ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
