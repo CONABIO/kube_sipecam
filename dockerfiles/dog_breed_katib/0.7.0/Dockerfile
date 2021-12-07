@@ -7,7 +7,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="python3-dev python3-pip python3-setuptools"
 ENV DEB_PACKAGES="sudo nano less git wget curl ca-certificates"
-ENV PIP_PACKAGES_COMMON="opencv-python==3.2.0.6 h5py==2.6.0 matplotlib==2.0.0 scipy==0.18.1 tqdm==4.11.2 keras==2.0.2 scikit-learn==0.18.1 pillow==4.0.0 tensorflow==1.0.0"
+ENV PIP_PACKAGES_COMMON="numpy matplotlib==3.3.1 scipy pillow==7.2.0 tensorflow==2.3.0"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.7.0"
 
 
@@ -28,8 +28,6 @@ RUN jupyter notebook --generate-config && \
 RUN pip install $PIP_PACKAGES_COMMON
 RUN pip install $PIP_PACKAGES_KALE
 RUN jupyter labextension install kubeflow-kale-labextension@0.7.0
-
-RUN pip install numpy==1.12.0 
 
 VOLUME ["/shared_volume"]
 
