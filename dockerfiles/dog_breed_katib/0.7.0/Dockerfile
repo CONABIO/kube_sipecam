@@ -1,5 +1,5 @@
 #dummy line to trigger build
-FROM ubuntu:bionic
+FROM ubuntu:20.04
 USER root
 ENV TIMEZONE America/Mexico_City
 ENV LANG C.UTF-8
@@ -7,7 +7,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="python3-dev python3-pip python3-setuptools"
 ENV DEB_PACKAGES="sudo nano less git wget curl ca-certificates"
-ENV PIP_PACKAGES_COMMON="numpy matplotlib==3.3.1 scipy pillow==7.2.0 tensorflow==2.3.0"
+ENV PIP_PACKAGES_COMMON="numpy matplotlib==3.3.1 scipy pillow==7.2.0 tensorflow-gpu==2.3.0"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.7.0"
 
 
