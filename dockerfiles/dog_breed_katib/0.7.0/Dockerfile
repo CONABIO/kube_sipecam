@@ -7,7 +7,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="python3-dev python3-pip python3-setuptools"
 ENV DEB_PACKAGES="sudo nano less git wget curl ca-certificates"
-ENV PIP_PACKAGES_COMMON="opencv-python==3.4.0.14 h5py==2.6.0 matplotlib==2.0.0 numpy==1.12.0 scipy==0.18.1 tqdm==4.11.2 keras==2.0.2 scikit-learn==0.18.1 pillow==4.0.0 tensorflow==1.0.0"
+ENV PIP_PACKAGES_COMMON="matplotlib==2.0.0 numpy==1.12.0 scipy==0.18.1 opencv-python==3.4.0.14 h5py==2.6.0 tqdm==4.11.2 keras==2.0.2 scikit-learn==0.18.1 pillow==4.0.0 tensorflow==1.0.0"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.7.0"
 
 
