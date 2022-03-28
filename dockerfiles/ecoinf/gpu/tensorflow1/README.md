@@ -1,10 +1,10 @@
 Set:
 
 ```
-ECOINF_AND_KALE_GPU=0.6.1
+ECOINF_AND_KALE_GPU=0.6.1_2
 REPO_URL=sipecam/ecoinf-tensorflow1-kale-gpu
 PATH_DIR_OF_CLONING=/home/<user>/<midir>/kube_sipecam
-BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/ecoinf/gpu/tensorflow1/0.6.1
+BUILD_DIR=$PATH_DIR_OF_CLONING/dockerfiles/ecoinf/gpu/tensorflow1/0.6.1_2
 ```
 
 Clone:
