@@ -28,10 +28,10 @@ spec:
                                     value: C.UTF-8
                           resources:
                                   requests:
-                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          cpu: ".5" # This value depends of type of AWS instance chosen
                                           memory: .5Gi # This value depends of type of AWS instance chosen
                                   limits:
-                                          cpu: "1" # This value depends of type of AWS instance chosen
+                                          cpu: ".5" # This value depends of type of AWS instance chosen
                                           memory: .5Gi # This value depends of type of AWS instance chosen
                           volumeMounts:
                                   - name: hostpath-pv
