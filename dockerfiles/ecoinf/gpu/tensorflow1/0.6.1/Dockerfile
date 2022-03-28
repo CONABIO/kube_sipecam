@@ -6,7 +6,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="sudo nano less git wget curl python3-dev python3-pip python3-setuptools"
 ENV DEB_PACKAGES=""
-ENV PIP_PACKAGES_COMMON="scikit-learn==0.23.2"
+ENV PIP_PACKAGES_COMMON="scikit-learn==0.23.2 boto3"
 ENV PIP_PACKAGES_ECOINF="tensorflow_hub"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 
