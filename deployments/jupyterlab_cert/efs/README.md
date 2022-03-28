@@ -10,8 +10,8 @@ URL=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/deployments/ju
 Next lines are not necessary but help to modify services:
 
 ```
-wget $URL/efs$LOAD_BALANCER_SERVICE.yaml
-wget $URL/efs$JUPYTERLAB_SERVICE_HOSTPATH_PV.yaml
+wget $URL/efs/$LOAD_BALANCER_SERVICE.yaml
+wget $URL/efs/$JUPYTERLAB_SERVICE_HOSTPATH_PV.yaml
 ```
 
 Create service:
