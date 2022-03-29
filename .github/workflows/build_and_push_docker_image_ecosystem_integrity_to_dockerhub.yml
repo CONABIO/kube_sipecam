@@ -8,7 +8,7 @@ on:
   push:
     branches: [ master ]
     paths:
-    - dockerfiles/ecosystem_integrity/0.7.0/Dockerfile
+    - dockerfiles/ecosystem_integrity/0.6.1/Dockerfile
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: dockerfiles/ecosystem_integrity/0.7.0/Dockerfile
+          file: dockerfiles/ecosystem_integrity/0.6.1/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: sipecam/ecosystem-integrity:0.7.0
+          tags: sipecam/ecosystem-integrity:0.6.1
