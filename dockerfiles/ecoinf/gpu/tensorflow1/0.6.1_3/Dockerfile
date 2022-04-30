@@ -1,10 +1,10 @@
 FROM sipecam/ecoinf-tensorflow1-kale-gpu:0.6.1_2
 ###
 #ecoinf installation software
-RUN git clone -b dev https://bitbucket.org/conabio_cmd/conabio_ml_vision.git /lib/conabio_ml_vision
+RUN cd /lib/conabio_ml_vision && git pull
 RUN pip3 install -r /lib/conabio_ml_vision/requirements.txt 
 
-RUN git clone -b conabio_ml_core https://bitbucket.org/conabio_cmd/conabio_ml.git /lib/conabio_ml_vision/conabio_ml
+RUN cd /lib/conabio_ml_vision/conabio_ml && git pull
 RUN pip3 install -r /lib/conabio_ml_vision/conabio_ml/requirements.txt
 ###
 
