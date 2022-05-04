@@ -16,7 +16,7 @@ spec:
                         containers: 
                         - name: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv
                           imagePullPolicy: Always
-                          image: sipecam/audio-dgpi-kale-tensorflow-yuntu-dask-gpu-cert:0.6.1_dev
+                          image: sipecam/audio-dgpi-kale-tensorflow-yuntu-dask-gpu-cert:0.6.1_alfresco
                           ports:
                                   - containerPort: 8888
                           env:
