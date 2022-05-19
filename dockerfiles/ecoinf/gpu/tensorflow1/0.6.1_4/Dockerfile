@@ -4,8 +4,7 @@ FROM sipecam/ecoinf-tensorflow1-kale-gpu:0.6.1_2
 # conabio_sipecam
 RUN git clone https://github.com/CONABIO/sipecam-open-data.git /lib/conabio_sipecam
 RUN pip3 install -r /lib/conabio_sipecam/requirements.txt
-RUN pip3 install wheel
-RUN python3 /lib/conabio_sipecam/setup.py bdist_wheel
+ENV PYTHONPATH=$PYTHONPATH:/lib/conabio_sipecam:/lib/conabio_sipecam/conabio:/lib/conabio_sipecam/conabio/src
 
 # ecoinf installation software
 
