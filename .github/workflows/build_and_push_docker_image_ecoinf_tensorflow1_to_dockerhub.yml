@@ -8,7 +8,6 @@ on:
   push:
     branches: [ master ]
     paths:
-    - dockerfiles/ecoinf/gpu/tensorflow1/0.6.1_3/Dockerfile
     - dockerfiles/ecoinf/gpu/tensorflow1/0.6.1_4/Dockerfile
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -31,15 +30,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: dockerfiles/ecoinf/gpu/tensorflow1/0.6.1_3/Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: sipecam/ecoinf-tensorflow1-kale-gpu:0.6.1_3
       -
         name: Build and push
         uses: docker/build-push-action@v2
