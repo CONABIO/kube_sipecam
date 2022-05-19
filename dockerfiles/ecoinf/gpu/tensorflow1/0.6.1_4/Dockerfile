@@ -6,6 +6,7 @@ RUN git clone https://github.com/CONABIO/sipecam-open-data.git /lib/conabio_sipe
 RUN pip3 install -r /lib/conabio_sipecam/requirements.txt
 ENV PYTHONPATH=$PYTHONPATH:/lib/conabio_sipecam:/lib/conabio_sipecam/conabio:/lib/conabio_sipecam/conabio/src
 ENV ALFRESCO_API_ENDPOINT=https://api.conabio.gob.mx/test/search/
+ENV ALFRESCO_API_KEY=eZ2YodafJ67nZ5HltyFp1XqimW6Lhmp0bEGu919w
 
 # ecoinf installation software
 
