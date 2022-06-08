@@ -16,7 +16,7 @@ spec:
                         containers: 
                         - name: kale-jupyterlab
                           imagePullPolicy: Always
-                          image: sipecam/jupyterlab-cert-kale:0.6.1
+                          image: sipecam/jupyterlab-cert-kale:0.6.1_20.04
                           ports:
                                   - containerPort: 8888
                           env:
