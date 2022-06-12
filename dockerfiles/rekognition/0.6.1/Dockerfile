@@ -6,7 +6,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive 
 ENV DEB_BUILD_DEPS="python3-dev python3-pip python3-setuptools python3-opencv"
 ENV DEB_PACKAGES="sudo nano less git wget curl ca-certificates"
-ENV PIP_PACKAGES_COMMON="numpy scipy pandas matplotlib seaborn boto3 pillow opencv"
+ENV PIP_PACKAGES_COMMON="numpy scipy pandas matplotlib seaborn boto3 pillow opencv-python"
 ENV PIP_PACKAGES_KALE="kubeflow-kale==0.6.1"
 ENV JUPYTERLAB="jupyter-client==5.3.4 jupyterlab==2.3.2 qtconsole==5.2.1 nbconvert==5.6.1 jupyter-console==6.4.0 ipykernel==6.6.0 MarkupSafe==2.0.1"
 
