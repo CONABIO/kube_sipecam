@@ -10,7 +10,7 @@ AUDIO_PVC=hostpath-pvc
 AUDIO_PV_EFS=hostpath-pv-efs
 AUDIO_PVC_EFS=hostpath-pvc-efs
 AUDIO_JUPYTERLAB_SERVICE_NO_GPU=jupyterlab-audio-tf-yuntu-dask-no-gpu-0.6.1-hostpath-pv
-AUDIO_URL_NO_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/audio/tensorflow-yuntu-dask-gpu
+AUDIO_URL_NO_GPU=https://raw.githubusercontent.com/CONABIO/kube_sipecam/master/minikube_sipecam/deployments/audio/tensorflow-yuntu-dask-no-gpu
 ```
 
 Next lines are not necessary but help to modify services:
