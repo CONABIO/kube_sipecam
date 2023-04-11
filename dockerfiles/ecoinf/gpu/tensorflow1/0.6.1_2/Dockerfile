@@ -45,7 +45,7 @@ RUN pip3 install $PIP_PACKAGES_COMMON --upgrade --use-feature=2020-resolver
 RUN git clone -b dev https://bitbucket.org/conabio_cmd/conabio_ml_vision.git /lib/conabio_ml_vision
 RUN pip3 install -r /lib/conabio_ml_vision/requirements.txt 
 
-RUN git clone -b conabio_ml_core https://bitbucket.org/conabio_cmd/conabio_ml.git /lib/conabio_ml_vision/conabio_ml
+RUN git clone -b dev https://bitbucket.org/conabio_cmd/conabio_ml.git /lib/conabio_ml_vision/conabio_ml
 RUN pip3 install -r /lib/conabio_ml_vision/conabio_ml/requirements.txt
 ###
 
