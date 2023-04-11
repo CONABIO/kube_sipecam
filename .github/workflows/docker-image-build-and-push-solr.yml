@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: ecoinf-tensorflow1-docker-image-build-and-push
+name: solr-docker-image-build-and-push
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -8,11 +8,11 @@ on:
   push:
     branches: [ master ]
     paths:
-    - dockerfiles/ecoinf/gpu/tensorflow1/0.6.1_4/Dockerfile
+    - dockerfiles/solr/0.6.1/Dockerfile
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-push-docker-image-ecoinf:
+  build-and-push-docker-image-rekognition:
     runs-on: ubuntu-20.04
     steps:
       -
@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: dockerfiles/ecoinf/gpu/tensorflow1/0.6.1_4/Dockerfile
+          file: dockerfiles/solr/0.6.1/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: sipecam/ecoinf-tensorflow1-kale-gpu:0.6.1_4
+          tags: sipecam/solr-kale:0.6.1

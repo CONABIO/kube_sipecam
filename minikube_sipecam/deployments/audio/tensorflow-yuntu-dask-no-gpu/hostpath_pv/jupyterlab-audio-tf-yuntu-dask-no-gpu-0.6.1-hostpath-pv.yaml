@@ -1,42 +1,40 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-        name: kale-jupyterlab
+        name: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv
         namespace: kubeflow
 spec:
         replicas: 1 # This is the number of containers that are going to be deployed.
         selector:
                 matchLabels:
-                        app: kale-jupyterlab-app
+                        app: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv-app
         template:
                 metadata:
                         labels:
-                                app: kale-jupyterlab-app
+                                app: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv-app
                 spec:
                         containers: 
-                        - name: kale-jupyterlab
+                        - name: jupyterlab-audio-tf-yuntu-dask-gpu-0-6-1-hostpath-pv
                           imagePullPolicy: Always
-                          image: sipecam/jupyterlab-cert-kale:0.6.1_20.04
+                          image: sipecam/audio-dgpi-kale-tensorflow-yuntu-dask-cert:0.6.1_dev
                           ports:
                                   - containerPort: 8888
-                          env:
-                                  - name: mount_point
-                                    value: /shared_volume
-                                  - name: LC_ALL
-                                    value: C.UTF-8
-                                  - name: LANG
-                                    value: C.UTF-8
                           resources:
                                   requests:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
-                                          memory: .5Gi # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
                                   limits:
                                           cpu: ".5" # This value depends of type of AWS instance chosen
-                                          memory: .5Gi # This value depends of type of AWS instance chosen
+                                          memory: 15Gi # This value depends of type of AWS instance chosen
                           volumeMounts:
                                   - name: hostpath-pv
                                     mountPath: "/shared_volume"
+                                  - name: hostpath-pv-efs
+                                    mountPath: "/shared_volume_efs"
                         volumes:
                         - name: hostpath-pv
                           persistentVolumeClaim:
                                   claimName: hostpath-pvc
+                        - name: hostpath-pv-efs
+                          persistentVolumeClaim:
+                                  claimName: hostpath-pvc-efs
